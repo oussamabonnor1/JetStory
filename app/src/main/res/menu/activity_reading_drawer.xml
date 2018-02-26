@@ -20,17 +20,9 @@
             android:title="Tools" />
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="App Version">
         <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+            <item android:title="Version: 1.0.0" />
         </menu>
     </item>
-
 </menu>
