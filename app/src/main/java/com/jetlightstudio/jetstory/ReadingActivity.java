@@ -16,6 +16,8 @@ import android.view.MenuItem;
 public class ReadingActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+        // comment from Loubna
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
