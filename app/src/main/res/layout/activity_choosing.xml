@@ -23,7 +23,7 @@
             <ImageView
                 android:layout_width="120dp"
                 android:layout_height="120dp"
-                android:src="@drawable/square_logo_new" />
+                android:src="@mipmap/ic_launcher_round" />
 
         </LinearLayout>
 
@@ -97,7 +97,7 @@
             android:layout_marginEnd="75dp"
             android:layout_marginStart="75dp"
             android:layout_weight=".5"
-            android:background="@color/colorPrimaryLight">
+            android:background="@drawable/custom_panel_circular_edge">
 
         </LinearLayout>
 
