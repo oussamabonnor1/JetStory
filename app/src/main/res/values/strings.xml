@@ -15,4 +15,12 @@
         <item>Moral</item>
         <item>Newly added</item>
     </string-array>
+
+    <string-array name="length">
+        <item>3 mn</item>
+        <item>5 mn (70 words)</item>
+        <item>10 mn (150 words)</item>
+        <item>15 mn (210 words)</item>
+        <item>+20 mn (+350 words)</item>
+    </string-array>
 </resources>
