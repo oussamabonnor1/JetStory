@@ -9,11 +9,11 @@
                 android:type="linear"
                 android:angle="0"
                 android:centerColor="#F4F4F4"
-                android:endColor="#757575"
+                android:endColor="#F9F9F9"
                 android:startColor="@color/colorAccent" />
         </shape>
     </item>
-    <item android:right="2dp">
+    <item android:right="3dp">
         <shape android:shape="rectangle">
 
             <corners android:radius="10dp" />
