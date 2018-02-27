@@ -37,32 +37,43 @@
         </LinearLayout>
     </LinearLayout>
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:layout_marginTop="150dp"
-        android:background="@drawable/custom_panel_circular_edge">
+        android:orientation="vertical"
+        android:weightSum="1">
 
-        <ScrollView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="0dp"
+            android:layout_weight=".25" />
 
-            <LinearLayout
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_weight=".75"
+            android:background="@drawable/custom_panel_circular_edge">
+
+            <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="match_parent">
 
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="25dp"
-                    android:text="@string/lorem"
-                    android:textAlignment="center" />
-            </LinearLayout>
-        </ScrollView>
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="25dp"
+                        android:text="@string/lorem"
+                        android:textAlignment="center" />
+                </LinearLayout>
+            </ScrollView>
+        </LinearLayout>
     </LinearLayout>
 
     <android.support.design.widget.FloatingActionButton
