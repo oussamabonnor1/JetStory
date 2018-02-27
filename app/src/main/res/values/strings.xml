@@ -7,4 +7,12 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+
+    <string-array name="category">
+        <item>Action</item>
+        <item>Comedy</item>
+        <item>Romance</item>
+        <item>Moral</item>
+        <item>Newly added</item>
+    </string-array>
 </resources>
