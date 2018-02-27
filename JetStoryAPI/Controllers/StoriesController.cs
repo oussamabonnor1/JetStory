@@ -12,7 +12,6 @@ namespace JetStoryAPI.Controllers
     public class StoriesController : Controller
     {
        private readonly StoryContext _context;
-       
 
         public StoriesController(StoryContext context)
         {
@@ -33,7 +32,6 @@ namespace JetStoryAPI.Controllers
            return _context.Stories.ToList();
         }
 
-        // GET api/values/5
         [HttpGet("{name}")]
         public IActionResult Get(string Name)
         {
@@ -42,7 +40,6 @@ namespace JetStoryAPI.Controllers
         
         }
 
-        // POST api/values
         [HttpPost]
         public void Post([FromBody]Story story)
         {
@@ -50,13 +47,20 @@ namespace JetStoryAPI.Controllers
             _context.SaveChanges();
         }
 
-        // PUT api/values/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        public void Edit(int id, [FromBody]Story story)
         {
+             var storie = _context.Stories.FirstOrDefault(t => t.Id == id);
+             storie.Name = story.Name;
+             storie.Category = story.Category;
+             storie.Content = story.Content;
+             storie.Time = story.Time;
+             storie.publishedDate = story.publishedDate;
+             storie.writer = story.writer;
+            _context.Stories.Update(storie);
+            _context.SaveChanges();
         }
 
-        // DELETE api/values/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
