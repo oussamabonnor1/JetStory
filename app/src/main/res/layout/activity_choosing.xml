@@ -171,6 +171,7 @@
                 android:layout_weight=".225"
                 android:backgroundTint="@color/colorPrimary"
                 android:text="Search a story"
+                android:onClick="searchStory"
                 android:background="@drawable/custom_panel_circular_edge"
                 android:textColor="@color/colorAccent"
                 android:textStyle="bold" />

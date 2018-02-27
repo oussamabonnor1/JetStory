@@ -1,7 +1,9 @@
 package com.jetlightstudio.jetstory;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
@@ -24,5 +26,10 @@ public class ChoosingActivity extends AppCompatActivity {
         arr2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerLength.setAdapter(arr2);
 
+    }
+
+    public void searchStory(View view) {
+        Intent i = new Intent(this, ReadingActivity.class);
+        startActivity(i);
     }
 }
