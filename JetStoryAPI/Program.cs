@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
-namespace ColorsAPI
+namespace JetStoryAPI
 {
   public class Program
   {

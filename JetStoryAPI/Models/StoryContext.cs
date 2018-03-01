@@ -2,12 +2,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace JetStoryAPI.Models
 {
-    public class StoryContext : DbContext
+  public class StoryContext : DbContext
+  {
+    public StoryContext(DbContextOptions<StoryContext> options) : base(options)
     {
-        public StoryContext(DbContextOptions<StoryContext> options) : base(options)
-        {
-
-        }
-        public DbSet<Story> Stories { get; set; }
     }
+
+    public DbSet<Story> Stories { get; set; }
+  }
 }
