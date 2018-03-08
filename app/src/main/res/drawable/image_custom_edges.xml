@@ -4,11 +4,10 @@
     <item>
         <shape android:shape="rectangle">
             <corners android:radius="10dp" />
-        </shape>
-    </item>
-    <item android:right="3dp">
-        <shape android:shape="rectangle">
-            <corners android:radius="10dp" />
+            <stroke
+                android:width="55dp"
+                android:color="#252525" />
+            <solid android:color="#FFFFFF" />
         </shape>
     </item>
 </layer-list>

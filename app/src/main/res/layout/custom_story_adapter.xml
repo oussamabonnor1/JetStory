@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="25dp"
-    android:background="@drawable/custom_panel_circular_edge"
+    android:background="@drawable/image_custom_edges"
+    android:backgroundTint="#F4F4F4"
     android:orientation="vertical"
     android:weightSum="1">
 
-
     <ImageView
+        android:id="@+id/cover"
         android:layout_width="match_parent"
+        android:layout_margin="5dp"
         android:layout_height="0dp"
         android:layout_weight=".8"
-        android:foreground="@drawable/image_custom_edges"
-        android:scaleType="centerCrop" />
+        android:background="@drawable/book_green" />
 
     <TextView
         android:layout_width="match_parent"
@@ -26,4 +26,4 @@
         android:text="Story Title"
         android:textStyle="bold" />
 
-</android.support.v4.widget.CardView>
+</LinearLayout>

@@ -1,6 +1,8 @@
 package com.jetlightstudio.jetstory;
 
+import android.graphics.Point;
 import android.os.Bundle;
+import android.view.Display;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -13,6 +15,9 @@ import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
+import android.widget.ImageView;
+
+import java.util.Random;
 
 
 public class StoryListActivity extends AppCompatActivity
@@ -116,8 +121,14 @@ public class StoryListActivity extends AppCompatActivity
 
         @Override
         public View getView(int i, View view, ViewGroup viewGroup) {
+            Display display = getWindowManager().getDefaultDisplay();
+            Point size = new Point();
+            display.getSize(size);
+            int height = size.y;
             view = getLayoutInflater().inflate(R.layout.custom_story_adapter, null);
-            view.setLayoutParams(new GridView.LayoutParams(GridView.AUTO_FIT, 40));
+            view.setLayoutParams(new GridView.LayoutParams(GridView.AUTO_FIT, height / 3));
+            ImageView cover = view.findViewById(R.id.cover);
+            cover.setBackgroundResource(new Random().nextBoolean() ? R.drawable.book_green : R.drawable.book_red);
             return view;
         }
     }
