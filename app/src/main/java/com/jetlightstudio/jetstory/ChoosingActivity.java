@@ -29,7 +29,7 @@ public class ChoosingActivity extends AppCompatActivity {
     }
 
     public void searchStory(View view) {
-        Intent i = new Intent(this, ReadingActivity.class);
+        Intent i = new Intent(this, StoryListActivity.class);
         startActivity(i);
     }
 }
