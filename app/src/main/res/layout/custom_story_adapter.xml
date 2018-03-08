@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="25dp"
+    android:background="@drawable/custom_panel_circular_edge"
     android:orientation="vertical"
     android:weightSum="1">
 
@@ -10,17 +14,16 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight=".8"
-        android:scaleType="centerCrop"
-        android:src="@drawable/square_logo_new" />
+        android:foreground="@drawable/image_custom_edges"
+        android:scaleType="centerCrop" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight=".2"
         android:gravity="center"
+        android:lines="1"
         android:text="Story Title"
-        android:textSize="34sp"
         android:textStyle="bold" />
 
-
-</LinearLayout>
+</android.support.v4.widget.CardView>

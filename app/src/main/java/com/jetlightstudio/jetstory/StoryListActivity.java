@@ -117,6 +117,7 @@ public class StoryListActivity extends AppCompatActivity
         @Override
         public View getView(int i, View view, ViewGroup viewGroup) {
             view = getLayoutInflater().inflate(R.layout.custom_story_adapter, null);
+            view.setLayoutParams(new GridView.LayoutParams(GridView.AUTO_FIT, 40));
             return view;
         }
     }
