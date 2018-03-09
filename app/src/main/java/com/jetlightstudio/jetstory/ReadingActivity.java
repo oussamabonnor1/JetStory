@@ -53,7 +53,8 @@ public class ReadingActivity extends AppCompatActivity
         content = (TextView) findViewById(R.id.contentText);
         title.setText(story.getTitle());
         content.setText("This story is: " + story.getTitle() + " written by " + story.getAuthor()
-                + " in the date " + story.getDate() + " the story's ID is " + story.getId() + " and it s readin time is " + story.getTime());
+                + " in the date " + story.getDate() + " the story's ID is " + story.getId() + " and it s readin time is " + story.getTime()
+                + " the category of this story is: " + story.getCategory());
     }
 
     @Override
