@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@color/colorPrimary"
+            android:orientation="vertical"
+            android:weightSum="1">
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="1">
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight=".1" />
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight=".125"
+            android:columnCount="5"
+            android:rowCount="1">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight=".9"
+                android:layout_gravity="center"
+                android:background="@color/colorAccent"
+                android:text="Action"
+                android:textColor="@color/colorPrimary" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight=".9"
+                android:layout_gravity="center"
+                android:background="@color/colorAccent"
+                android:text="Funny"
+                android:textColor="@color/colorPrimary" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight=".9"
+                android:layout_gravity="center"
+                android:background="@color/colorAccent"
+                android:text="Love"
+                android:textColor="@color/colorPrimary" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight=".9"
+                android:layout_gravity="center"
+                android:background="@color/colorAccent"
+                android:text="Sad"
+                android:textColor="@color/colorPrimary" />
+
+
+        </GridLayout>
+
+        <GridView
+            android:id="@+id/grid"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginStart="25dp"
+            android:layout_weight=".775"
+            android:horizontalSpacing="10dp"
+            android:numColumns="2"
+            android:verticalSpacing="15dp" />
+
+
+    </LinearLayout>
+
+    <!---->
+</RelativeLayout>
