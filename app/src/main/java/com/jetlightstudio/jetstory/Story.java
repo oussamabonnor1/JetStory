@@ -27,6 +27,14 @@ public class Story  implements Serializable{
         this.category = category;
     }
 
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
     public String getTitle() {
         return title;
     }

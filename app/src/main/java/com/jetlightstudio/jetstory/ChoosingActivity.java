@@ -1,12 +1,22 @@
 package com.jetlightstudio.jetstory;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -15,6 +25,8 @@ public class ChoosingActivity extends AppCompatActivity {
     Spinner spinnerCategory;
     Spinner spinnerLength;
     ArrayList<Story> stories;
+    String content;
+    TextView test;
 
 
     @Override
@@ -31,6 +43,12 @@ public class ChoosingActivity extends AppCompatActivity {
         arr2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerLength.setAdapter(arr2);
         stories = new ArrayList<>();
+
+        test = (TextView) findViewById(R.id.test);
+
+        final RetreiveStoryData storyData = new RetreiveStoryData();
+        storyData.execute();
+
         for (int i = 0; i < 25; i++) {
             int c = new Random().nextInt(5);
             Story.Category category = Story.Category.action;
@@ -106,6 +124,66 @@ public class ChoosingActivity extends AppCompatActivity {
         }
         Intent i = new Intent(this, StoryListActivity.class);
         i.putExtra("stories", storiesTemp);
+        i.putExtra("content", content);
         startActivity(i);
     }
+
+    public class RetreiveStoryData extends AsyncTask<Void, Void, Void> {
+        String data;
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            System.out.println("fetching...");
+            try {
+                URL url = new URL("https://api.chucknorris.io/jokes/random");
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                InputStream inputStream = connection.getInputStream();
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+                String s = "";
+                while (s != null) {
+                    System.out.println("got: " + s);
+                    s = bufferedReader.readLine();
+                    data += s;
+                }
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            content = data;
+            test.setText(content);
+        }
+
+        /*// Do some validation here
+            try {
+                URL url = new URL("https://api.androidhive.info/contacts/");
+                HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+                urlConnection.setRequestMethod("GET");
+                urlConnection.connect();
+
+                try {
+                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+                    StringBuilder stringBuilder = new StringBuilder();
+                    String line;
+                    while ((line = bufferedReader.readLine()) != null) {
+                        stringBuilder.append(line).append("\n");
+                    }
+                    bufferedReader.close();
+                    s = stringBuilder.toString();
+                } finally {
+                    urlConnection.disconnect();
+                }
+            } catch (Exception e) {
+                Log.e("ERROR", e.getMessage(), e);
+                return null;
+            }
+            return null;*/
+    }
 }
+

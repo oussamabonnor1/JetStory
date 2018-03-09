@@ -54,6 +54,7 @@ public class StoryListActivity extends AppCompatActivity
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(StoryListActivity.this, ReadingActivity.class);
+                stories.get(i).setContent(getIntent().getExtras().getString("content"));
                 intent.putExtra("story", stories.get(i));
                 startActivity(intent);
             }

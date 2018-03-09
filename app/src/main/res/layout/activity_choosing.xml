@@ -71,10 +71,13 @@
                 android:layout_weight=".25"
                 android:src="@drawable/ic_file_download_white_24dp" />
 
-            <Space
+            <TextView
+                android:id="@+id/test"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ellipsize="marquee"
+                android:text="test" />
 
         </LinearLayout>
 
@@ -169,10 +172,10 @@
                 android:layout_height="0dp"
                 android:layout_margin="10dp"
                 android:layout_weight=".225"
-                android:backgroundTint="@color/colorPrimary"
-                android:text="Search a story"
-                android:onClick="searchStory"
                 android:background="@drawable/custom_panel_circular_edge"
+                android:backgroundTint="@color/colorPrimary"
+                android:onClick="searchStory"
+                android:text="Search a story"
                 android:textColor="@color/colorAccent"
                 android:textStyle="bold" />
 
