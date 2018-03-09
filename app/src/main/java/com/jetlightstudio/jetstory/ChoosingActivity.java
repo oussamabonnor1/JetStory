@@ -26,7 +26,6 @@ public class ChoosingActivity extends AppCompatActivity {
     Spinner spinnerLength;
     ArrayList<Story> stories;
     String content;
-    TextView test;
 
 
     @Override
@@ -44,7 +43,6 @@ public class ChoosingActivity extends AppCompatActivity {
         spinnerLength.setAdapter(arr2);
         stories = new ArrayList<>();
 
-        test = (TextView) findViewById(R.id.test);
 
         final RetreiveStoryData storyData = new RetreiveStoryData();
         storyData.execute();
@@ -157,7 +155,6 @@ public class ChoosingActivity extends AppCompatActivity {
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
             content = data;
-            test.setText(content);
         }
 
         /*// Do some validation here

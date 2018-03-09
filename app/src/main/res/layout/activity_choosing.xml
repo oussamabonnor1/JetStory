@@ -71,13 +71,10 @@
                 android:layout_weight=".25"
                 android:src="@drawable/ic_file_download_white_24dp" />
 
-            <TextView
-                android:id="@+id/test"
+            <Space
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ellipsize="marquee"
-                android:text="test" />
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
 
         </LinearLayout>
 
