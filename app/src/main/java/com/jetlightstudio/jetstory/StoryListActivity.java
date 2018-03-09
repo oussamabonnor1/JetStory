@@ -1,5 +1,6 @@
 package com.jetlightstudio.jetstory;
 
+import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.view.Display;
@@ -13,16 +14,20 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 
 public class StoryListActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     GridView grid;
+    ArrayList<Story> stories;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,9 +45,19 @@ public class StoryListActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        stories = (ArrayList<Story>) getIntent().getExtras().getSerializable("stories");
+
         grid = (GridView) findViewById(R.id.grid);
         CustomStoryAdapter c = new CustomStoryAdapter();
         grid.setAdapter(c);
+        grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(StoryListActivity.this, ReadingActivity.class);
+                intent.putExtra("story", stories.get(i));
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -106,7 +121,7 @@ public class StoryListActivity extends AppCompatActivity
 
         @Override
         public int getCount() {
-            return 25;
+            return stories.size();
         }
 
         @Override
@@ -127,8 +142,16 @@ public class StoryListActivity extends AppCompatActivity
             int height = size.y;
             view = getLayoutInflater().inflate(R.layout.custom_story_adapter, null);
             view.setLayoutParams(new GridView.LayoutParams(GridView.AUTO_FIT, height / 3));
-            ImageView cover = view.findViewById(R.id.cover);
-            cover.setBackgroundResource(new Random().nextBoolean() ? R.drawable.book_green : R.drawable.book_red);
+
+            ImageView cover = view.findViewById(R.id.coverImage);
+            TextView title = view.findViewById(R.id.titleText);
+            TextView author = view.findViewById(R.id.authorText);
+            TextView year = view.findViewById(R.id.yearText);
+
+            cover.setBackgroundResource(stories.get(i).getTime() <= 5 ? R.drawable.book_green : R.drawable.book_red);
+            title.setText(stories.get(i).getTitle());
+            author.setText(stories.get(i).getAuthor());
+            year.setText(stories.get(i).getDate());
             return view;
         }
     }

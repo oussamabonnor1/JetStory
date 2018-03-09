@@ -12,11 +12,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 public class ReadingActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     // comment from Loubna
+
+    Story story;
+    TextView title;
+    TextView content;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +47,13 @@ public class ReadingActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        story = (Story) getIntent().getExtras().getSerializable("story");
+        title = (TextView) findViewById(R.id.titleText);
+        content = (TextView) findViewById(R.id.contentText);
+        title.setText(story.getTitle());
+        content.setText("This story is: " + story.getTitle() + " written by " + story.getAuthor()
+                + " in the date " + story.getDate() + " the story's ID is " + story.getId() + " and it s readin time is " + story.getTime());
     }
 
     @Override

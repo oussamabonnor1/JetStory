@@ -25,7 +25,7 @@
                 android:layout_weight=".4" />
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/titleText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="cursive"
@@ -66,6 +66,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/contentText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="25dp"
