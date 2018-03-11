@@ -6,8 +6,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -27,6 +30,8 @@ public class ChoosingActivity extends AppCompatActivity {
     Spinner spinnerLength;
     ArrayList<Story> stories;
     JSONObject json;
+    ProgressBar progressBar;
+    LinearLayout choicePanel;
 
 
     @Override
@@ -43,6 +48,11 @@ public class ChoosingActivity extends AppCompatActivity {
         arr2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerLength.setAdapter(arr2);
         stories = new ArrayList<>();
+
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        choicePanel = (LinearLayout) findViewById(R.id.choicePanel);
+        choicePanel.setVisibility(View.GONE);
+        progressBar.setVisibility(View.VISIBLE);
 
         final RetreiveStoryData storyData = new RetreiveStoryData();
         storyData.execute();
@@ -109,7 +119,7 @@ public class ChoosingActivity extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... voids) {
             try {
-                URL url = new URL("https://api.chucknorris.io/jokes/random");
+                URL url = new URL("https://api.myjson.com/bins/j5f6b");
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 InputStream inputStream = connection.getInputStream();
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
@@ -131,41 +141,51 @@ public class ChoosingActivity extends AppCompatActivity {
             super.onPostExecute(aVoid);
             try {
                 data = data.replace("null","");
-                json = new JSONObject(data);
+                JSONArray jsonArray = new JSONArray(data);
+                jsonArray.get(0);
+                json = (JSONObject) jsonArray.get(0);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
+            for (int i = 0; i < 25; i++) {
 
-            int c = new Random().nextInt(5);
-            Story.Category category = Story.Category.action;
-            switch (c) {
-                case 0:
-                    category = Story.Category.action;
-                    break;
-                case 1:
-                    category = Story.Category.comedy;
-                    break;
-                case 2:
-                    category = Story.Category.romance;
-                    break;
-                case 3:
-                    category = Story.Category.moral;
-                    break;
-                case 4:
-                    category = Story.Category.sad;
-                    break;
+                int c = new Random().nextInt(5);
+                Story.Category category = Story.Category.action;
+                switch (c) {
+                    case 0:
+                        category = Story.Category.action;
+                        break;
+                    case 1:
+                        category = Story.Category.comedy;
+                        break;
+                    case 2:
+                        category = Story.Category.romance;
+                        break;
+                    case 3:
+                        category = Story.Category.moral;
+                        break;
+                    case 4:
+                        category = Story.Category.sad;
+                        break;
+                }
+                stories.add(new Story("story " + (stories.size()), "author " + stories.size(), "DD/MM/YYYY", stories.size(), new Random().nextInt(10) + 1, category));
+                try {
+                    stories.get(stories.size() - 1).setContent(json.getString("contact"));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
-            stories.add(new Story("story " + (stories.size()), "author " + stories.size(), "DD/MM/YYYY", stories.size(), new Random().nextInt(10) + 1, category));
 
-            try {
+            choicePanel.setVisibility(View.VISIBLE);
+            progressBar.setVisibility(View.GONE);
+            /*try {
                 stories.get(stories.size() - 1).setContent(json.get("value").toString());
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            System.out.println(stories.get(stories.size()-1));
             index++;
-            if(index < 25) this.execute();
+            if(index < 25) this.execute();*/
         }
     }
 }

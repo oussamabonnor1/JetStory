@@ -51,7 +51,8 @@
                 android:layout_gravity="center"
                 android:layout_marginStart="35dp"
                 android:layout_weight=".25"
-                android:src="@drawable/ic_file_download_white_24dp" />
+                android:background="#FAFAFA"
+                android:src="@mipmap/ic_launcher_round" />
 
             <ImageButton
                 android:layout_width="0dp"
@@ -60,7 +61,8 @@
                 android:layout_marginLeft="15dp"
                 android:layout_marginStart="15dp"
                 android:layout_weight=".25"
-                android:src="@drawable/ic_file_download_white_24dp" />
+                android:background="#FAFAFA"
+                android:src="@mipmap/ic_launcher_round" />
 
             <ImageButton
                 android:layout_width="0dp"
@@ -68,8 +70,9 @@
                 android:layout_gravity="center"
                 android:layout_marginLeft="15dp"
                 android:layout_marginStart="15dp"
-                android:layout_weight=".25"
-                android:src="@drawable/ic_file_download_white_24dp" />
+                android:layout_weight=".4"
+                android:background="#FAFAFA"
+                android:src="@mipmap/ic_launcher_round" />
 
             <Space
                 android:layout_width="0dp"
@@ -92,6 +95,7 @@
             android:layout_weight=".3" />
 
         <LinearLayout
+            android:id="@+id/choicePanel"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginEnd="75dp"
@@ -179,4 +183,13 @@
         </LinearLayout>
 
     </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="110dp"
+        android:indeterminateDrawable="@drawable/progress_bar_custom_layout" />
 </RelativeLayout>
