@@ -107,6 +107,9 @@ public class ChoosingActivity extends AppCompatActivity {
                 index++;
             }
         }
+        if (categoryIndex == 4) {
+            storiesTemp = new StoryDataBase(getApplicationContext(), null).loadStories(getApplicationContext());
+        }
         Intent i = new Intent(this, StoryListActivity.class);
         i.putExtra("stories", storiesTemp);
         startActivity(i);
@@ -139,45 +142,70 @@ public class ChoosingActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            try {
-                data = data.replace("null","");
-                JSONArray jsonArray = new JSONArray(data);
-                json = (JSONObject) jsonArray.get(0);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-            for (int i = 0; i < 25; i++) {
-
-                int c = new Random().nextInt(5);
-                Story.Category category = Story.Category.action;
-                switch (c) {
-                    case 0:
-                        category = Story.Category.action;
-                        break;
-                    case 1:
-                        category = Story.Category.comedy;
-                        break;
-                    case 2:
-                        category = Story.Category.romance;
-                        break;
-                    case 3:
-                        category = Story.Category.moral;
-                        break;
-                    case 4:
-                        category = Story.Category.sad;
-                        break;
-                }
-                stories.add(new Story("story " + (stories.size()), "author " + stories.size(), "DD/MM/YYYY", stories.size(), new Random().nextInt(10) + 1, category));
+            if (data != null) {
                 try {
-                    stories.get(stories.size() - 1).setContent(json.getString("contact"));
+                    data = data.replace("null", "");
+                    JSONArray jsonArray = new JSONArray(data);
+                    json = (JSONObject) jsonArray.get(0);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-            }
 
-            choicePanel.setVisibility(View.VISIBLE);
-            progressBar.setVisibility(View.GONE);
+                for (int i = 0; i < 25; i++) {
+
+                    int c = new Random().nextInt(5);
+                    Story.Category category = Story.Category.action;
+                    switch (c) {
+                        case 0:
+                            category = Story.Category.action;
+                            break;
+                        case 1:
+                            category = Story.Category.comedy;
+                            break;
+                        case 2:
+                            category = Story.Category.romance;
+                            break;
+                        case 3:
+                            category = Story.Category.moral;
+                            break;
+                        case 4:
+                            category = Story.Category.sad;
+                            break;
+                    }
+                    stories.add(new Story("story " + (stories.size()), "author " + stories.size(), "DD/MM/YYYY", stories.size(), new Random().nextInt(10) + 1, category));
+                    try {
+                        stories.get(stories.size() - 1).setContent(json.getString("contact"));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            } else {
+                for (int i = 0; i < 25; i++) {
+
+                    int c = new Random().nextInt(5);
+                    Story.Category category = Story.Category.action;
+                    switch (c) {
+                        case 0:
+                            category = Story.Category.action;
+                            break;
+                        case 1:
+                            category = Story.Category.comedy;
+                            break;
+                        case 2:
+                            category = Story.Category.romance;
+                            break;
+                        case 3:
+                            category = Story.Category.moral;
+                            break;
+                        case 4:
+                            category = Story.Category.sad;
+                            break;
+                    }
+                    stories.add(new Story("story " + (stories.size()), "author " + stories.size(), "DD/MM/YYYY", stories.size(), new Random().nextInt(10) + 1, category));
+
+                }
+                choicePanel.setVisibility(View.VISIBLE);
+                progressBar.setVisibility(View.GONE);
             /*try {
                 stories.get(stories.size() - 1).setContent(json.get("value").toString());
             } catch (JSONException e) {
@@ -185,6 +213,7 @@ public class ChoosingActivity extends AppCompatActivity {
             }
             index++;
             if(index < 25) this.execute();*/
+            }
         }
     }
 }

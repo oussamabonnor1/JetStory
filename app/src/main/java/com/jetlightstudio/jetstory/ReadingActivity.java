@@ -44,7 +44,7 @@ public class ReadingActivity extends AppCompatActivity
         content.setText("This story is: " + story.getTitle() + " written by " + story.getAuthor()
                 + " in the date " + story.getDate() + " the story's ID is " + story.getId() + " and it s readin time is " + story.getTime()
                 + " the category of this story is: " + story.getCategory() + " content: "
-        + story.getContent());
+                + story.getContent());
     }
 
     @Override
@@ -73,7 +73,8 @@ public class ReadingActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.download) {
-
+            StoryDataBase base = new StoryDataBase(getApplicationContext(), null);
+            base.saveStory(story, getApplicationContext());
             return true;
         }
 

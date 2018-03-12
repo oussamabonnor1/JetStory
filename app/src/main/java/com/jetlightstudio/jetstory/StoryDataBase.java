@@ -43,7 +43,7 @@ public class StoryDataBase extends SQLiteOpenHelper {
         content.put(culomncategory, story.getCategory().name());
         db.insert(tableName, null, content);
 
-        Toast.makeText(context,"Story saved successfully!",Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, "Story saved successfully!", Toast.LENGTH_SHORT).show();
     }
 
     public ArrayList<Story> loadStories(Context context) {
@@ -53,7 +53,7 @@ public class StoryDataBase extends SQLiteOpenHelper {
         Cursor c = db.rawQuery(query, null);
         c.moveToFirst();
 
-        if (!c.isAfterLast()) {
+        while (!c.isAfterLast()) {
             stories.add(new Story(c.getString(c.getColumnIndex(culomnTitle)),
                     c.getString(c.getColumnIndex(culomnAuthor)),
                     c.getString(c.getColumnIndex(culomnDate)),
@@ -61,6 +61,7 @@ public class StoryDataBase extends SQLiteOpenHelper {
                     c.getInt(c.getColumnIndex(culomnID)),
                     getCategory(c.getString(c.getColumnIndex(culomncategory))),
                     c.getInt(c.getColumnIndex(culomnTime))));
+            c.moveToNext();
         }
         c.close();
         db.close();
@@ -71,13 +72,13 @@ public class StoryDataBase extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         String query = "Create table " + tableName + " (" +
-                culomnID + "INTEGER," +
-                culomnTitle + "varchar(500)," +
-                culomnAuthor + "varchar(500)," +
-                culomnDate + "date," +
-                culomnContent + "text," +
-                culomnTime + "INTEGER," +
-                culomncategory + "varchar(50)," +
+                culomnID + " INTEGER," +
+                culomnTitle + " varchar(500)," +
+                culomnAuthor + " varchar(500)," +
+                culomnDate + " date," +
+                culomnContent + " text," +
+                culomnTime + " INTEGER," +
+                culomncategory + " varchar(50)," +
                 "PRIMARY KEY(" + culomnID + ")"
                 + ");";
         sqLiteDatabase.execSQL(query);
