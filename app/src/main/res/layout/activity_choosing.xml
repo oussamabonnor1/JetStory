@@ -37,47 +37,35 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight=".1"
-            android:orientation="horizontal"
-            android:weightSum="3">
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
 
-            <Space
-                android:layout_width="0dp"
+            <GridLayout
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="1" />
+                android:columnCount="3">
 
-            <ImageButton
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="35dp"
-                android:layout_weight=".25"
-                android:background="#FAFAFA"
-                android:src="@mipmap/ic_launcher_round" />
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="#FAFAFA"
+                    android:src="@mipmap/ic_launcher_round" />
 
-            <ImageButton
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="15dp"
-                android:layout_marginStart="15dp"
-                android:layout_weight=".25"
-                android:background="#FAFAFA"
-                android:src="@mipmap/ic_launcher_round" />
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="#FAFAFA"
+                    android:src="@mipmap/ic_launcher_round" />
 
-            <ImageButton
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="15dp"
-                android:layout_marginStart="15dp"
-                android:layout_weight=".4"
-                android:background="#FAFAFA"
-                android:src="@mipmap/ic_launcher_round" />
-
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="#FAFAFA"
+                    android:src="@mipmap/ic_launcher_round" />
+            </GridLayout>
 
         </LinearLayout>
 
@@ -98,8 +86,8 @@
             android:id="@+id/choicePanel"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginEnd="75dp"
-            android:layout_marginStart="75dp"
+            android:layout_marginEnd="60dp"
+            android:layout_marginStart="60dp"
             android:layout_weight=".5"
             android:background="@drawable/custom_panel_circular_edge"
             android:orientation="vertical"

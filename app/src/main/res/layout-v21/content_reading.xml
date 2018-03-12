@@ -71,7 +71,8 @@
                         android:layout_height="wrap_content"
                         android:padding="25dp"
                         android:text="@string/lorem"
-                        android:textAlignment="center" />
+                        android:textAlignment="center"
+                        android:textSize="20sp" />
                 </LinearLayout>
             </ScrollView>
         </LinearLayout>

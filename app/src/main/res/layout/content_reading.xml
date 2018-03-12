@@ -70,6 +70,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="25dp"
+                        android:textSize="20sp"
                         android:text="@string/lorem"
                         android:textAlignment="center" />
                 </LinearLayout>
