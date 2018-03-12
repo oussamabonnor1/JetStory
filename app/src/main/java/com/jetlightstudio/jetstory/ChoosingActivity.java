@@ -108,7 +108,7 @@ public class ChoosingActivity extends AppCompatActivity {
             }
         }
         if (categoryIndex == 4) {
-            storiesTemp = new StoryDataBase(getApplicationContext(), null).loadStories(getApplicationContext());
+            storiesTemp = new StoryDataBase(getApplicationContext(), null).loadStories();
         }
         Intent i = new Intent(this, StoryListActivity.class);
         i.putExtra("stories", storiesTemp);

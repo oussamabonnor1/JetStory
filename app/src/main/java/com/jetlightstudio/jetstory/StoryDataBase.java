@@ -32,21 +32,33 @@ public class StoryDataBase extends SQLiteOpenHelper {
     }
 
     public void saveStory(Story story, Context context) {
-        SQLiteDatabase db = getWritableDatabase();
-        ContentValues content = new ContentValues();
-        content.put(culomnID, story.getId());
-        content.put(culomnTitle, story.getTitle());
-        content.put(culomnAuthor, story.getAuthor());
-        content.put(culomnDate, story.getDate());
-        content.put(culomnContent, story.getContent());
-        content.put(culomnTime, story.getTime());
-        content.put(culomncategory, story.getCategory().name());
-        db.insert(tableName, null, content);
+        if (isStorySaved(story.getId())) {
+            SQLiteDatabase db = getWritableDatabase();
+            ContentValues content = new ContentValues();
+            content.put(culomnID, story.getId());
+            content.put(culomnTitle, story.getTitle());
+            content.put(culomnAuthor, story.getAuthor());
+            content.put(culomnDate, story.getDate());
+            content.put(culomnContent, story.getContent());
+            content.put(culomnTime, story.getTime());
+            content.put(culomncategory, story.getCategory().name());
+            db.insert(tableName, null, content);
 
-        Toast.makeText(context, "Story saved successfully!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Story saved successfully!", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(context, "This story is already saved", Toast.LENGTH_SHORT).show();
+        }
     }
 
-    public ArrayList<Story> loadStories(Context context) {
+    private boolean isStorySaved(int id) {
+        String query = "Select " + culomnID + " From " + tableName + " where " + culomnID + " = " + id;
+        SQLiteDatabase db = getWritableDatabase();
+        Cursor c = db.rawQuery(query, null);
+        c.moveToFirst();
+        return c.isAfterLast();
+    }
+
+    public ArrayList<Story> loadStories() {
         ArrayList<Story> stories = new ArrayList<>();
         SQLiteDatabase db = getWritableDatabase();
         String query = "Select * FROM " + tableName;
@@ -65,7 +77,6 @@ public class StoryDataBase extends SQLiteOpenHelper {
         }
         c.close();
         db.close();
-        Toast.makeText(context, "all stories loaded correctly", Toast.LENGTH_SHORT).show();
         return stories;
     }
 
