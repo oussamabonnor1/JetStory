@@ -17,8 +17,6 @@ import android.widget.TextView;
 public class ReadingActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    // comment from Loubna
-
     Story story;
     TextView title;
     TextView content;
@@ -29,8 +27,6 @@ public class ReadingActivity extends AppCompatActivity
         setContentView(R.layout.activity_reading);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -76,7 +72,8 @@ public class ReadingActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.download) {
+
             return true;
         }
 
