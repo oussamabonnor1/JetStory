@@ -142,7 +142,6 @@ public class ChoosingActivity extends AppCompatActivity {
             try {
                 data = data.replace("null","");
                 JSONArray jsonArray = new JSONArray(data);
-                jsonArray.get(0);
                 json = (JSONObject) jsonArray.get(0);
             } catch (JSONException e) {
                 e.printStackTrace();
