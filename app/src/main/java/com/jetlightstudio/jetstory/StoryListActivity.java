@@ -1,9 +1,13 @@
 package com.jetlightstudio.jetstory;
 
+import android.app.SearchManager;
 import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
+import android.support.v4.view.MenuItemCompat;
+import android.support.v7.widget.SearchView;
 import android.view.Display;
+import android.view.KeyEvent;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -28,7 +32,8 @@ import java.util.Random;
 public class StoryListActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
     GridView grid;
-    ArrayList<Story> stories;
+    ArrayList<Story> stories; //used to hold the current stories shown (with or without refined search)
+    ArrayList<Story> storiesHolder; //used so that the original story list is always saved
     ArrayList<Story> comedyStories;
     ArrayList<Story> actionStories;
     ArrayList<Story> romanceStories;
@@ -63,6 +68,7 @@ public class StoryListActivity extends AppCompatActivity
         moralButton.setOnClickListener(this);
 
         stories = (ArrayList<Story>) getIntent().getExtras().getSerializable("stories");
+        storiesHolder = (ArrayList<Story>) stories.clone();
         actionStories = (ArrayList<Story>) getIntent().getExtras().getSerializable("actionStories");
         comedyStories = (ArrayList<Story>) getIntent().getExtras().getSerializable("comedyStories");
         moralStories = (ArrayList<Story>) getIntent().getExtras().getSerializable("romanceStories");
@@ -92,15 +98,19 @@ public class StoryListActivity extends AppCompatActivity
         switch (id) {
             case R.id.actionButton:
                 stories = (ArrayList<Story>) actionStories.clone();
+                storiesHolder = (ArrayList<Story>) stories.clone();
                 break;
             case R.id.comedyButton:
                 stories = (ArrayList<Story>) comedyStories.clone();
+                storiesHolder = (ArrayList<Story>) stories.clone();
                 break;
             case R.id.romanceButton:
                 stories = (ArrayList<Story>) romanceStories.clone();
+                storiesHolder = (ArrayList<Story>) stories.clone();
                 break;
             case R.id.moralButton:
                 stories = (ArrayList<Story>) moralStories.clone();
+                storiesHolder = (ArrayList<Story>) stories.clone();
                 break;
         }
         settingStoryList();
@@ -120,6 +130,41 @@ public class StoryListActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.story_list, menu);
+        MenuItem menuItem = menu.findItem(R.id.searchMenu);
+        if (menuItem != null) {
+            final SearchView searchView = (SearchView) MenuItemCompat.getActionView(menuItem);
+            SearchManager searchManager = (SearchManager) getSystemService(SEARCH_SERVICE);
+            searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                @Override
+                public boolean onQueryTextSubmit(String query) {
+                    return false;
+                }
+
+                @Override
+                public boolean onQueryTextChange(String newText) {
+                    ArrayList<Story> storiesTemp = (ArrayList<Story>) storiesHolder.clone();
+                    int i = 0;
+                    while (i < storiesTemp.size()) {
+                        if (!storiesTemp.get(i).getTitle().toLowerCase().contains(newText.toLowerCase())) {
+                            storiesTemp.remove(i);
+                        } else i++;
+                    }
+                    stories = (ArrayList<Story>) storiesTemp.clone();
+                    settingStoryList();
+                    return false;
+                }
+            });
+            searchView.setOnCloseListener(new SearchView.OnCloseListener() {
+                @Override
+                public boolean onClose() {
+                    stories = (ArrayList<Story>) storiesHolder.clone();
+                    settingStoryList();
+                    return false;
+                }
+            });
+        }
+
         return true;
     }
 
@@ -131,7 +176,7 @@ public class StoryListActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.searchMenu) {
             return true;
         }
 
@@ -164,7 +209,7 @@ public class StoryListActivity extends AppCompatActivity
     }
 
 
-    public class CustomStoryAdapter extends BaseAdapter {
+    class CustomStoryAdapter extends BaseAdapter {
 
         @Override
         public int getCount() {

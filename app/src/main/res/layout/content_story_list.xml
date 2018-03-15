@@ -16,7 +16,7 @@
             android:layout_weight=".4"
             android:background="@color/colorPrimary"
             android:orientation="vertical"
-            android:weightSum="1"></LinearLayout>
+            android:weightSum="1"/>
     </LinearLayout>
 
     <LinearLayout
