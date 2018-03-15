@@ -46,25 +46,37 @@
                 android:columnCount="3">
 
                 <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_columnSpan="1"
                     android:layout_gravity="center"
                     android:background="#FAFAFA"
-                    android:src="@mipmap/ic_launcher_round" />
+                    android:foreground="@drawable/ripple_effect"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_share_black_36dp" />
 
                 <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_columnSpan="1"
                     android:layout_gravity="center"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginStart="20dp"
                     android:background="#FAFAFA"
-                    android:src="@mipmap/ic_launcher_round" />
+                    android:foreground="@drawable/ripple_effect"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_rate_review_black_36dp" />
 
                 <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_columnSpan="1"
                     android:layout_gravity="center"
                     android:background="#FAFAFA"
-                    android:src="@mipmap/ic_launcher_round" />
+                    android:foreground="@drawable/ripple_effect"
+                    android:scaleType="centerCrop"
+                    android:onClick="openFacebook"
+                    android:src="@drawable/facebook_icon" />
             </GridLayout>
 
         </LinearLayout>
@@ -163,6 +175,7 @@
                 android:layout_weight=".225"
                 android:background="@drawable/custom_panel_circular_edge"
                 android:backgroundTint="@color/colorPrimary"
+                android:foreground="@drawable/ripple_effect"
                 android:onClick="searchStory"
                 android:text="Search a story"
                 android:textColor="@color/colorAccent"

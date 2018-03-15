@@ -1,6 +1,7 @@
 package com.jetlightstudio.jetstory;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -130,6 +131,11 @@ public class ChoosingActivity extends AppCompatActivity {
         i.putExtra("moralStories", moralStories);
         i.putExtra("sadStories", sadStories);
         startActivity(i);
+    }
+
+    public void openFacebook(View view) {
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/JetLightstudio"));
+        startActivity(browserIntent);
     }
 
     public class RetreiveStoryData extends AsyncTask<Void, Void, Void> {
