@@ -143,6 +143,14 @@ public class ChoosingActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void sharingApp(View view) {
+        Intent i = new Intent(Intent.ACTION_SEND);
+        i.setType("text/plain");
+        i.putExtra(Intent.EXTRA_SUBJECT, "Try downloading this amazing app!");
+        i.putExtra(Intent.EXTRA_TEXT, "https://play.google.com/store/apps/details?id=com.JetLightstudio.JetStory");
+        startActivity(Intent.createChooser(i, "Share via"));
+    }
+
     public class RetreiveStoryData extends AsyncTask<Void, Void, Void> {
         String data;
 

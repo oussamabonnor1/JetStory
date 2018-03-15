@@ -53,6 +53,7 @@
                     android:background="#FAFAFA"
                     android:foreground="@drawable/ripple_effect"
                     android:scaleType="centerCrop"
+                    android:onClick="sharingApp"
                     android:src="@drawable/ic_share_black_36dp" />
 
                 <ImageButton
