@@ -164,7 +164,6 @@ public class StoryListActivity extends AppCompatActivity
                 }
             });
         }
-
         return true;
     }
 
