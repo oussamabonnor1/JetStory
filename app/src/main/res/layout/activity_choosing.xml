@@ -65,6 +65,7 @@
                     android:background="#FAFAFA"
                     android:foreground="@drawable/ripple_effect"
                     android:scaleType="centerCrop"
+                    android:onClick="openPlayStore"
                     android:src="@drawable/ic_rate_review_black_36dp" />
 
                 <ImageButton

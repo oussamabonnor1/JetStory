@@ -138,6 +138,11 @@ public class ChoosingActivity extends AppCompatActivity {
         startActivity(browserIntent);
     }
 
+    public void openPlayStore(View view) {
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.JetLightstudio.JetStory"));
+        startActivity(intent);
+    }
+
     public class RetreiveStoryData extends AsyncTask<Void, Void, Void> {
         String data;
 
