@@ -40,6 +40,7 @@
             android:rowCount="1">
 
             <Button
+                android:id="@+id/actionButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight=".9"
@@ -49,32 +50,34 @@
                 android:textColor="@color/colorPrimary" />
 
             <Button
+                android:id="@+id/comedyButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight=".9"
                 android:layout_gravity="center"
                 android:background="@color/colorAccent"
-                android:text="Funny"
+                android:text="Comedy"
                 android:textColor="@color/colorPrimary" />
 
             <Button
+                android:id="@+id/romanceButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight=".9"
                 android:layout_gravity="center"
                 android:background="@color/colorAccent"
-                android:text="Love"
+                android:text="Romance"
                 android:textColor="@color/colorPrimary" />
 
             <Button
+                android:id="@+id/moralButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_columnWeight=".9"
                 android:layout_gravity="center"
                 android:background="@color/colorAccent"
-                android:text="Sad"
+                android:text="Moral"
                 android:textColor="@color/colorPrimary" />
-
 
         </GridLayout>
 

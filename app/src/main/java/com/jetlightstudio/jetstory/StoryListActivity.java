@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -25,9 +26,16 @@ import java.util.Random;
 
 
 public class StoryListActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
     GridView grid;
     ArrayList<Story> stories;
+    ArrayList<Story> comedyStories;
+    ArrayList<Story> actionStories;
+    ArrayList<Story> romanceStories;
+    ArrayList<Story> sadStories;
+    ArrayList<Story> moralStories;
+    CustomStoryAdapter c;
+    Button actionButton, comedyButton, romanceButton, moralButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,10 +53,28 @@ public class StoryListActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        stories = (ArrayList<Story>) getIntent().getExtras().getSerializable("stories");
+        actionButton = (Button) findViewById(R.id.actionButton);
+        actionButton.setOnClickListener(this);
+        comedyButton = (Button) findViewById(R.id.comedyButton);
+        comedyButton.setOnClickListener(this);
+        romanceButton = (Button) findViewById(R.id.romanceButton);
+        romanceButton.setOnClickListener(this);
+        moralButton = (Button) findViewById(R.id.moralButton);
+        moralButton.setOnClickListener(this);
 
+        stories = (ArrayList<Story>) getIntent().getExtras().getSerializable("stories");
+        actionStories = (ArrayList<Story>) getIntent().getExtras().getSerializable("actionStories");
+        comedyStories = (ArrayList<Story>) getIntent().getExtras().getSerializable("comedyStories");
+        moralStories = (ArrayList<Story>) getIntent().getExtras().getSerializable("romanceStories");
+        romanceStories = (ArrayList<Story>) getIntent().getExtras().getSerializable("stories");
+        sadStories = (ArrayList<Story>) getIntent().getExtras().getSerializable("sadStories");
+        settingStoryList();
+
+    }
+
+    protected void settingStoryList() {
+        c = new CustomStoryAdapter();
         grid = (GridView) findViewById(R.id.grid);
-        CustomStoryAdapter c = new CustomStoryAdapter();
         grid.setAdapter(c);
         grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -58,6 +84,26 @@ public class StoryListActivity extends AppCompatActivity
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    public void onClick(View view) {
+        int id = view.getId();
+        switch (id) {
+            case R.id.actionButton:
+                stories = (ArrayList<Story>) actionStories.clone();
+                break;
+            case R.id.comedyButton:
+                stories = (ArrayList<Story>) comedyStories.clone();
+                break;
+            case R.id.romanceButton:
+                stories = (ArrayList<Story>) romanceStories.clone();
+                break;
+            case R.id.moralButton:
+                stories = (ArrayList<Story>) moralStories.clone();
+                break;
+        }
+        settingStoryList();
     }
 
     @Override
@@ -117,6 +163,7 @@ public class StoryListActivity extends AppCompatActivity
         return true;
     }
 
+
     public class CustomStoryAdapter extends BaseAdapter {
 
         @Override
@@ -154,5 +201,6 @@ public class StoryListActivity extends AppCompatActivity
             year.setText(stories.get(i).getDate());
             return view;
         }
+
     }
 }

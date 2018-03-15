@@ -29,6 +29,11 @@ public class ChoosingActivity extends AppCompatActivity {
     Spinner spinnerCategory;
     Spinner spinnerLength;
     ArrayList<Story> stories;
+    ArrayList<Story> comedyStories;
+    ArrayList<Story> actionStories;
+    ArrayList<Story> romanceStories;
+    ArrayList<Story> sadStories;
+    ArrayList<Story> moralStories;
     JSONObject json;
     ProgressBar progressBar;
     LinearLayout choicePanel;
@@ -47,7 +52,6 @@ public class ChoosingActivity extends AppCompatActivity {
         ArrayAdapter<CharSequence> arr2 = ArrayAdapter.createFromResource(this, R.array.length, android.R.layout.simple_spinner_item);
         arr2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerLength.setAdapter(arr2);
-        stories = new ArrayList<>();
 
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         choicePanel = (LinearLayout) findViewById(R.id.choicePanel);
@@ -59,10 +63,13 @@ public class ChoosingActivity extends AppCompatActivity {
     }
 
     public void searchStory(View view) {
-        ArrayList<Story> storiesTemp = (ArrayList<Story>) stories.clone();
+        actionStories = new ArrayList<>();
+        comedyStories = new ArrayList<>();
+        sadStories = new ArrayList<>();
+        moralStories = new ArrayList<>();
+        romanceStories = new ArrayList<>();
         int timeIndex = spinnerLength.getSelectedItemPosition();
         int categoryIndex = spinnerCategory.getSelectedItemPosition();
-        Story.Category category = Story.Category.action;
         int time = 0;
 
         switch (timeIndex) {
@@ -82,42 +89,51 @@ public class ChoosingActivity extends AppCompatActivity {
                 time = Integer.MAX_VALUE;
                 break;
         }
-        switch (categoryIndex) {
-            case 0:
-                category = Story.Category.action;
-                break;
-            case 1:
-                category = Story.Category.comedy;
-                break;
-            case 2:
-                category = Story.Category.romance;
-                break;
-            case 3:
-                category = Story.Category.moral;
-                break;
-            case 4:
-                category = Story.Category.sad;
-                break;
-        }
-        int index = 0;
-        while (index < storiesTemp.size()) {
-            if (storiesTemp.get(index).getTime() > time || storiesTemp.get(index).getCategory() != category) {
-                storiesTemp.remove(index);
-            } else {
-                index++;
+
+        for (int i = 0; i < stories.size(); i++) {
+            if (stories.get(i).getTime() <= time) {
+                if (stories.get(i).getCategory() == Story.Category.action)
+                    actionStories.add(stories.get(i));
+                else if (stories.get(i).getCategory() == Story.Category.comedy)
+                    comedyStories.add(stories.get(i));
+                else if (stories.get(i).getCategory() == Story.Category.sad)
+                    sadStories.add(stories.get(i));
+                else if (stories.get(i).getCategory() == Story.Category.moral)
+                    moralStories.add(stories.get(i));
+                else if (stories.get(i).getCategory() == Story.Category.romance)
+                    romanceStories.add(stories.get(i));
             }
         }
-        if (categoryIndex == 4) {
-            storiesTemp = new StoryDataBase(getApplicationContext(), null).loadStories();
-        }
+
         Intent i = new Intent(this, StoryListActivity.class);
-        i.putExtra("stories", storiesTemp);
+        switch (categoryIndex) {
+            case 0:
+                i.putExtra("stories", actionStories);
+                break;
+            case 1:
+                i.putExtra("stories", comedyStories);
+                break;
+            case 2:
+                i.putExtra("stories", romanceStories);
+                break;
+            case 3:
+                i.putExtra("stories", moralStories);
+                break;
+            case 4:
+                sadStories = new StoryDataBase(getApplicationContext(), null).loadStories();
+                i.putExtra("stories", sadStories);
+                break;
+        }
+        i.putExtra("actionStories", actionStories);
+        i.putExtra("comedyStories", comedyStories);
+        i.putExtra("romanceStories", romanceStories);
+        i.putExtra("moralStories", moralStories);
+        i.putExtra("sadStories", sadStories);
         startActivity(i);
     }
 
     public class RetreiveStoryData extends AsyncTask<Void, Void, Void> {
         String data;
-        int index = 0;
 
         @Override
         protected Void doInBackground(Void... voids) {
@@ -142,6 +158,7 @@ public class ChoosingActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
+            stories = new ArrayList<>();
             if (data != null) {
                 try {
                     data = data.replace("null", "");
