@@ -1,9 +1,6 @@
 package com.jetlightstudio.jetstory;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -20,6 +17,7 @@ public class ReadingActivity extends AppCompatActivity
     Story story;
     TextView title;
     TextView content;
+    Menu menu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,20 +59,20 @@ public class ReadingActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.reading, menu);
+        //checking if story is already saved on database to decide which icon to show (save/delete)
+        this.menu = menu;
+        changeSaveIcon(this.menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.download) {
             StoryDataBase base = new StoryDataBase(getApplicationContext(), null);
             base.saveStory(story, getApplicationContext());
+            changeSaveIcon(menu);
             return true;
         }
 
@@ -100,5 +98,15 @@ public class ReadingActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    protected void changeSaveIcon(Menu menu) {
+        StoryDataBase db = new StoryDataBase(getApplicationContext(), null);
+        MenuItem menuItem = menu.findItem(R.id.download);
+        if (db.isStorySaved(story.getId())) {
+            menuItem.setIcon(R.drawable.ic_delete_white_24dp);
+        }else{
+            menuItem.setIcon(R.drawable.ic_file_download_white_24dp);
+        }
     }
 }

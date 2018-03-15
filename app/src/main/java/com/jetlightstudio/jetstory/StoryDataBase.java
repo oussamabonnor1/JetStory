@@ -32,7 +32,7 @@ public class StoryDataBase extends SQLiteOpenHelper {
     }
 
     public void saveStory(Story story, Context context) {
-        if (isStorySaved(story.getId())) {
+        if (!isStorySaved(story.getId())) {
             SQLiteDatabase db = getWritableDatabase();
             ContentValues content = new ContentValues();
             content.put(culomnID, story.getId());
@@ -44,18 +44,24 @@ public class StoryDataBase extends SQLiteOpenHelper {
             content.put(culomncategory, story.getCategory().name());
             db.insert(tableName, null, content);
 
-            Toast.makeText(context, "Story saved successfully!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Story SAVED successfully!", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(context, "This story is already saved", Toast.LENGTH_SHORT).show();
+            removeStory(story.getId(), context);
         }
     }
 
-    private boolean isStorySaved(int id) {
+    public boolean isStorySaved(int id) {
         String query = "Select " + culomnID + " From " + tableName + " where " + culomnID + " = " + id;
         SQLiteDatabase db = getWritableDatabase();
         Cursor c = db.rawQuery(query, null);
-        c.moveToFirst();
-        return c.isAfterLast();
+        return c.moveToFirst();
+    }
+
+    public void removeStory(int id, Context context) {
+        String query = "DELETE FROM " + tableName + " WHERE " + culomnID + "=" + id;
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL(query);
+        Toast.makeText(context, "Story DELETED successfully!", Toast.LENGTH_SHORT).show();
     }
 
     public ArrayList<Story> loadStories() {
