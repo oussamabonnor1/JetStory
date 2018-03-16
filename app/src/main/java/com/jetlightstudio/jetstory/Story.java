@@ -11,6 +11,7 @@ public class Story implements Serializable {
     private String title, author, date;
     private String content;
     private int id;
+    private int albumId;
 
     public enum Category {
         action, comedy, romance, moral, sad
@@ -68,5 +69,13 @@ public class Story implements Serializable {
 
     public int getTime() {
         return time;
+    }
+
+    public int getAlbumId() {
+        return albumId;
+    }
+
+    public void setAlbumId(int albumId) {
+        this.albumId = albumId;
     }
 }

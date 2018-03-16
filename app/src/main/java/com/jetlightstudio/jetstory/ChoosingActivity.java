@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
@@ -211,6 +212,7 @@ public class ChoosingActivity extends AppCompatActivity {
                     stories.add(new Story("story " + (stories.size()), "author " + stories.size(), "DD/MM/YYYY", stories.size(), new Random().nextInt(10) + 1, category));
                     try {
                         stories.get(stories.size() - 1).setContent(json.getString("contact"));
+                        stories.get(stories.size() - 1).setAlbumId(changeAlbumIcon(stories.get(stories.size() - 1).getCategory()));
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -238,7 +240,7 @@ public class ChoosingActivity extends AppCompatActivity {
                             break;
                     }
                     stories.add(new Story("story " + (stories.size()), "author " + stories.size(), "DD/MM/YYYY", stories.size(), new Random().nextInt(10) + 1, category));
-
+                    stories.get(stories.size() - 1).setAlbumId(changeAlbumIcon(stories.get(stories.size() - 1).getCategory()));
                 }
                 choicePanel.setVisibility(View.VISIBLE);
                 progressBar.setVisibility(View.GONE);
@@ -251,6 +253,24 @@ public class ChoosingActivity extends AppCompatActivity {
             if(index < 25) this.execute();*/
             }
         }
+    }
+
+    protected int changeAlbumIcon(Story.Category category) {
+        if (category == Story.Category.action) {
+            return R.drawable.book_red_action;
+
+        } else if (category == Story.Category.comedy) {
+            return R.drawable.book_red_comedy;
+
+        } else if (category == Story.Category.romance) {
+            return R.drawable.book_red_romance;
+
+        } else if (category == Story.Category.sad) {
+            return R.drawable.book_red_sad;
+
+        } else if (category == Story.Category.moral) {
+            return R.drawable.book_red_moral;
+        } else return R.drawable.book_red;
     }
 }
 

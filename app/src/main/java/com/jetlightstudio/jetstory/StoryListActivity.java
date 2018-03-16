@@ -3,6 +3,7 @@ package com.jetlightstudio.jetstory;
 import android.app.SearchManager;
 import android.content.Intent;
 import android.graphics.Point;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.SearchView;
@@ -24,6 +25,7 @@ import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -188,18 +190,18 @@ public class StoryListActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.loadStories) {
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+            StoryDataBase storyDataBase = new StoryDataBase(getApplicationContext(), null);
+            stories = storyDataBase.loadStories();
+            settingStoryList();
+            Toast.makeText(getApplicationContext(), "Stories loaded", Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.developer) {
+            Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/JetLightstudio"));
+            startActivity(i);
+        } else if (id == R.id.appVersion) {
+            Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.JetLightstudio.JetStory"));
+            startActivity(i);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -239,7 +241,7 @@ public class StoryListActivity extends AppCompatActivity
             TextView author = view.findViewById(R.id.authorText);
             TextView year = view.findViewById(R.id.yearText);
 
-            cover.setBackgroundResource(stories.get(i).getTime() <= 5 ? R.drawable.book_green : R.drawable.book_red);
+            cover.setBackgroundResource(stories.get(i).getAlbumId());
             title.setText(stories.get(i).getTitle());
             author.setText(stories.get(i).getAuthor());
             year.setText(stories.get(i).getDate());

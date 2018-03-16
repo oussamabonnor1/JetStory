@@ -2,27 +2,21 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
-        <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
-        <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
-        <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+        <item android:title="Share story"
+            android:icon="@drawable/ic_share_black_36dp"
+            android:id="@+id/nav_share_story"/>
     </group>
 
     <item android:title="App Version">
         <menu>
-            <item android:title="Version: 1.0.0" />
+            <item
+                android:id="@+id/developer"
+                android:icon="@drawable/jetlight_logo"
+                android:title="Made by Jetlight studio" />
+            <item
+                android:id="@+id/appVersion"
+                android:icon="@drawable/ic_phone_android_black_24dp"
+                android:title="Version 1.0.0" />
         </menu>
     </item>
 </menu>

@@ -1,6 +1,8 @@
 package com.jetlightstudio.jetstory;
 
 import android.app.SearchManager;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -15,9 +17,8 @@ import android.text.SpannableString;
 import android.text.style.BackgroundColorSpan;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
-
-import java.util.ArrayList;
 
 public class ReadingActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -40,9 +41,6 @@ public class ReadingActivity extends AppCompatActivity
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-
         story = (Story) getIntent().getExtras().getSerializable("story");
         title = (TextView) findViewById(R.id.titleText);
         content = (TextView) findViewById(R.id.contentText);
@@ -51,6 +49,15 @@ public class ReadingActivity extends AppCompatActivity
                 + " in the date " + story.getDate() + " the story's ID is " + story.getId() + " and it s readin time is " + story.getTime()
                 + " the category of this story is: " + story.getCategory() + " content: "
                 + story.getContent());
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        /*ImageView navStoryAlbum = navigationView.findViewById(R.id.nav_story_album);
+        navStoryAlbum.setImageResource(story.getAlbumId());
+        TextView navStoryTitle = navigationView.findViewById(R.id.nav_story_title);
+        navStoryTitle.setText(story.getTitle());
+        TextView navAuthorName = navigationView.findViewById(R.id.nav_author_name);
+        navAuthorName.setText(story.getAuthor());*/
+        navigationView.setNavigationItemSelectedListener(this);
     }
 
     @Override
@@ -91,7 +98,7 @@ public class ReadingActivity extends AppCompatActivity
                         if (searchWordIndex == -1)
                             break;
                         else {
-                            WordtoSpan.setSpan(new BackgroundColorSpan(0x55555500), searchWordIndex, searchWordIndex + newText.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                            WordtoSpan.setSpan(new BackgroundColorSpan(0xFFFFFF55), searchWordIndex, searchWordIndex + newText.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                             content.setText(WordtoSpan, TextView.BufferType.SPANNABLE);
                         }
                     }
@@ -126,14 +133,12 @@ public class ReadingActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
+        if (id == R.id.developer) {
+            Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/JetLightstudio"));
+            startActivity(i);
+        } else if (id == R.id.appVersion) {
+            Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.JetLightstudio.JetStory"));
+            startActivity(i);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -150,4 +155,5 @@ public class ReadingActivity extends AppCompatActivity
             menuItem.setIcon(R.drawable.ic_file_download_white_24dp);
         }
     }
+
 }
