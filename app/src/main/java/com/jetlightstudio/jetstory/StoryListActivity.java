@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.SearchView;
 import android.view.Display;
-import android.view.KeyEvent;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -29,7 +28,6 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Random;
-
 
 public class StoryListActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
@@ -179,6 +177,11 @@ public class StoryListActivity extends AppCompatActivity
         //noinspection SimplifiableIfStatement
         if (id == R.id.searchMenu) {
             return true;
+        } else if (id == R.id.loadStories) {
+            StoryDataBase storyDataBase = new StoryDataBase(getApplicationContext(), null);
+            stories = storyDataBase.loadStories();
+            settingStoryList();
+            Toast.makeText(getApplicationContext(), "Favorite stories loaded", Toast.LENGTH_SHORT).show();
         }
 
         return super.onOptionsItemSelected(item);
@@ -191,11 +194,10 @@ public class StoryListActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.loadStories) {
-            // Handle the camera action
             StoryDataBase storyDataBase = new StoryDataBase(getApplicationContext(), null);
             stories = storyDataBase.loadStories();
             settingStoryList();
-            Toast.makeText(getApplicationContext(), "Stories loaded", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Favorite stories loaded", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.developer) {
             Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/JetLightstudio"));
             startActivity(i);
@@ -208,7 +210,6 @@ public class StoryListActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
 
     class CustomStoryAdapter extends BaseAdapter {
 
