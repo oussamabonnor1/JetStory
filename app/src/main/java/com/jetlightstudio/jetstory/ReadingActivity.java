@@ -17,6 +17,7 @@ import android.text.SpannableString;
 import android.text.style.BackgroundColorSpan;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -51,13 +52,14 @@ public class ReadingActivity extends AppCompatActivity
                 + story.getContent());
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        /*ImageView navStoryAlbum = navigationView.findViewById(R.id.nav_story_album);
-        navStoryAlbum.setImageResource(story.getAlbumId());
-        TextView navStoryTitle = navigationView.findViewById(R.id.nav_story_title);
-        navStoryTitle.setText(story.getTitle());
-        TextView navAuthorName = navigationView.findViewById(R.id.nav_author_name);
-        navAuthorName.setText(story.getAuthor());*/
         navigationView.setNavigationItemSelectedListener(this);
+        View header = navigationView.getHeaderView(0);
+        ImageView navStoryAlbum = header.findViewById(R.id.nav_story_album);
+        navStoryAlbum.setImageResource(story.getAlbumId());
+        TextView navStoryTitle = header.findViewById(R.id.nav_story_title);
+        navStoryTitle.setText(story.getTitle());
+        TextView navAuthorName = header.findViewById(R.id.nav_author_name);
+        navAuthorName.setText(story.getAuthor());
     }
 
     @Override
