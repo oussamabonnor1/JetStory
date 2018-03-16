@@ -73,8 +73,8 @@ public class StoryListActivity extends AppCompatActivity
         storiesHolder = (ArrayList<Story>) stories.clone();
         actionStories = (ArrayList<Story>) getIntent().getExtras().getSerializable("actionStories");
         comedyStories = (ArrayList<Story>) getIntent().getExtras().getSerializable("comedyStories");
-        moralStories = (ArrayList<Story>) getIntent().getExtras().getSerializable("romanceStories");
-        romanceStories = (ArrayList<Story>) getIntent().getExtras().getSerializable("stories");
+        romanceStories = (ArrayList<Story>) getIntent().getExtras().getSerializable("romanceStories");
+        moralStories = (ArrayList<Story>) getIntent().getExtras().getSerializable("moralStories");
         sadStories = (ArrayList<Story>) getIntent().getExtras().getSerializable("sadStories");
         settingStoryList();
 
