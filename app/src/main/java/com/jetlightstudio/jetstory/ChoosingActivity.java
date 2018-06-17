@@ -72,6 +72,7 @@ public class ChoosingActivity extends AppCompatActivity {
         romanceStories = new ArrayList<>();
         int timeIndex = spinnerLength.getSelectedItemPosition();
         int categoryIndex = spinnerCategory.getSelectedItemPosition();
+
         int time = 0;
 
         switch (timeIndex) {
@@ -108,6 +109,8 @@ public class ChoosingActivity extends AppCompatActivity {
         }
 
         Intent i = new Intent(this, MainStoryActivity.class);
+        i.putExtra("tabIndex", categoryIndex);
+
         switch (categoryIndex) {
             case 0:
                 i.putExtra("stories", actionStories);

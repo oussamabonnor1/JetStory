@@ -44,6 +44,7 @@ public class MainStoryActivity extends AppCompatActivity {
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
 
+        tabLayout.getTabAt(getIntent().getIntExtra("tabIndex", 0)).select();
     }
 
 
