@@ -107,7 +107,7 @@ public class ChoosingActivity extends AppCompatActivity {
             }
         }
 
-        Intent i = new Intent(this, StoryListActivity.class);
+        Intent i = new Intent(this, MainStoryActivity.class);
         switch (categoryIndex) {
             case 0:
                 i.putExtra("stories", actionStories);
