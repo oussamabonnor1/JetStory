@@ -40,7 +40,6 @@ public class StoryListActivity extends AppCompatActivity
     ArrayList<Story> sadStories;
     ArrayList<Story> moralStories;
     CustomStoryAdapter c;
-    Button actionButton, comedyButton, romanceButton, moralButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,15 +56,6 @@ public class StoryListActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-        actionButton = (Button) findViewById(R.id.actionButton);
-        actionButton.setOnClickListener(this);
-        comedyButton = (Button) findViewById(R.id.comedyButton);
-        comedyButton.setOnClickListener(this);
-        romanceButton = (Button) findViewById(R.id.romanceButton);
-        romanceButton.setOnClickListener(this);
-        moralButton = (Button) findViewById(R.id.moralButton);
-        moralButton.setOnClickListener(this);
 
         stories = (ArrayList<Story>) getIntent().getExtras().getSerializable("stories");
         storiesHolder = (ArrayList<Story>) stories.clone();
@@ -95,24 +85,7 @@ public class StoryListActivity extends AppCompatActivity
     @Override
     public void onClick(View view) {
         int id = view.getId();
-        switch (id) {
-            case R.id.actionButton:
-                stories = (ArrayList<Story>) actionStories.clone();
-                storiesHolder = (ArrayList<Story>) stories.clone();
-                break;
-            case R.id.comedyButton:
-                stories = (ArrayList<Story>) comedyStories.clone();
-                storiesHolder = (ArrayList<Story>) stories.clone();
-                break;
-            case R.id.romanceButton:
-                stories = (ArrayList<Story>) romanceStories.clone();
-                storiesHolder = (ArrayList<Story>) stories.clone();
-                break;
-            case R.id.moralButton:
-                stories = (ArrayList<Story>) moralStories.clone();
-                storiesHolder = (ArrayList<Story>) stories.clone();
-                break;
-        }
+
         settingStoryList();
     }
 
