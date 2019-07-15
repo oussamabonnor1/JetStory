@@ -156,11 +156,12 @@ public class ChoosingActivity extends AppCompatActivity {
 
     public class RetrieveStoryData extends AsyncTask<Void, Void, Void> {
         String data;
+        String path = "http://083cadfb.ngrok.io";
 
         @Override
         protected Void doInBackground(Void... voids) {
             try {
-                URL url = new URL(" https://08ad1pao69.execute-api.us-east-1.amazonaws.com/dev/random_joke");
+                URL url = new URL(path+"/api/stories");
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 InputStream inputStream = connection.getInputStream();
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
