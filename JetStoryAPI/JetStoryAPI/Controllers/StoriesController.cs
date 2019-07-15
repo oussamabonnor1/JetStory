@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using JetStoryAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -26,45 +28,54 @@ namespace JetStoryApi.Controllers
 
 
         [HttpGet]
-        public IEnumerable<Story> GetAll()
+        public async Task<ActionResult<IEnumerable<Story>>> GetAll()
         {
-            return _context.Stories.ToList();
+            return await _context.Stories.ToListAsync();
         }
 
         [HttpGet("{name}")]
-        public IActionResult Get(string Name)
+        public async Task<ActionResult<Story>> Get(int id)
         {
-            var story = _context.Stories.FirstOrDefault(t => t.Name == Name);
-            return new ObjectResult(story);
+            var story = await _context.Stories.FindAsync(id);
+            if (story == null) {
+                return NotFound ("The item: " + id + " does not exist!");
+            }
+
+            return story;
         }
 
         [HttpPost]
-        public void Post([FromBody] Story story)
+        public async Task<ActionResult<Story>> Post([FromBody] Story story)
         {
+             if (!ModelState.IsValid) {
+                return BadRequest (ModelState);
+            }
             _context.Stories.Add(story);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
+            return CreatedAtAction ("get", new { story.Id }, story);
         }
 
         [HttpPut("{id}")]
-        public void Edit(int id, [FromBody] Story story)
+        public async Task<IActionResult> Put(int id, [FromBody] Story story)
         {
-            var storie = _context.Stories.FirstOrDefault(t => t.Id == id);
-            storie.Name = story.Name;
-            storie.Category = story.Category;
-            storie.Content = story.Content;
-            storie.Time = story.Time;
-            storie.publishedDate = story.publishedDate;
-            storie.writer = story.writer;
-            _context.Stories.Update(storie);
-            _context.SaveChanges();
+            if (id != story.Id) {
+                return BadRequest ("Ids doesn't match");
+            }
+            _context.Entry (story).State = EntityState.Modified;
+            await _context.SaveChangesAsync ();
+            return Ok ();
         }
 
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            var storie = _context.Stories.FirstOrDefault(t => t.Id == id);
-            _context.Stories.Remove(storie);
-            _context.SaveChanges();
+           Story temp = await _context.Stories.FindAsync (id);
+            if (temp == null) {
+                return NotFound ("Object not found, Id: " + id);
+            }
+            _context.Remove (temp);
+            await _context.SaveChangesAsync ();
+            return Ok ();
         }
     }
 }
