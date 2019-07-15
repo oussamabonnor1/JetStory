@@ -1,0 +1,14 @@
+C:\Users\oussama\Documents\JetLightStudio Android\JetStory\JetStoryApi\JetStoryApi\bin\Debug\netcoreapp2.2\JetStoryApi.deps.json
+C:\Users\oussama\Documents\JetLightStudio Android\JetStory\JetStoryApi\JetStoryApi\bin\Debug\netcoreapp2.2\JetStoryApi.runtimeconfig.json
+C:\Users\oussama\Documents\JetLightStudio Android\JetStory\JetStoryApi\JetStoryApi\bin\Debug\netcoreapp2.2\JetStoryApi.runtimeconfig.dev.json
+C:\Users\oussama\Documents\JetLightStudio Android\JetStory\JetStoryApi\JetStoryApi\bin\Debug\netcoreapp2.2\JetStoryApi.dll
+C:\Users\oussama\Documents\JetLightStudio Android\JetStory\JetStoryApi\JetStoryApi\bin\Debug\netcoreapp2.2\JetStoryApi.pdb
+C:\Users\oussama\Documents\JetLightStudio Android\JetStory\JetStoryApi\JetStoryApi\obj\Debug\netcoreapp2.2\JetStoryApi.csprojAssemblyReference.cache
+C:\Users\oussama\Documents\JetLightStudio Android\JetStory\JetStoryApi\JetStoryApi\obj\Debug\netcoreapp2.2\JetStoryApi.csproj.CoreCompileInputs.cache
+C:\Users\oussama\Documents\JetLightStudio Android\JetStory\JetStoryApi\JetStoryApi\obj\Debug\netcoreapp2.2\JetStoryApi.RazorAssemblyInfo.cache
+C:\Users\oussama\Documents\JetLightStudio Android\JetStory\JetStoryApi\JetStoryApi\obj\Debug\netcoreapp2.2\JetStoryApi.RazorAssemblyInfo.cs
+C:\Users\oussama\Documents\JetLightStudio Android\JetStory\JetStoryApi\JetStoryApi\obj\Debug\netcoreapp2.2\JetStoryApi.AssemblyInfoInputs.cache
+C:\Users\oussama\Documents\JetLightStudio Android\JetStory\JetStoryApi\JetStoryApi\obj\Debug\netcoreapp2.2\JetStoryApi.AssemblyInfo.cs
+C:\Users\oussama\Documents\JetLightStudio Android\JetStory\JetStoryApi\JetStoryApi\obj\Debug\netcoreapp2.2\JetStoryApi.RazorTargetAssemblyInfo.cache
+C:\Users\oussama\Documents\JetLightStudio Android\JetStory\JetStoryApi\JetStoryApi\obj\Debug\netcoreapp2.2\JetStoryApi.dll
+C:\Users\oussama\Documents\JetLightStudio Android\JetStory\JetStoryApi\JetStoryApi\obj\Debug\netcoreapp2.2\JetStoryApi.pdb
