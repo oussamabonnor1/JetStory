@@ -103,7 +103,7 @@ public class StoryDataBase extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-        sqLiteDatabase.execSQL("DROP TABLE IF EXITS " + tableName);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + tableName);
         onCreate(sqLiteDatabase);
     }
 

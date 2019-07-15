@@ -3,11 +3,10 @@ package com.jetlightstudio.jetstory;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
@@ -60,7 +59,7 @@ public class ChoosingActivity extends AppCompatActivity {
         choicePanel.setVisibility(View.GONE);
         progressBar.setVisibility(View.VISIBLE);
 
-        final RetreiveStoryData storyData = new RetreiveStoryData();
+        final RetrieveStoryData storyData = new RetrieveStoryData();
         storyData.execute();
     }
 
@@ -155,13 +154,13 @@ public class ChoosingActivity extends AppCompatActivity {
         startActivity(Intent.createChooser(i, "Share via"));
     }
 
-    public class RetreiveStoryData extends AsyncTask<Void, Void, Void> {
+    public class RetrieveStoryData extends AsyncTask<Void, Void, Void> {
         String data;
 
         @Override
         protected Void doInBackground(Void... voids) {
             try {
-                URL url = new URL("https://api.myjson.com/bins/j5f6b");
+                URL url = new URL(" https://08ad1pao69.execute-api.us-east-1.amazonaws.com/dev/random_joke");
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 InputStream inputStream = connection.getInputStream();
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
@@ -214,7 +213,7 @@ public class ChoosingActivity extends AppCompatActivity {
                     }
                     stories.add(new Story("story " + (stories.size()), "author " + stories.size(), "DD/MM/YYYY", stories.size(), new Random().nextInt(10) + 1, category));
                     try {
-                        stories.get(stories.size() - 1).setContent(json.getString("contact"));
+                        stories.get(stories.size() - 1).setContent(json.getString("setup") + "\n" + json.getString("punchline"));
                         stories.get(stories.size() - 1).setAlbumId(changeAlbumIcon(stories.get(stories.size() - 1).getCategory()));
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -247,33 +246,31 @@ public class ChoosingActivity extends AppCompatActivity {
                 }
                 choicePanel.setVisibility(View.VISIBLE);
                 progressBar.setVisibility(View.GONE);
-            /*try {
-                stories.get(stories.size() - 1).setContent(json.get("value").toString());
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            index++;
-            if(index < 25) this.execute();*/
+                try {
+                    stories.get(stories.size() - 1).setContent(json.get("value").toString());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         }
-    }
 
-    protected int changeAlbumIcon(Story.Category category) {
-        if (category == Story.Category.action) {
-            return R.drawable.book_red_action;
+        int changeAlbumIcon(Story.Category category) {
+            if (category == Story.Category.action) {
+                return R.drawable.book_red_action;
 
-        } else if (category == Story.Category.comedy) {
-            return R.drawable.book_red_comedy;
+            } else if (category == Story.Category.comedy) {
+                return R.drawable.book_red_comedy;
 
-        } else if (category == Story.Category.romance) {
-            return R.drawable.book_red_romance;
+            } else if (category == Story.Category.romance) {
+                return R.drawable.book_red_romance;
 
-        } else if (category == Story.Category.sad) {
-            return R.drawable.book_red_sad;
+            } else if (category == Story.Category.sad) {
+                return R.drawable.book_red_sad;
 
-        } else if (category == Story.Category.moral) {
-            return R.drawable.book_red_moral;
-        } else return R.drawable.book_red;
+            } else if (category == Story.Category.moral) {
+                return R.drawable.book_red_moral;
+            } else return R.drawable.book_red;
+        }
     }
 }
 
