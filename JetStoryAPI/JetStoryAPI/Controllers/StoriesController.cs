@@ -28,7 +28,7 @@ namespace JetStoryApi.Controllers
 
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Story>>> GetAll()
+        public async Task<ActionResult<IEnumerable<Story>>> Get()
         {
             return await _context.Stories.ToListAsync();
         }

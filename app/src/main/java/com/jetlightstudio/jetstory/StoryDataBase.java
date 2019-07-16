@@ -77,8 +77,8 @@ public class StoryDataBase extends SQLiteOpenHelper {
                     c.getString(c.getColumnIndex(culomnDate)),
                     c.getString(c.getColumnIndex(culomnContent)),
                     c.getInt(c.getColumnIndex(culomnID)),
-                    getCategory(c.getString(c.getColumnIndex(culomncategory))),
-                    c.getInt(c.getColumnIndex(culomnTime))));
+                    c.getInt(c.getColumnIndex(culomnTime)),
+                    getCategory(c.getString(c.getColumnIndex(culomncategory))).toString()));
             c.moveToNext();
         }
         c.close();

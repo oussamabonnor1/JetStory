@@ -20,10 +20,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Random;
 
 public class ChoosingActivity extends AppCompatActivity {
 
@@ -156,12 +154,12 @@ public class ChoosingActivity extends AppCompatActivity {
 
     public class RetrieveStoryData extends AsyncTask<Void, Void, Void> {
         String data;
-        String path = "http://083cadfb.ngrok.io";
+        String path = "http://049703ed.ngrok.io";
 
         @Override
         protected Void doInBackground(Void... voids) {
             try {
-                URL url = new URL(path+"/api/stories");
+                URL url = new URL(path + "/api/stories");
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 InputStream inputStream = connection.getInputStream();
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
@@ -170,8 +168,6 @@ public class ChoosingActivity extends AppCompatActivity {
                     s = bufferedReader.readLine();
                     data += s;
                 }
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -186,91 +182,20 @@ public class ChoosingActivity extends AppCompatActivity {
                 try {
                     data = data.replace("null", "");
                     JSONArray jsonArray = new JSONArray(data);
-                    json = (JSONObject) jsonArray.get(0);
+
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        json = (JSONObject) jsonArray.get(i);
+
+                        stories.add(new Story(json.getString("Name"), json.getString("writer"),
+                                json.getString("publishedDate"), json.getString("Content"),
+                                json.getInt("Id"), json.getInt("Time"), json.getString("Category")));
+                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
-                }
-
-                for (int i = 0; i < 25; i++) {
-
-                    int c = new Random().nextInt(5);
-                    Story.Category category = Story.Category.action;
-                    switch (c) {
-                        case 0:
-                            category = Story.Category.action;
-                            break;
-                        case 1:
-                            category = Story.Category.comedy;
-                            break;
-                        case 2:
-                            category = Story.Category.romance;
-                            break;
-                        case 3:
-                            category = Story.Category.moral;
-                            break;
-                        case 4:
-                            category = Story.Category.sad;
-                            break;
-                    }
-                    stories.add(new Story("story " + (stories.size()), "author " + stories.size(), "DD/MM/YYYY", stories.size(), new Random().nextInt(10) + 1, category));
-                    try {
-                        stories.get(stories.size() - 1).setContent(json.getString("setup") + "\n" + json.getString("punchline"));
-                        stories.get(stories.size() - 1).setAlbumId(changeAlbumIcon(stories.get(stories.size() - 1).getCategory()));
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-            } else {
-                for (int i = 0; i < 25; i++) {
-
-                    int c = new Random().nextInt(5);
-                    Story.Category category = Story.Category.action;
-                    switch (c) {
-                        case 0:
-                            category = Story.Category.action;
-                            break;
-                        case 1:
-                            category = Story.Category.comedy;
-                            break;
-                        case 2:
-                            category = Story.Category.romance;
-                            break;
-                        case 3:
-                            category = Story.Category.moral;
-                            break;
-                        case 4:
-                            category = Story.Category.sad;
-                            break;
-                    }
-                    stories.add(new Story("story " + (stories.size()), "author " + stories.size(), "DD/MM/YYYY", stories.size(), new Random().nextInt(10) + 1, category));
-                    stories.get(stories.size() - 1).setAlbumId(changeAlbumIcon(stories.get(stories.size() - 1).getCategory()));
                 }
                 choicePanel.setVisibility(View.VISIBLE);
                 progressBar.setVisibility(View.GONE);
-                try {
-                    stories.get(stories.size() - 1).setContent(json.get("value").toString());
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
             }
-        }
-
-        int changeAlbumIcon(Story.Category category) {
-            if (category == Story.Category.action) {
-                return R.drawable.book_red_action;
-
-            } else if (category == Story.Category.comedy) {
-                return R.drawable.book_red_comedy;
-
-            } else if (category == Story.Category.romance) {
-                return R.drawable.book_red_romance;
-
-            } else if (category == Story.Category.sad) {
-                return R.drawable.book_red_sad;
-
-            } else if (category == Story.Category.moral) {
-                return R.drawable.book_red_moral;
-            } else return R.drawable.book_red;
         }
     }
 }
