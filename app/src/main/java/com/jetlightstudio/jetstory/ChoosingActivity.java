@@ -130,7 +130,6 @@ public class ChoosingActivity extends AppCompatActivity {
         i.putExtra("romanceStories", romanceStories);
         i.putExtra("moralStories", moralStories);
         i.putExtra("sadStories", sadStories);
-        System.out.println("size" + actionStories.size());
         startActivity(i);
     }
 

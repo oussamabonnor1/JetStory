@@ -54,7 +54,6 @@ public class StoryListActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        System.out.println(getIntent().getExtras().getSerializable("stories"));
         stories = (ArrayList<Story>) getIntent().getExtras().getSerializable("stories");
         storiesHolder = (ArrayList<Story>) stories.clone();
         actionStories = (ArrayList<Story>) getIntent().getExtras().getSerializable("actionStories");
@@ -191,7 +190,7 @@ public class StoryListActivity extends AppCompatActivity
 
         @Override
         public Object getItem(int i) {
-            return stories.get(i);
+            return null;
         }
 
         @Override
@@ -213,7 +212,6 @@ public class StoryListActivity extends AppCompatActivity
             TextView author = view.findViewById(R.id.authorText);
             TextView year = view.findViewById(R.id.yearText);
 
-            System.out.println(stories.get(i).getTitle());
             cover.setBackgroundResource(stories.get(i).getAlbumId());
             title.setText(stories.get(i).getTitle());
             author.setText(stories.get(i).getAuthor());
