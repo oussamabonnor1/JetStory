@@ -27,13 +27,12 @@ public class ChoosingActivity extends AppCompatActivity {
 
     Spinner spinnerCategory;
     Spinner spinnerLength;
-    ArrayList<Story> stories;
+    ArrayList<Story> stories = new ArrayList<>();
     ArrayList<Story> comedyStories;
     ArrayList<Story> actionStories;
     ArrayList<Story> romanceStories;
     ArrayList<Story> sadStories;
     ArrayList<Story> moralStories;
-    JSONObject json;
     ProgressBar progressBar;
     LinearLayout choicePanel;
 
@@ -131,6 +130,7 @@ public class ChoosingActivity extends AppCompatActivity {
         i.putExtra("romanceStories", romanceStories);
         i.putExtra("moralStories", moralStories);
         i.putExtra("sadStories", sadStories);
+        System.out.println("size" + actionStories.size());
         startActivity(i);
     }
 
@@ -154,7 +154,7 @@ public class ChoosingActivity extends AppCompatActivity {
 
     public class RetrieveStoryData extends AsyncTask<Void, Void, Void> {
         String data;
-        String path = "http://049703ed.ngrok.io";
+        String path = "http://27ed29f5.ngrok.io";
 
         @Override
         protected Void doInBackground(Void... voids) {
@@ -177,18 +177,16 @@ public class ChoosingActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            stories = new ArrayList<>();
             if (data != null) {
                 try {
                     data = data.replace("null", "");
                     JSONArray jsonArray = new JSONArray(data);
+                    for (int i = 0; i < 4; i++) {
+                        JSONObject json = jsonArray.getJSONObject(i);
 
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        json = (JSONObject) jsonArray.get(i);
-
-                        stories.add(new Story(json.getString("Name"), json.getString("writer"),
-                                json.getString("publishedDate"), json.getString("Content"),
-                                json.getInt("Id"), json.getInt("Time"), json.getString("Category")));
+                        stories.add(new Story(json.getString("name"), json.getString("writer"),
+                                json.getString("publishedDate"), json.getString("content"),
+                                json.getInt("id"), json.getInt("time"), json.getString("category")));
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

@@ -5,29 +5,27 @@ import android.content.Intent;
 import android.graphics.Point;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.view.MenuItemCompat;
-import android.support.v7.widget.SearchView;
-import android.view.Display;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class StoryListActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
@@ -56,7 +54,7 @@ public class StoryListActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
+        System.out.println(getIntent().getExtras().getSerializable("stories"));
         stories = (ArrayList<Story>) getIntent().getExtras().getSerializable("stories");
         storiesHolder = (ArrayList<Story>) stories.clone();
         actionStories = (ArrayList<Story>) getIntent().getExtras().getSerializable("actionStories");
@@ -193,7 +191,7 @@ public class StoryListActivity extends AppCompatActivity
 
         @Override
         public Object getItem(int i) {
-            return null;
+            return stories.get(i);
         }
 
         @Override
@@ -215,6 +213,7 @@ public class StoryListActivity extends AppCompatActivity
             TextView author = view.findViewById(R.id.authorText);
             TextView year = view.findViewById(R.id.yearText);
 
+            System.out.println(stories.get(i).getTitle());
             cover.setBackgroundResource(stories.get(i).getAlbumId());
             title.setText(stories.get(i).getTitle());
             author.setText(stories.get(i).getAuthor());
