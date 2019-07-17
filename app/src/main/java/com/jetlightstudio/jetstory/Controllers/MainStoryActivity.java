@@ -1,4 +1,4 @@
-package com.jetlightstudio.jetstory;
+package com.jetlightstudio.jetstory.Controllers;
 
 
 import android.support.design.widget.TabLayout;
@@ -12,6 +12,9 @@ import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.jetlightstudio.jetstory.FragementActionStoryList;
+import com.jetlightstudio.jetstory.R;
 
 
 public class MainStoryActivity extends AppCompatActivity {

@@ -1,5 +1,7 @@
-package com.jetlightstudio.jetstory;
+package com.jetlightstudio.jetstory.Models;
 
+
+import com.jetlightstudio.jetstory.R;
 
 import java.io.Serializable;
 

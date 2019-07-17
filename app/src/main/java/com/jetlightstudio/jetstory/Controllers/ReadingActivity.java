@@ -1,4 +1,4 @@
-package com.jetlightstudio.jetstory;
+package com.jetlightstudio.jetstory.Controllers;
 
 import android.app.SearchManager;
 import android.content.Intent;
@@ -20,6 +20,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.jetlightstudio.jetstory.R;
+import com.jetlightstudio.jetstory.Models.Story;
+import com.jetlightstudio.jetstory.ToolBox.StoryDataBase;
 
 public class ReadingActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {

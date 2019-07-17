@@ -1,4 +1,4 @@
-package com.jetlightstudio.jetstory;
+package com.jetlightstudio.jetstory.Controllers;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -12,13 +12,15 @@ import android.view.Display;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.Spinner;
 import android.widget.TextView;
+
+import com.jetlightstudio.jetstory.R;
+import com.jetlightstudio.jetstory.Models.Story;
+import com.jetlightstudio.jetstory.ToolBox.StoryDataBase;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -81,6 +83,8 @@ public class ChoosingActivity extends AppCompatActivity {
 
         final RetrieveStoryData storyData = new RetrieveStoryData();
         storyData.execute();
+        categoriesGrid.setVisibility(View.VISIBLE);
+        progressBar.setVisibility(View.GONE);
     }
 
     public void searchStory(View view) {

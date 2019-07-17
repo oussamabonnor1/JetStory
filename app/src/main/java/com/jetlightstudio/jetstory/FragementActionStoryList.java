@@ -16,6 +16,9 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.jetlightstudio.jetstory.Controllers.ReadingActivity;
+import com.jetlightstudio.jetstory.Models.Story;
+
 import java.util.ArrayList;
 
 public class FragementActionStoryList extends Fragment {

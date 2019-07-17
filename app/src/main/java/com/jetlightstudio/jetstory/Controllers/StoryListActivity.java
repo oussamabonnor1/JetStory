@@ -1,4 +1,4 @@
-package com.jetlightstudio.jetstory;
+package com.jetlightstudio.jetstory.Controllers;
 
 import android.app.SearchManager;
 import android.content.Intent;
@@ -24,6 +24,10 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.jetlightstudio.jetstory.R;
+import com.jetlightstudio.jetstory.Models.Story;
+import com.jetlightstudio.jetstory.ToolBox.StoryDataBase;
 
 import java.util.ArrayList;
 
