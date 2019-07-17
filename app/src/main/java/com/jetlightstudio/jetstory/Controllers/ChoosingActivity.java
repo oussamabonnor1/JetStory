@@ -18,8 +18,9 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.jetlightstudio.jetstory.R;
 import com.jetlightstudio.jetstory.Models.Story;
+import com.jetlightstudio.jetstory.R;
+import com.jetlightstudio.jetstory.ToolBox.StoryApiManager;
 import com.jetlightstudio.jetstory.ToolBox.StoryDataBase;
 
 import org.json.JSONArray;
@@ -33,6 +34,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 public class ChoosingActivity extends AppCompatActivity {
 
@@ -47,6 +49,8 @@ public class ChoosingActivity extends AppCompatActivity {
     ProgressBar progressBar;
     //LinearLayout choicePanel;
     GridView categoriesGrid;
+    String[] colors = {"#FFD453", "#FFC153", "#FF8A54", "#FFA754", "#FFAB88", "#FF6C54", "#B05F6D", "#DE8275"};
+    String[] darkColors = {"#23221D", "#1E1E1E", "#28241C", "#514438", "#302F2E", "#331510", "#331B1F", "#351F1C"};
 
 
     @Override
@@ -74,15 +78,20 @@ public class ChoosingActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    view.setElevation(150);
-                    view.setAlpha(.70f);
+                    view.setBackgroundColor(Color.parseColor(colors[i]));
                 }
             }
         });
         categoriesGrid.setVisibility(View.GONE);
 
-        final RetrieveStoryData storyData = new RetrieveStoryData();
-        storyData.execute();
+        StoryApiManager storyData = new StoryApiManager();
+        try {
+            storyData.execute();
+            stories = storyData.get();
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+        }
+        System.out.println(stories.size());
         categoriesGrid.setVisibility(View.VISIBLE);
         progressBar.setVisibility(View.GONE);
     }
@@ -225,7 +234,6 @@ public class ChoosingActivity extends AppCompatActivity {
 
     class CustonCategoryAdapter extends BaseAdapter {
         ArrayList<String> categories;
-        String[] colors = {"#FFD453", "#FFC153", "#FF8A54", "#FFA754", "#FFAB88", "#FF6C54", "#B05F6D", "#DE8275"};
 
         public CustonCategoryAdapter() {
             this.categories = new ArrayList<>();
@@ -263,11 +271,10 @@ public class ChoosingActivity extends AppCompatActivity {
             view = getLayoutInflater().inflate(R.layout.custom_cetegory_adapter, null);
             view.setLayoutParams(new GridView.LayoutParams(GridView.AUTO_FIT, height / 4));
 
-            LinearLayout background = view.findViewById(R.id.layoutBackground);
+            LinearLayout backround = view.findViewById(R.id.layoutBackground);
             TextView categoryLabel = view.findViewById(R.id.categoryTextView);
-
-            background.setBackgroundColor(Color.parseColor(colors[i]));
             categoryLabel.setText(categories.get(i));
+            backround.setBackgroundColor(Color.parseColor(darkColors[i]));
             return view;
         }
 
