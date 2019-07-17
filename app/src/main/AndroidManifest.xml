@@ -30,6 +30,7 @@
             android:name=".MainStoryActivity"
             android:label="@string/title_activity_main_story"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+
     </application>
 
 </manifest>

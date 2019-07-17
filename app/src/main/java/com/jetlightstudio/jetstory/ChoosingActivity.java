@@ -1,15 +1,24 @@
 package com.jetlightstudio.jetstory;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Point;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Display;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
+import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -25,8 +34,8 @@ import java.util.ArrayList;
 
 public class ChoosingActivity extends AppCompatActivity {
 
-    Spinner spinnerCategory;
-    Spinner spinnerLength;
+    //Spinner spinnerCategory;
+    //Spinner spinnerLength;
     ArrayList<Story> stories = new ArrayList<>();
     ArrayList<Story> comedyStories;
     ArrayList<Story> actionStories;
@@ -34,14 +43,15 @@ public class ChoosingActivity extends AppCompatActivity {
     ArrayList<Story> sadStories;
     ArrayList<Story> moralStories;
     ProgressBar progressBar;
-    LinearLayout choicePanel;
+    //LinearLayout choicePanel;
+    GridView categoriesGrid;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choosing);
-        spinnerCategory = (Spinner) findViewById(R.id.spinnerCategory);
+        /*spinnerCategory = (Spinner) findViewById(R.id.spinnerCategory);
         ArrayAdapter<CharSequence> arr = ArrayAdapter.createFromResource(this, R.array.category, android.R.layout.simple_spinner_item);
         arr.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerCategory.setAdapter(arr);
@@ -49,12 +59,25 @@ public class ChoosingActivity extends AppCompatActivity {
         spinnerLength = (Spinner) findViewById(R.id.spinnerLength);
         ArrayAdapter<CharSequence> arr2 = ArrayAdapter.createFromResource(this, R.array.length, android.R.layout.simple_spinner_item);
         arr2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerLength.setAdapter(arr2);
+        spinnerLength.setAdapter(arr2);*/
 
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
-        choicePanel = (LinearLayout) findViewById(R.id.choicePanel);
-        choicePanel.setVisibility(View.GONE);
+        //choicePanel = (LinearLayout) findViewById(R.id.choicePanel);
+        //choicePanel.setVisibility(View.GONE);
         progressBar.setVisibility(View.VISIBLE);
+
+        categoriesGrid = (GridView) findViewById(R.id.categoriesGrid);
+        categoriesGrid.setAdapter(new CustonCategoryAdapter());
+        categoriesGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    view.setElevation(150);
+                    view.setAlpha(.70f);
+                }
+            }
+        });
+        categoriesGrid.setVisibility(View.GONE);
 
         final RetrieveStoryData storyData = new RetrieveStoryData();
         storyData.execute();
@@ -66,8 +89,8 @@ public class ChoosingActivity extends AppCompatActivity {
         sadStories = new ArrayList<>();
         moralStories = new ArrayList<>();
         romanceStories = new ArrayList<>();
-        int timeIndex = spinnerLength.getSelectedItemPosition();
-        int categoryIndex = spinnerCategory.getSelectedItemPosition();
+        int timeIndex = 0;
+        int categoryIndex = 0;
 
         int time = 0;
 
@@ -190,10 +213,60 @@ public class ChoosingActivity extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                choicePanel.setVisibility(View.VISIBLE);
+                categoriesGrid.setVisibility(View.VISIBLE);
                 progressBar.setVisibility(View.GONE);
             }
         }
+    }
+
+    class CustonCategoryAdapter extends BaseAdapter {
+        ArrayList<String> categories;
+        String[] colors = {"#FFD453", "#FFC153", "#FF8A54", "#FFA754", "#FFAB88", "#FF6C54", "#B05F6D", "#DE8275"};
+
+        public CustonCategoryAdapter() {
+            this.categories = new ArrayList<>();
+            categories.add("Moral");
+            categories.add("Action");
+            categories.add("Romance");
+            categories.add("Comedy");
+            categories.add("Fantasy");
+            categories.add("Sad");
+            categories.add("Kids");
+            categories.add("Thriller");
+        }
+
+        @Override
+        public int getCount() {
+            return categories.size();
+        }
+
+        @Override
+        public Object getItem(int i) {
+            return null;
+        }
+
+        @Override
+        public long getItemId(int i) {
+            return i;
+        }
+
+        @Override
+        public View getView(int i, View view, ViewGroup viewGroup) {
+            Display display = getWindowManager().getDefaultDisplay();
+            Point size = new Point();
+            display.getSize(size);
+            int height = size.y;
+            view = getLayoutInflater().inflate(R.layout.custom_cetegory_adapter, null);
+            view.setLayoutParams(new GridView.LayoutParams(GridView.AUTO_FIT, height / 4));
+
+            LinearLayout background = view.findViewById(R.id.layoutBackground);
+            TextView categoryLabel = view.findViewById(R.id.categoryTextView);
+
+            background.setBackgroundColor(Color.parseColor(colors[i]));
+            categoryLabel.setText(categories.get(i));
+            return view;
+        }
+
     }
 }
 
