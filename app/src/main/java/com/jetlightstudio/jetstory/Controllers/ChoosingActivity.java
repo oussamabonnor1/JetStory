@@ -4,34 +4,25 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.view.Display;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.BaseAdapter;
-import android.widget.GridView;
 import android.widget.ProgressBar;
 
 import com.beardedhen.androidbootstrap.BootstrapLabel;
+import com.google.android.flexbox.FlexDirection;
+import com.google.android.flexbox.FlexboxLayoutManager;
+import com.google.android.flexbox.JustifyContent;
 import com.jetlightstudio.jetstory.Models.Story;
 import com.jetlightstudio.jetstory.R;
 import com.jetlightstudio.jetstory.ToolBox.StoryApiManager;
 import com.jetlightstudio.jetstory.ToolBox.StoryDataBase;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
@@ -47,7 +38,6 @@ public class ChoosingActivity extends AppCompatActivity {
     ArrayList<Story> moralStories;
     ProgressBar progressBar;
     //LinearLayout choicePanel;
-    GridView categoriesGrid;
     String[] colors = {"#FFD453", "#FFC153", "#FF8A54", "#FFA754", "#FFAB88", "#FF6C54", "#B05F6D", "#DE8275"};
     String[] darkColors = {"#23221D", "#1E1E1E", "#28241C", "#514438", "#302F2E", "#331510", "#331B1F", "#351F1C"};
 
@@ -71,17 +61,7 @@ public class ChoosingActivity extends AppCompatActivity {
         //choicePanel.setVisibility(View.GONE);
         progressBar.setVisibility(View.VISIBLE);
 
-        categoriesGrid = (GridView) findViewById(R.id.categoriesGrid);
-        categoriesGrid.setAdapter(new CustonCategoryAdapter());
-        categoriesGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    view.setBackgroundColor(Color.parseColor(colors[i]));
-                }
-            }
-        });
-        categoriesGrid.setVisibility(View.GONE);
+
 
         StoryApiManager storyData = new StoryApiManager();
         try {
@@ -90,8 +70,7 @@ public class ChoosingActivity extends AppCompatActivity {
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
-        System.out.println(stories.size());
-        categoriesGrid.setVisibility(View.VISIBLE);
+        categoriesView.setVisibility(View.VISIBLE);
         progressBar.setVisibility(View.GONE);
     }
 
@@ -186,55 +165,11 @@ public class ChoosingActivity extends AppCompatActivity {
         startActivity(Intent.createChooser(i, "Share via"));
     }
 
-    public class RetrieveStoryData extends AsyncTask<Void, Void, Void> {
-        String data;
-        String path = "http://27ed29f5.ngrok.io";
-
-        @Override
-        protected Void doInBackground(Void... voids) {
-            try {
-                URL url = new URL(path + "/api/stories");
-                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                InputStream inputStream = connection.getInputStream();
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-                String s = "";
-                while (s != null) {
-                    s = bufferedReader.readLine();
-                    data += s;
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-            if (data != null) {
-                try {
-                    data = data.replace("null", "");
-                    JSONArray jsonArray = new JSONArray(data);
-                    for (int i = 0; i < 4; i++) {
-                        JSONObject json = jsonArray.getJSONObject(i);
-
-                        stories.add(new Story(json.getString("name"), json.getString("writer"),
-                                json.getString("publishedDate"), json.getString("content"),
-                                json.getInt("id"), json.getInt("time"), json.getString("category")));
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                categoriesGrid.setVisibility(View.VISIBLE);
-                progressBar.setVisibility(View.GONE);
-            }
-        }
-    }
-
-    class CustonCategoryAdapter extends BaseAdapter {
+    //region comments
+    /*class CustomCategoryAdapter extends RecyclerView.Adapter{
         ArrayList<String> categories;
 
-        public CustonCategoryAdapter() {
+        public CustomCategoryAdapter() {
             this.categories = new ArrayList<>();
             categories.add("Moral");
             categories.add("Action");
@@ -247,13 +182,17 @@ public class ChoosingActivity extends AppCompatActivity {
         }
 
         @Override
-        public int getCount() {
-            return categories.size();
+        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+
+            View view = getLayoutInflater().inflate(R.layout.custom_cetegory_adapter, null);
+            return new ViewHolder(view);
         }
 
         @Override
-        public Object getItem(int i) {
-            return null;
+        public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+            BootstrapLabel backround = view.findViewById(R.id.layoutBackground);
+            backround.setText(categories.get(position));
+            backround.setBackgroundColor(Color.parseColor(colors[position]));
         }
 
         @Override
@@ -262,20 +201,18 @@ public class ChoosingActivity extends AppCompatActivity {
         }
 
         @Override
-        public View getView(int i, View view, ViewGroup viewGroup) {
-            Display display = getWindowManager().getDefaultDisplay();
-            Point size = new Point();
-            display.getSize(size);
-            int height = size.y;
-            view = getLayoutInflater().inflate(R.layout.custom_cetegory_adapter, null);
-            //view.setLayoutParams(new GridView.LayoutParams(GridView.AUTO_FIT, height / 4));
-
-            BootstrapLabel backround = view.findViewById(R.id.layoutBackground);
-            backround.setText(categories.get(i));
-            backround.setBackgroundColor(Color.parseColor(colors[i]));
-            return view;
+        public int getItemCount() {
+            return categories.size();
         }
 
-    }
+        public class ViewHolder extends RecyclerView.ViewHolder {
+
+            public ViewHolder(View v) {
+                super(v);
+            }
+        }
+
+    }*/
+    //endregion
 }
 
