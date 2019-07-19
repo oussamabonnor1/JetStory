@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.jetlightstudio.jetstory.Controllers.StoryListActivity">
 
     <android.support.design.widget.AppBarLayout
@@ -21,24 +22,26 @@
     </android.support.design.widget.AppBarLayout>
 
 
-    <GridView
-        android:id="@+id/grid"
-        android:layout_marginTop="60dp"
+    <com.google.android.flexbox.FlexboxLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginEnd="25dp"
-        android:layout_marginStart="25dp"
-        android:layout_weight=".95"
-        android:horizontalSpacing="10dp"
-        android:numColumns="2"
-        android:verticalSpacing="15dp" />
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
 
-</android.support.design.widget.CoordinatorLayout>
+        app:alignContent="stretch"
+        app:alignItems="stretch"
+        app:flexWrap="wrap">
+
+        <com.beardedhen.androidbootstrap.BootstrapLabel
+            android:id="@+id/hola"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="hola" />
+
+        <com.beardedhen.androidbootstrap.BootstrapLabel
+            android:id="@+id/holahola"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="holahola" />
+    </com.google.android.flexbox.FlexboxLayout>
+
+
+</LinearLayout>

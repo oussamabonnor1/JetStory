@@ -1,22 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.beardedhen.androidbootstrap.BootstrapLabel xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/layoutBackground"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_margin="25dp"
-    android:background="#3C3F41"
+    android:layout_height="wrap_content"
     android:foreground="@drawable/ripple_effect"
-    android:gravity="center"
-    android:orientation="vertical">
+    android:text="hello"
+    app:bootstrapBrand="warning"
+    app:bootstrapHeading="h1"
+    app:roundedCorners="true">
 
-    <TextView
-        android:id="@+id/categoryTextView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-
-        android:gravity="center"
-        android:text="Category"
-        android:textColor="@color/colorAccent"
-        android:textSize="40sp" />
-
-</LinearLayout>
+</com.beardedhen.androidbootstrap.BootstrapLabel>

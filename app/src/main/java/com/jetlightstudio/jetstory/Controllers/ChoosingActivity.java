@@ -14,10 +14,9 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
+import com.beardedhen.androidbootstrap.BootstrapLabel;
 import com.jetlightstudio.jetstory.Models.Story;
 import com.jetlightstudio.jetstory.R;
 import com.jetlightstudio.jetstory.ToolBox.StoryApiManager;
@@ -269,12 +268,11 @@ public class ChoosingActivity extends AppCompatActivity {
             display.getSize(size);
             int height = size.y;
             view = getLayoutInflater().inflate(R.layout.custom_cetegory_adapter, null);
-            view.setLayoutParams(new GridView.LayoutParams(GridView.AUTO_FIT, height / 4));
+            //view.setLayoutParams(new GridView.LayoutParams(GridView.AUTO_FIT, height / 4));
 
-            LinearLayout backround = view.findViewById(R.id.layoutBackground);
-            TextView categoryLabel = view.findViewById(R.id.categoryTextView);
-            categoryLabel.setText(categories.get(i));
-            backround.setBackgroundColor(Color.parseColor(darkColors[i]));
+            BootstrapLabel backround = view.findViewById(R.id.layoutBackground);
+            backround.setText(categories.get(i));
+            backround.setBackgroundColor(Color.parseColor(colors[i]));
             return view;
         }
 
