@@ -1,17 +1,12 @@
 package com.jetlightstudio.jetstory.Controllers;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.Point;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
-import android.view.Display;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ProgressBar;
 
 import com.beardedhen.androidbootstrap.BootstrapLabel;
@@ -37,6 +32,7 @@ public class ChoosingActivity extends AppCompatActivity {
     ArrayList<Story> sadStories;
     ArrayList<Story> moralStories;
     ProgressBar progressBar;
+    RecyclerView categoriesView;
     //LinearLayout choicePanel;
     String[] colors = {"#FFD453", "#FFC153", "#FF8A54", "#FFA754", "#FFAB88", "#FF6C54", "#B05F6D", "#DE8275"};
     String[] darkColors = {"#23221D", "#1E1E1E", "#28241C", "#514438", "#302F2E", "#331510", "#331B1F", "#351F1C"};
@@ -61,6 +57,12 @@ public class ChoosingActivity extends AppCompatActivity {
         //choicePanel.setVisibility(View.GONE);
         progressBar.setVisibility(View.VISIBLE);
 
+        categoriesView = (RecyclerView) findViewById(R.id.categoriesView);
+        categoriesView.setAdapter(new CustomCategoryAdapter());
+        FlexboxLayoutManager layoutManager = new FlexboxLayoutManager(getApplicationContext());
+        layoutManager.setFlexDirection(FlexDirection.COLUMN);
+        layoutManager.setJustifyContent(JustifyContent.FLEX_END);
+        categoriesView.setLayoutManager(layoutManager);
 
 
         StoryApiManager storyData = new StoryApiManager();
@@ -166,7 +168,7 @@ public class ChoosingActivity extends AppCompatActivity {
     }
 
     //region comments
-    /*class CustomCategoryAdapter extends RecyclerView.Adapter{
+    class CustomCategoryAdapter extends RecyclerView.Adapter<CustomCategoryAdapter.ViewHolder> {
         ArrayList<String> categories;
 
         public CustomCategoryAdapter() {
@@ -181,19 +183,27 @@ public class ChoosingActivity extends AppCompatActivity {
             categories.add("Thriller");
         }
 
+        class ViewHolder extends RecyclerView.ViewHolder {
+            BootstrapLabel label;
+
+            public ViewHolder(View itemView) {
+                super(itemView);
+                label = findViewById(R.id.layoutBackground);
+            }
+        }
+
         @Override
-        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
             View view = getLayoutInflater().inflate(R.layout.custom_cetegory_adapter, null);
             return new ViewHolder(view);
         }
 
         @Override
-        public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-            BootstrapLabel backround = view.findViewById(R.id.layoutBackground);
-            backround.setText(categories.get(position));
-            backround.setBackgroundColor(Color.parseColor(colors[position]));
+        public void onBindViewHolder(ViewHolder holder, int position) {
+            holder.label.setText(categories.get(position));
         }
+
 
         @Override
         public long getItemId(int i) {
@@ -205,14 +215,7 @@ public class ChoosingActivity extends AppCompatActivity {
             return categories.size();
         }
 
-        public class ViewHolder extends RecyclerView.ViewHolder {
-
-            public ViewHolder(View v) {
-                super(v);
-            }
-        }
-
-    }*/
+    }
     //endregion
 }
 
