@@ -9,11 +9,11 @@
         android:orientation="vertical"
         android:weightSum="1">
 
-        <GridView
-            android:id="@+id/categoriesGrid"
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/categoriesView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:numColumns="2"/>
+            android:layout_height="wrap_content" />
     </LinearLayout>
 
     <!--<LinearLayout

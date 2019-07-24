@@ -57,7 +57,7 @@ public class ChoosingActivity extends AppCompatActivity {
         //choicePanel.setVisibility(View.GONE);
         progressBar.setVisibility(View.VISIBLE);
 
-        categoriesView = (RecyclerView) findViewById(R.id.categoriesView);
+        categoriesView = findViewById(R.id.categoriesView);
         categoriesView.setAdapter(new CustomCategoryAdapter());
         FlexboxLayoutManager layoutManager = new FlexboxLayoutManager(getApplicationContext());
         layoutManager.setFlexDirection(FlexDirection.COLUMN);
@@ -186,9 +186,9 @@ public class ChoosingActivity extends AppCompatActivity {
         class ViewHolder extends RecyclerView.ViewHolder {
             BootstrapLabel label;
 
-            public ViewHolder(View itemView) {
+            ViewHolder(View itemView) {
                 super(itemView);
-                label = findViewById(R.id.layoutBackground);
+                label = itemView.findViewById(R.id.layoutBackground);
             }
         }
 

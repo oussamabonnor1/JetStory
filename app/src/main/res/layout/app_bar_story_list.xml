@@ -96,8 +96,4 @@
 
     </com.google.android.flexbox.FlexboxLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/categoriesView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 </LinearLayout>
