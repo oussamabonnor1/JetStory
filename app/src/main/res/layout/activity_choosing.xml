@@ -30,6 +30,7 @@
             android:layout_weight=".5"
             android:verticalSpacing="10dp"
             android:layout_margin="10dp"
+            android:listSelector="@android:color/transparent"
             android:horizontalSpacing="10dp"
             android:numColumns="5"
             />

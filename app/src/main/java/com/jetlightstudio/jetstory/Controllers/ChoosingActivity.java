@@ -39,6 +39,11 @@ public class ChoosingActivity extends AppCompatActivity {
     ProgressBar progressBar;
     RecyclerView categoriesView;
     GridView timeGridView;
+    int timeIndex = -1;
+    int categoryIndex = -1;
+    LinearLayout layoutToSelect;
+    TextView textToSelect;
+
     //LinearLayout choicePanel;
 
 
@@ -80,11 +85,16 @@ public class ChoosingActivity extends AppCompatActivity {
         timeGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                LinearLayout layoutToSelect = view.findViewById(R.id.timeLayoutBackground);
+                if (timeIndex > -1) {
+                    HelpFullFunctions.setViewColor(layoutToSelect, "#FFFFFF");
+                    textToSelect.setTextColor(Color.parseColor("#757575"));
+                }
+                layoutToSelect = view.findViewById(R.id.timeLayoutBackground);
                 HelpFullFunctions.setViewColor(layoutToSelect, "#9AD945");
                 layoutToSelect.setElevation(15);
-                TextView text = view.findViewById(R.id.timeTextView);
-                text.setTextColor(Color.parseColor("#FFFFFF"));
+                textToSelect = view.findViewById(R.id.timeTextView);
+                textToSelect.setTextColor(Color.parseColor("#FFFFFF"));
+                timeIndex = i;
             }
         });
 
@@ -107,8 +117,6 @@ public class ChoosingActivity extends AppCompatActivity {
         sadStories = new ArrayList<>();
         moralStories = new ArrayList<>();
         romanceStories = new ArrayList<>();
-        int timeIndex = 0;
-        int categoryIndex = 0;
 
         int time = 0;
 
