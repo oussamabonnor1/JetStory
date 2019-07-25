@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay"
-            app:title="Select your preferences" />
+            app:title="Stories list" />
 
     </android.support.design.widget.AppBarLayout>
 

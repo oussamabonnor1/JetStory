@@ -25,8 +25,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.jetlightstudio.jetstory.R;
 import com.jetlightstudio.jetstory.Models.Story;
+import com.jetlightstudio.jetstory.R;
 import com.jetlightstudio.jetstory.ToolBox.StoryDataBase;
 
 import java.util.ArrayList;
@@ -36,37 +36,31 @@ public class StoryListActivity extends AppCompatActivity
     GridView grid;
     ArrayList<Story> stories; //used to hold the current stories shown (with or without refined search)
     ArrayList<Story> storiesHolder; //used so that the original story list is always saved
-    ArrayList<Story> comedyStories;
-    ArrayList<Story> actionStories;
-    ArrayList<Story> romanceStories;
-    ArrayList<Story> sadStories;
-    ArrayList<Story> moralStories;
-    CustomStoryAdapter c;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_story_list);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
+        drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         stories = (ArrayList<Story>) getIntent().getExtras().getSerializable("stories");
+        storiesHolder = (ArrayList<Story>) stories.clone();
         settingStoryList();
 
     }
 
     protected void settingStoryList() {
-        c = new CustomStoryAdapter();
         grid = findViewById(R.id.grid);
-        grid.setAdapter(c);
+        grid.setAdapter(new CustomStoryAdapter());
         grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -111,14 +105,14 @@ public class StoryListActivity extends AppCompatActivity
 
                 @Override
                 public boolean onQueryTextChange(String newText) {
-                    ArrayList<Story> storiesTemp = (ArrayList<Story>) storiesHolder.clone();
+                    stories.clear();
                     int i = 0;
-                    while (i < storiesTemp.size()) {
-                        if (!storiesTemp.get(i).getTitle().toLowerCase().contains(newText.toLowerCase())) {
-                            storiesTemp.remove(i);
+                    while (i < storiesHolder.size()) {
+                        if (storiesHolder.get(i).getTitle().toLowerCase().contains(newText.toLowerCase())) {
+                            stories.add(storiesHolder.get(i));
+                            i++;
                         } else i++;
                     }
-                    stories = (ArrayList<Story>) storiesTemp.clone();
                     settingStoryList();
                     return false;
                 }
