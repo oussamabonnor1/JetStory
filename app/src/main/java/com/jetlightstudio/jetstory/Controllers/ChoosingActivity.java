@@ -1,29 +1,22 @@
 package com.jetlightstudio.jetstory.Controllers;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
+import android.widget.GridView;
 import android.widget.ProgressBar;
-import android.widget.SeekBar;
 
-import com.gelitenight.waveview.library.WaveView;
-import com.google.android.flexbox.AlignContent;
 import com.google.android.flexbox.FlexDirection;
 import com.google.android.flexbox.FlexboxLayoutManager;
 import com.google.android.flexbox.JustifyContent;
+import com.jetlightstudio.jetstory.Adapters.CustomCategoryAdapter;
 import com.jetlightstudio.jetstory.Models.Story;
 import com.jetlightstudio.jetstory.R;
-import com.jetlightstudio.jetstory.ToolBox.FontAwesome;
-import com.jetlightstudio.jetstory.ToolBox.HelpFullFunctions;
 import com.jetlightstudio.jetstory.ToolBox.StoryDataBase;
-import com.jetlightstudio.jetstory.ToolBox.WaveHelper;
 
 import java.util.ArrayList;
 
@@ -39,6 +32,7 @@ public class ChoosingActivity extends AppCompatActivity {
     ArrayList<Story> moralStories;
     ProgressBar progressBar;
     RecyclerView categoriesView;
+    GridView timeGridView;
     //LinearLayout choicePanel;
 
 
@@ -62,7 +56,7 @@ public class ChoosingActivity extends AppCompatActivity {
         progressBar.setVisibility(View.VISIBLE);
 
         categoriesView = findViewById(R.id.categoriesView);
-        categoriesView.setAdapter(new CustomCategoryAdapter());
+        categoriesView.setAdapter(new CustomCategoryAdapter(getApplicationContext()));
         FlexboxLayoutManager layoutManager = new FlexboxLayoutManager(getApplicationContext());
         layoutManager.setFlexDirection(FlexDirection.ROW);
         layoutManager.setJustifyContent(JustifyContent.CENTER);
@@ -86,29 +80,6 @@ public class ChoosingActivity extends AppCompatActivity {
         categoriesView.setVisibility(View.VISIBLE);
         progressBar.setVisibility(View.GONE);
 
-        final WaveView waveView = (WaveView) findViewById(R.id.waveView);
-        waveView.setBorder(10, Color.parseColor("#FE9025"));
-        waveView.setShapeType(WaveView.ShapeType.SQUARE);
-
-        final WaveHelper mWaveHelper = new WaveHelper(waveView);
-
-        ((SeekBar) findViewById(R.id.waveViewSeekBar)).setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                waveView.setWaterLevelRatio(((float) i / seekBar.getMax()));
-            }
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
-
-        mWaveHelper.start();
     }
 
     public void searchStory(View view) {
@@ -204,76 +175,7 @@ public class ChoosingActivity extends AppCompatActivity {
 
 
     //region comments
-    class CustomCategoryAdapter extends RecyclerView.Adapter<CustomCategoryAdapter.ViewHolder> {
-        ArrayList<String> categories;
-        ArrayList<Boolean> selectedCategories;
 
-        CustomCategoryAdapter() {
-            this.categories = new ArrayList<>();
-            selectedCategories = new ArrayList<>();
-            categories.add("Latest Updates");
-            categories.add("Moral");
-            categories.add("Action");
-            categories.add("Romance");
-            categories.add("Comedy");
-            categories.add("Fantasy");
-            categories.add("Sad");
-            categories.add("Kids");
-            categories.add("Thriller");
-            for (int i = 0; i < categories.size(); i++) {
-                selectedCategories.add(false);
-            }
-        }
-
-        class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-            FontAwesome categoryLabel;
-            LinearLayout layoutBackground;
-
-            ViewHolder(View itemView) {
-                super(itemView);
-                categoryLabel = itemView.findViewById(R.id.categoryLabel);
-                layoutBackground = itemView.findViewById(R.id.layoutBackground);
-                itemView.setOnClickListener(this);
-            }
-
-            @Override
-            public void onClick(View view) {
-                String text = !selectedCategories.get(getAdapterPosition()) ?
-                        categories.get(getAdapterPosition()) + " " + getResources().getString(R.string.icon_checked)
-                        : categories.get(getAdapterPosition()) + " " + getResources().getString(R.string.icon_plus);
-                categoryLabel.setText(text);
-                HelpFullFunctions.setViewColor(layoutBackground, !selectedCategories.get(getAdapterPosition()) ? "#8DC63F" : "#FE9025");
-                layoutBackground.setElevation(!selectedCategories.get(getAdapterPosition()) ? 15 : 2);
-                selectedCategories.set(getAdapterPosition(), !selectedCategories.get(getAdapterPosition()));
-            }
-        }
-
-        @Override
-        public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View view = getLayoutInflater().inflate(R.layout.custom_cetegory_adapter, null);
-            return new ViewHolder(view);
-        }
-
-        @Override
-        public void onBindViewHolder(final ViewHolder holder, int position) {
-            String text = selectedCategories.get(position) ?
-                    categories.get(position) + " " + getResources().getString(R.string.icon_checked)
-                    : categories.get(position) + " " + getResources().getString(R.string.icon_plus);
-            holder.categoryLabel.setText(text);
-        }
-
-        @Override
-        public long getItemId(int i) {
-            return i;
-        }
-
-        @Override
-        public int getItemCount() {
-            return categories.size();
-        }
-
-
-    }
 //endregion
 }
 

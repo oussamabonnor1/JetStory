@@ -23,26 +23,12 @@
                 android:padding="5dp" />
         </LinearLayout>
 
-        <RelativeLayout
+        <GridView
+            android:id="@+id/timeGridView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight=".5"
-            android:background="@drawable/category_panel_round_edge">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="Drag to select story reading time"
-                android:textAlignment="center"
-                android:textSize="22sp"
-                android:textStyle="bold" />
-
-            <com.gelitenight.waveview.library.WaveView
-                android:id="@+id/waveView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </RelativeLayout>
+            android:numColumns="5"/>
 
         <SeekBar
             android:id="@+id/waveViewSeekBar"
