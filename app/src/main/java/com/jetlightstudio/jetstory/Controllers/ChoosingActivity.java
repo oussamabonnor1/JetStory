@@ -17,6 +17,7 @@ import com.google.android.flexbox.JustifyContent;
 import com.jetlightstudio.jetstory.Models.Story;
 import com.jetlightstudio.jetstory.R;
 import com.jetlightstudio.jetstory.ToolBox.FontAwesome;
+import com.jetlightstudio.jetstory.ToolBox.HelpFullFunctions;
 import com.jetlightstudio.jetstory.ToolBox.StoryDataBase;
 
 import java.util.ArrayList;
@@ -176,9 +177,11 @@ public class ChoosingActivity extends AppCompatActivity {
     //region comments
     class CustomCategoryAdapter extends RecyclerView.Adapter<CustomCategoryAdapter.ViewHolder> {
         ArrayList<String> categories;
+        ArrayList<Boolean> selectedCategories;
 
         CustomCategoryAdapter() {
             this.categories = new ArrayList<>();
+            selectedCategories = new ArrayList<>();
             categories.add("Latest Updates");
             categories.add("Moral");
             categories.add("Action");
@@ -188,6 +191,9 @@ public class ChoosingActivity extends AppCompatActivity {
             categories.add("Sad");
             categories.add("Kids");
             categories.add("Thriller");
+            for (int i = 0; i < categories.size(); i++) {
+                selectedCategories.add(false);
+            }
         }
 
         class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -203,8 +209,13 @@ public class ChoosingActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                String text = categories.get(getAdapterPosition()) + " " + getResources().getString(R.string.icon_checked);
+                String text = !selectedCategories.get(getAdapterPosition()) ?
+                        categories.get(getAdapterPosition()) + " " + getResources().getString(R.string.icon_checked)
+                        : categories.get(getAdapterPosition()) + " " + getResources().getString(R.string.icon_plus);
                 categoryLabel.setText(text);
+                HelpFullFunctions.setViewColor(layoutBackground, !selectedCategories.get(getAdapterPosition()) ? "#8DC63F" : "#FE9025");
+                layoutBackground.setElevation(!selectedCategories.get(getAdapterPosition()) ? 15 : 2);
+                selectedCategories.set(getAdapterPosition(), !selectedCategories.get(getAdapterPosition()));
             }
         }
 
@@ -216,7 +227,7 @@ public class ChoosingActivity extends AppCompatActivity {
 
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
-            String text = position == 0 ?
+            String text = selectedCategories.get(position) ?
                     categories.get(position) + " " + getResources().getString(R.string.icon_checked)
                     : categories.get(position) + " " + getResources().getString(R.string.icon_plus);
             holder.categoryLabel.setText(text);
