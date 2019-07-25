@@ -83,5 +83,11 @@ public class CustomCategoryAdapter extends RecyclerView.Adapter<CustomCategoryAd
         return categories.size();
     }
 
-
+    public ArrayList<String> getCategories() {
+        ArrayList<String> selectedCategoriesNames = new ArrayList<>();
+        for (int i = 0; i < categories.size(); i++) {
+            if (selectedCategories.get(i)) selectedCategoriesNames.add(categories.get(i));
+        }
+        return selectedCategoriesNames;
+    }
 }

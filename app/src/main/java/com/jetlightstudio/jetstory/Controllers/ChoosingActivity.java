@@ -22,9 +22,10 @@ import com.jetlightstudio.jetstory.Adapters.TimeGridViewAdapter;
 import com.jetlightstudio.jetstory.Models.Story;
 import com.jetlightstudio.jetstory.R;
 import com.jetlightstudio.jetstory.ToolBox.HelpFullFunctions;
-import com.jetlightstudio.jetstory.ToolBox.StoryDataBase;
+import com.jetlightstudio.jetstory.ToolBox.StoryApiManager;
 
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 public class ChoosingActivity extends AppCompatActivity {
 
@@ -43,6 +44,7 @@ public class ChoosingActivity extends AppCompatActivity {
     int categoryIndex = -1;
     LinearLayout layoutToSelect;
     TextView textToSelect;
+    CustomCategoryAdapter customCategoriesAdapter;
 
     //LinearLayout choicePanel;
 
@@ -67,7 +69,8 @@ public class ChoosingActivity extends AppCompatActivity {
         progressBar.setVisibility(View.VISIBLE);
 
         categoriesView = findViewById(R.id.categoriesView);
-        categoriesView.setAdapter(new CustomCategoryAdapter());
+        customCategoriesAdapter = new CustomCategoryAdapter();
+        categoriesView.setAdapter(customCategoriesAdapter);
         final FlexboxLayoutManager layoutManager = new FlexboxLayoutManager(getApplicationContext());
         layoutManager.setFlexDirection(FlexDirection.ROW);
         layoutManager.setJustifyContent(JustifyContent.CENTER);
@@ -99,87 +102,47 @@ public class ChoosingActivity extends AppCompatActivity {
         });
 
 
-       /*StoryApiManager storyData = new StoryApiManager();
+        StoryApiManager storyData = new StoryApiManager();
         try {
             storyData.execute();
             stories = storyData.get();
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
-        }*/
+        }
         categoriesView.setVisibility(View.VISIBLE);
         progressBar.setVisibility(View.GONE);
 
     }
 
     public void searchStory(View view) {
-        actionStories = new ArrayList<>();
-        comedyStories = new ArrayList<>();
-        sadStories = new ArrayList<>();
-        moralStories = new ArrayList<>();
-        romanceStories = new ArrayList<>();
-
-        int time = 0;
-
+        System.out.println("searching...");
+        ArrayList<Story> filteredStories = new ArrayList<>();
+        ArrayList<String> filteredCategories = customCategoriesAdapter.getCategories();
+        int time;
         switch (timeIndex) {
-            case 0:
-                time = 3;
+            case 9:
+                time = 60;
                 break;
-            case 1:
-                time = 5;
-                break;
-            case 2:
-                time = 10;
-                break;
-            case 3:
-                time = 15;
-                break;
-            case 4:
-                time = Integer.MAX_VALUE;
+            default:
+                time = timeIndex + 1;
                 break;
         }
 
         for (int i = 0; i < stories.size(); i++) {
             if (stories.get(i).getTime() <= time) {
-                if (stories.get(i).getCategory() == Story.Category.action)
-                    actionStories.add(stories.get(i));
-                else if (stories.get(i).getCategory() == Story.Category.comedy)
-                    comedyStories.add(stories.get(i));
-                else if (stories.get(i).getCategory() == Story.Category.sad)
-                    sadStories.add(stories.get(i));
-                else if (stories.get(i).getCategory() == Story.Category.moral)
-                    moralStories.add(stories.get(i));
-                else if (stories.get(i).getCategory() == Story.Category.romance)
-                    romanceStories.add(stories.get(i));
+                if (HelpFullFunctions.isStoryCategorySelected(stories.get(i).getCategory()
+                        , filteredCategories)) {
+                    filteredStories.add(stories.get(i));
+                    System.out.println(stories.get(i));
+                }
             }
         }
 
-        Intent i = new Intent(this, StoryListActivity.class);
-        i.putExtra("tabIndex", categoryIndex);
 
-        switch (categoryIndex) {
-            case 0:
-                i.putExtra("stories", actionStories);
-                break;
-            case 1:
-                i.putExtra("stories", comedyStories);
-                break;
-            case 2:
-                i.putExtra("stories", romanceStories);
-                break;
-            case 3:
-                i.putExtra("stories", moralStories);
-                break;
-            case 4:
-                sadStories = new StoryDataBase(getApplicationContext(), null).loadStories();
-                i.putExtra("stories", sadStories);
-                break;
-        }
-        i.putExtra("actionStories", actionStories);
-        i.putExtra("comedyStories", comedyStories);
-        i.putExtra("romanceStories", romanceStories);
-        i.putExtra("moralStories", moralStories);
-        i.putExtra("sadStories", sadStories);
-        startActivity(i);
+        Intent i = new Intent(this, StoryListActivity.class);
+        i.putExtra("stories", filteredStories);
+
+        //startActivity(i);
     }
 
     public void openFacebook(View view) {

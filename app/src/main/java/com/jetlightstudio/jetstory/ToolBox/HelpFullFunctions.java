@@ -7,6 +7,10 @@ import android.graphics.PorterDuffColorFilter;
 import android.os.Build;
 import android.view.View;
 
+import com.jetlightstudio.jetstory.Models.Story;
+
+import java.util.ArrayList;
+
 public class HelpFullFunctions {
 
     public static void setViewColor(View view, String color) {
@@ -18,5 +22,9 @@ public class HelpFullFunctions {
                     new PorterDuffColorFilter(Color.parseColor(color),
                             PorterDuff.Mode.MULTIPLY));
         }
+    }
+
+    public static boolean isStoryCategorySelected(Story.Category category, ArrayList<String> categories) {
+        return categories.contains(category.name());
     }
 }
