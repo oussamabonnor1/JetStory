@@ -6,14 +6,23 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
         android:orientation="vertical"
+        android:gravity="center"
         android:weightSum="1">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight=".05"
+            android:text="Select categories"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight=".5"
+            android:layout_weight=".4"
             android:gravity="center">
 
             <android.support.v7.widget.RecyclerView
@@ -23,17 +32,42 @@
                 android:padding="5dp" />
         </LinearLayout>
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight=".075"
+            android:text="Story Length (Mn)"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
         <GridView
             android:id="@+id/timeGridView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight=".5"
-            android:verticalSpacing="10dp"
-            android:layout_margin="10dp"
-            android:listSelector="@android:color/transparent"
+            android:layout_weight=".35"
             android:horizontalSpacing="10dp"
+            android:listSelector="@android:color/transparent"
             android:numColumns="5"
-            />
+            android:padding="10dp"
+            android:verticalSpacing="10dp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight=".05" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="50dp"
+            android:layout_marginStart="50dp"
+            android:background="@drawable/custom_panel_circular_edge"
+            android:backgroundTint="@color/colorPrimary"
+            android:onClick="searchStory"
+            android:text="Continue"
+            android:textColor="@color/colorAccent"
+            android:textStyle="bold" />
     </LinearLayout>
 
     <!--<LinearLayout

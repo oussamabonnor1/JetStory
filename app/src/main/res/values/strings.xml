@@ -31,4 +31,5 @@
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="icon_plus">&#xf067;</string>
     <string name="icon_checked">&#xf00c;</string>
+    <string name="icon_time">&#xf253;</string>
 </resources>
