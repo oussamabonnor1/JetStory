@@ -34,8 +34,6 @@ public class ChoosingActivity extends AppCompatActivity {
     ProgressBar progressBar;
     RecyclerView categoriesView;
     //LinearLayout choicePanel;
-    String[] colors = {"#FFD453", "#FFC153", "#FF8A54", "#FFA754", "#FFAB88", "#FF6C54", "#B05F6D", "#DE8275"};
-    String[] darkColors = {"#23221D", "#1E1E1E", "#28241C", "#514438", "#302F2E", "#331510", "#331B1F", "#351F1C"};
 
 
     @Override
@@ -67,12 +65,12 @@ public class ChoosingActivity extends AppCompatActivity {
             @Override
             public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
                 super.getItemOffsets(outRect, view, parent, state);
-                outRect.set(10, 10, 10, 10);
+                outRect.set(5, 10, 5, 10);
             }
         });
 
 
-       /* StoryApiManager storyData = new StoryApiManager();
+       /*StoryApiManager storyData = new StoryApiManager();
         try {
             storyData.execute();
             stories = storyData.get();
@@ -192,7 +190,7 @@ public class ChoosingActivity extends AppCompatActivity {
             categories.add("Thriller");
         }
 
-        class ViewHolder extends RecyclerView.ViewHolder {
+        class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
             FontAwesome categoryLabel;
             LinearLayout layoutBackground;
 
@@ -200,12 +198,18 @@ public class ChoosingActivity extends AppCompatActivity {
                 super(itemView);
                 categoryLabel = itemView.findViewById(R.id.categoryLabel);
                 layoutBackground = itemView.findViewById(R.id.layoutBackground);
+                itemView.setOnClickListener(this);
+            }
+
+            @Override
+            public void onClick(View view) {
+                String text = categories.get(getAdapterPosition()) + " " + getResources().getString(R.string.icon_checked);
+                categoryLabel.setText(text);
             }
         }
 
         @Override
         public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
             View view = getLayoutInflater().inflate(R.layout.custom_cetegory_adapter, null);
             return new ViewHolder(view);
         }
@@ -217,7 +221,6 @@ public class ChoosingActivity extends AppCompatActivity {
                     : categories.get(position) + " " + getResources().getString(R.string.icon_plus);
             holder.categoryLabel.setText(text);
         }
-
 
         @Override
         public long getItemId(int i) {
