@@ -1,21 +1,27 @@
 package com.jetlightstudio.jetstory.Controllers;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.google.android.flexbox.FlexDirection;
 import com.google.android.flexbox.FlexboxLayoutManager;
 import com.google.android.flexbox.JustifyContent;
 import com.jetlightstudio.jetstory.Adapters.CustomCategoryAdapter;
+import com.jetlightstudio.jetstory.Adapters.TimeGridViewAdapter;
 import com.jetlightstudio.jetstory.Models.Story;
 import com.jetlightstudio.jetstory.R;
+import com.jetlightstudio.jetstory.ToolBox.HelpFullFunctions;
 import com.jetlightstudio.jetstory.ToolBox.StoryDataBase;
 
 import java.util.ArrayList;
@@ -56,8 +62,8 @@ public class ChoosingActivity extends AppCompatActivity {
         progressBar.setVisibility(View.VISIBLE);
 
         categoriesView = findViewById(R.id.categoriesView);
-        categoriesView.setAdapter(new CustomCategoryAdapter(getApplicationContext()));
-        FlexboxLayoutManager layoutManager = new FlexboxLayoutManager(getApplicationContext());
+        categoriesView.setAdapter(new CustomCategoryAdapter());
+        final FlexboxLayoutManager layoutManager = new FlexboxLayoutManager(getApplicationContext());
         layoutManager.setFlexDirection(FlexDirection.ROW);
         layoutManager.setJustifyContent(JustifyContent.CENTER);
         categoriesView.setLayoutManager(layoutManager);
@@ -66,6 +72,19 @@ public class ChoosingActivity extends AppCompatActivity {
             public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
                 super.getItemOffsets(outRect, view, parent, state);
                 outRect.set(5, 10, 5, 10);
+            }
+        });
+
+        timeGridView = findViewById(R.id.timeGridView);
+        timeGridView.setAdapter(new TimeGridViewAdapter());
+        timeGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                LinearLayout layoutToSelect = view.findViewById(R.id.timeLayoutBackground);
+                HelpFullFunctions.setViewColor(layoutToSelect, "#9AD945");
+                layoutToSelect.setElevation(15);
+                TextView text = view.findViewById(R.id.timeTextView);
+                text.setTextColor(Color.parseColor("#FFFFFF"));
             }
         });
 
@@ -173,9 +192,5 @@ public class ChoosingActivity extends AppCompatActivity {
         startActivity(Intent.createChooser(i, "Share via"));
     }
 
-
-    //region comments
-
-//endregion
 }
 

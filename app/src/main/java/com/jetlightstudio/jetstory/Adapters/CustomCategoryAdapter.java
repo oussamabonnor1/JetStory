@@ -17,10 +17,8 @@ import java.util.ArrayList;
 public class CustomCategoryAdapter extends RecyclerView.Adapter<CustomCategoryAdapter.ViewHolder> {
     ArrayList<String> categories;
     ArrayList<Boolean> selectedCategories;
-    Context context;
 
-    public CustomCategoryAdapter(Context context) {
-        this.context = context;
+    public CustomCategoryAdapter() {
         this.categories = new ArrayList<>();
         selectedCategories = new ArrayList<>();
         categories.add("Latest Updates");
@@ -54,7 +52,7 @@ public class CustomCategoryAdapter extends RecyclerView.Adapter<CustomCategoryAd
                     categories.get(getAdapterPosition()) + " " + App.getContext().getResources().getString(R.string.icon_checked)
                     : categories.get(getAdapterPosition()) + " " + App.getContext().getResources().getString(R.string.icon_plus);
             categoryLabel.setText(text);
-            HelpFullFunctions.setViewColor(layoutBackground, !selectedCategories.get(getAdapterPosition()) ? "#8DC63F" : "#FE9025");
+            HelpFullFunctions.setViewColor(layoutBackground, !selectedCategories.get(getAdapterPosition()) ? "#9AD945" : "#FE9025");
             layoutBackground.setElevation(!selectedCategories.get(getAdapterPosition()) ? 15 : 2);
             selectedCategories.set(getAdapterPosition(), !selectedCategories.get(getAdapterPosition()));
         }
@@ -62,7 +60,7 @@ public class CustomCategoryAdapter extends RecyclerView.Adapter<CustomCategoryAd
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater inflater = (LayoutInflater) App.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.custom_cetegory_adapter, null);
         return new ViewHolder(view);
     }

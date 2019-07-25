@@ -13,7 +13,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight=".4"
+            android:layout_weight=".5"
             android:gravity="center">
 
             <android.support.v7.widget.RecyclerView
@@ -28,16 +28,11 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight=".5"
-            android:numColumns="5"/>
-
-        <SeekBar
-            android:id="@+id/waveViewSeekBar"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight=".1"
-            android:background="@color/colorPrimary"
-            android:max="50"
-            android:progress="10" />
+            android:verticalSpacing="10dp"
+            android:layout_margin="10dp"
+            android:horizontalSpacing="10dp"
+            android:numColumns="5"
+            />
     </LinearLayout>
 
     <!--<LinearLayout
