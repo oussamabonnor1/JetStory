@@ -1,21 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:gravity="center"
         android:orientation="vertical"
         android:weightSum="1">
 
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/categoriesView"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="5dp" />
+            android:layout_height="0dp"
+            android:layout_weight=".4"
+            android:gravity="center">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/categoriesView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight=".5"
+            android:background="@drawable/category_panel_round_edge">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="Drag to select story reading time"
+                android:textAlignment="center"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <com.gelitenight.waveview.library.WaveView
+                android:id="@+id/waveView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </RelativeLayout>
+
+        <SeekBar
+            android:id="@+id/waveViewSeekBar"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight=".1"
+            android:background="@color/colorPrimary"
+            android:max="50"
+            android:progress="10" />
     </LinearLayout>
 
     <!--<LinearLayout

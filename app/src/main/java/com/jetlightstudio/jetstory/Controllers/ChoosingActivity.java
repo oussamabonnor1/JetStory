@@ -1,6 +1,7 @@
 package com.jetlightstudio.jetstory.Controllers;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
@@ -10,7 +11,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.SeekBar;
 
+import com.gelitenight.waveview.library.WaveView;
+import com.google.android.flexbox.AlignContent;
 import com.google.android.flexbox.FlexDirection;
 import com.google.android.flexbox.FlexboxLayoutManager;
 import com.google.android.flexbox.JustifyContent;
@@ -19,6 +23,7 @@ import com.jetlightstudio.jetstory.R;
 import com.jetlightstudio.jetstory.ToolBox.FontAwesome;
 import com.jetlightstudio.jetstory.ToolBox.HelpFullFunctions;
 import com.jetlightstudio.jetstory.ToolBox.StoryDataBase;
+import com.jetlightstudio.jetstory.ToolBox.WaveHelper;
 
 import java.util.ArrayList;
 
@@ -80,6 +85,30 @@ public class ChoosingActivity extends AppCompatActivity {
         }*/
         categoriesView.setVisibility(View.VISIBLE);
         progressBar.setVisibility(View.GONE);
+
+        final WaveView waveView = (WaveView) findViewById(R.id.waveView);
+        waveView.setBorder(10, Color.parseColor("#FE9025"));
+        waveView.setShapeType(WaveView.ShapeType.SQUARE);
+
+        final WaveHelper mWaveHelper = new WaveHelper(waveView);
+
+        ((SeekBar) findViewById(R.id.waveViewSeekBar)).setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                waveView.setWaterLevelRatio(((float) i / seekBar.getMax()));
+            }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
+        mWaveHelper.start();
     }
 
     public void searchStory(View view) {
@@ -245,6 +274,6 @@ public class ChoosingActivity extends AppCompatActivity {
 
 
     }
-    //endregion
+//endregion
 }
 
