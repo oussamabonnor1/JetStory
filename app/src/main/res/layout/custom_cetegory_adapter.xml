@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layoutBackground"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/custom_panel_circular_edge"
     android:backgroundTint="@color/colorPrimary"
-    android:id="@+id/layoutBackground"
     android:foreground="@drawable/ripple_effect"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:padding="5dp">
 
     <com.jetlightstudio.jetstory.ToolBox.FontAwesome
         android:id="@+id/categoryLabel"
@@ -15,5 +16,5 @@
         android:text="@string/icon_plus"
         android:textColor="@color/colorAccent"
 
-        android:textSize="48sp" />
+        android:textSize="24sp" />
 </LinearLayout>

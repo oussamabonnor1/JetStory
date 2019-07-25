@@ -1,6 +1,7 @@
 package com.jetlightstudio.jetstory.Controllers;
 
 import android.content.Intent;
+import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -16,11 +17,9 @@ import com.google.android.flexbox.JustifyContent;
 import com.jetlightstudio.jetstory.Models.Story;
 import com.jetlightstudio.jetstory.R;
 import com.jetlightstudio.jetstory.ToolBox.FontAwesome;
-import com.jetlightstudio.jetstory.ToolBox.StoryApiManager;
 import com.jetlightstudio.jetstory.ToolBox.StoryDataBase;
 
 import java.util.ArrayList;
-import java.util.concurrent.ExecutionException;
 
 public class ChoosingActivity extends AppCompatActivity {
 
@@ -64,6 +63,14 @@ public class ChoosingActivity extends AppCompatActivity {
         layoutManager.setFlexDirection(FlexDirection.ROW);
         layoutManager.setJustifyContent(JustifyContent.CENTER);
         categoriesView.setLayoutManager(layoutManager);
+        categoriesView.addItemDecoration(new RecyclerView.ItemDecoration() {
+            @Override
+            public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
+                super.getItemOffsets(outRect, view, parent, state);
+                outRect.set(10, 10, 10, 10);
+            }
+        });
+
 
        /* StoryApiManager storyData = new StoryApiManager();
         try {
@@ -174,6 +181,7 @@ public class ChoosingActivity extends AppCompatActivity {
 
         CustomCategoryAdapter() {
             this.categories = new ArrayList<>();
+            categories.add("Latest Updates");
             categories.add("Moral");
             categories.add("Action");
             categories.add("Romance");
@@ -204,7 +212,9 @@ public class ChoosingActivity extends AppCompatActivity {
 
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
-            String text = categories.get(position) + getResources().getString(R.string.icon_plus);
+            String text = position == 0 ?
+                    categories.get(position) + " " + getResources().getString(R.string.icon_checked)
+                    : categories.get(position) + " " + getResources().getString(R.string.icon_plus);
             holder.categoryLabel.setText(text);
         }
 
@@ -218,6 +228,7 @@ public class ChoosingActivity extends AppCompatActivity {
         public int getItemCount() {
             return categories.size();
         }
+
 
     }
     //endregion
