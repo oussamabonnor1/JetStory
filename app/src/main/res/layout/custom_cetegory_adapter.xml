@@ -3,12 +3,15 @@
     android:id="@+id/layoutBackground"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/custom_panel_circular_edge"
+    android:background="@drawable/category_panel_round_edge"
     android:backgroundTint="@color/colorPrimary"
     android:elevation="2dp"
     android:foreground="@drawable/ripple_effect"
     android:orientation="horizontal"
-    android:padding="5dp">
+    android:paddingBottom="10dp"
+    android:paddingEnd="20dp"
+    android:paddingStart="20dp"
+    android:paddingTop="10dp">
 
     <com.jetlightstudio.jetstory.ToolBox.FontAwesome
         android:id="@+id/categoryLabel"
