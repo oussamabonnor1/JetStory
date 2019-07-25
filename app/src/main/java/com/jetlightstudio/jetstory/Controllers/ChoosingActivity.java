@@ -115,7 +115,6 @@ public class ChoosingActivity extends AppCompatActivity {
     }
 
     public void searchStory(View view) {
-        System.out.println("searching...");
         ArrayList<Story> filteredStories = new ArrayList<>();
         ArrayList<String> filteredCategories = customCategoriesAdapter.getCategories();
         int time;
@@ -138,11 +137,10 @@ public class ChoosingActivity extends AppCompatActivity {
             }
         }
 
-
         Intent i = new Intent(this, StoryListActivity.class);
         i.putExtra("stories", filteredStories);
 
-        //startActivity(i);
+        startActivity(i);
     }
 
     public void openFacebook(View view) {

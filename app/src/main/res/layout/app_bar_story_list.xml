@@ -22,78 +22,15 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <com.google.android.flexbox.FlexboxLayout
+    <GridView
+        android:id="@+id/grid"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:alignContent="flex_start"
-        app:alignItems="flex_start"
-        app:flexDirection="row"
-        app:flexWrap="wrap"
-        app:justifyContent="center">
-
-        <com.beardedhen.androidbootstrap.BootstrapLabel
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:foreground="@drawable/ripple_effect"
-            app:bootstrapBrand="warning"
-            app:bootstrapHeading="h1"
-            app:bootstrapText="Moral {fa_gift}"
-            app:roundedCorners="true" />
-
-        <com.beardedhen.androidbootstrap.BootstrapLabel
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:foreground="@drawable/ripple_effect"
-            android:text="Thriller"
-            app:bootstrapBrand="warning"
-            app:bootstrapHeading="h1"
-            app:roundedCorners="true" />
-
-        <com.beardedhen.androidbootstrap.BootstrapLabel
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:foreground="@drawable/ripple_effect"
-            android:text="Scary story"
-            app:bootstrapBrand="warning"
-            app:bootstrapHeading="h1"
-            app:roundedCorners="true" />
-
-        <com.beardedhen.androidbootstrap.BootstrapLabel
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:foreground="@drawable/ripple_effect"
-            android:text="Romance"
-            app:bootstrapBrand="warning"
-            app:bootstrapHeading="h1"
-            app:roundedCorners="true" />
-
-        <com.beardedhen.androidbootstrap.BootstrapLabel
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:foreground="@drawable/ripple_effect"
-            android:text="Action"
-            app:bootstrapBrand="warning"
-            app:bootstrapHeading="h1"
-            app:roundedCorners="true" />
-
-        <com.beardedhen.androidbootstrap.BootstrapLabel
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:foreground="@drawable/ripple_effect"
-            android:text="Light Novel"
-            app:bootstrapBrand="warning"
-            app:bootstrapHeading="h1"
-            app:roundedCorners="true" />
-
-        <com.beardedhen.androidbootstrap.BootstrapLabel
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:foreground="@drawable/ripple_effect"
-            android:text="Comedy"
-            app:bootstrapBrand="warning"
-            app:bootstrapHeading="h1"
-            app:roundedCorners="true" />
-
-    </com.google.android.flexbox.FlexboxLayout>
+        android:layout_height="0dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginStart="25dp"
+        android:layout_weight=".95"
+        android:horizontalSpacing="10dp"
+        android:numColumns="2"
+        android:verticalSpacing="15dp" />
 
 </LinearLayout>

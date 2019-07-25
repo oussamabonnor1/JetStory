@@ -47,7 +47,7 @@ public class TimeGridViewAdapter extends BaseAdapter {
         Display display = wm.getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
-        int width = size.x - 120;
+        int width = size.x - (size.x / 8);
         view = inflater.inflate(R.layout.custom_time_selection_view, null);
         view.setLayoutParams(new GridView.LayoutParams(width / 5, width / 5));
 

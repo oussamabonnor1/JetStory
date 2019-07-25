@@ -59,19 +59,13 @@ public class StoryListActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         stories = (ArrayList<Story>) getIntent().getExtras().getSerializable("stories");
-        storiesHolder = (ArrayList<Story>) stories.clone();
-        actionStories = (ArrayList<Story>) getIntent().getExtras().getSerializable("actionStories");
-        comedyStories = (ArrayList<Story>) getIntent().getExtras().getSerializable("comedyStories");
-        romanceStories = (ArrayList<Story>) getIntent().getExtras().getSerializable("romanceStories");
-        moralStories = (ArrayList<Story>) getIntent().getExtras().getSerializable("moralStories");
-        sadStories = (ArrayList<Story>) getIntent().getExtras().getSerializable("sadStories");
         settingStoryList();
 
     }
 
     protected void settingStoryList() {
         c = new CustomStoryAdapter();
-        grid = (GridView) findViewById(R.id.grid);
+        grid = findViewById(R.id.grid);
         grid.setAdapter(c);
         grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
