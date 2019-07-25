@@ -7,14 +7,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
-import com.beardedhen.androidbootstrap.BootstrapLabel;
 import com.google.android.flexbox.FlexDirection;
 import com.google.android.flexbox.FlexboxLayoutManager;
 import com.google.android.flexbox.JustifyContent;
 import com.jetlightstudio.jetstory.Models.Story;
 import com.jetlightstudio.jetstory.R;
+import com.jetlightstudio.jetstory.ToolBox.FontAwesome;
 import com.jetlightstudio.jetstory.ToolBox.StoryApiManager;
 import com.jetlightstudio.jetstory.ToolBox.StoryDataBase;
 
@@ -60,18 +61,17 @@ public class ChoosingActivity extends AppCompatActivity {
         categoriesView = findViewById(R.id.categoriesView);
         categoriesView.setAdapter(new CustomCategoryAdapter());
         FlexboxLayoutManager layoutManager = new FlexboxLayoutManager(getApplicationContext());
-        layoutManager.setFlexDirection(FlexDirection.COLUMN);
-        layoutManager.setJustifyContent(JustifyContent.FLEX_END);
+        layoutManager.setFlexDirection(FlexDirection.ROW);
+        layoutManager.setJustifyContent(JustifyContent.CENTER);
         categoriesView.setLayoutManager(layoutManager);
 
-
-        StoryApiManager storyData = new StoryApiManager();
+       /* StoryApiManager storyData = new StoryApiManager();
         try {
             storyData.execute();
             stories = storyData.get();
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
-        }
+        }*/
         categoriesView.setVisibility(View.VISIBLE);
         progressBar.setVisibility(View.GONE);
     }
@@ -167,11 +167,12 @@ public class ChoosingActivity extends AppCompatActivity {
         startActivity(Intent.createChooser(i, "Share via"));
     }
 
+
     //region comments
     class CustomCategoryAdapter extends RecyclerView.Adapter<CustomCategoryAdapter.ViewHolder> {
         ArrayList<String> categories;
 
-        public CustomCategoryAdapter() {
+        CustomCategoryAdapter() {
             this.categories = new ArrayList<>();
             categories.add("Moral");
             categories.add("Action");
@@ -184,11 +185,13 @@ public class ChoosingActivity extends AppCompatActivity {
         }
 
         class ViewHolder extends RecyclerView.ViewHolder {
-            BootstrapLabel label;
+            FontAwesome categoryLabel;
+            LinearLayout layoutBackground;
 
             ViewHolder(View itemView) {
                 super(itemView);
-                label = itemView.findViewById(R.id.layoutBackground);
+                categoryLabel = itemView.findViewById(R.id.categoryLabel);
+                layoutBackground = itemView.findViewById(R.id.layoutBackground);
             }
         }
 
@@ -200,8 +203,9 @@ public class ChoosingActivity extends AppCompatActivity {
         }
 
         @Override
-        public void onBindViewHolder(ViewHolder holder, int position) {
-            holder.label.setText(categories.get(position));
+        public void onBindViewHolder(final ViewHolder holder, int position) {
+            String text = categories.get(position) + getResources().getString(R.string.icon_plus);
+            holder.categoryLabel.setText(text);
         }
 
 

@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.beardedhen.androidbootstrap.BootstrapLabel xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/layoutBackground"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@drawable/custom_panel_circular_edge"
+    android:backgroundTint="@color/colorPrimary"
+    android:id="@+id/layoutBackground"
     android:foreground="@drawable/ripple_effect"
-    android:text="test"
-    app:bootstrapBrand="warning"
-    app:bootstrapHeading="h1"
-    app:roundedCorners="true">
+    android:orientation="horizontal">
 
-</com.beardedhen.androidbootstrap.BootstrapLabel>
+    <com.jetlightstudio.jetstory.ToolBox.FontAwesome
+        android:id="@+id/categoryLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/icon_plus"
+        android:textColor="@color/colorAccent"
+
+        android:textSize="48sp" />
+</LinearLayout>
