@@ -3,21 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="25dp"
     android:background="@drawable/image_custom_edges"
-    android:elevation="5dp"
     android:foreground="@drawable/ripple_effect"
     android:orientation="horizontal"
+    android:padding="10dp"
     android:weightSum="1">
 
-        <ImageView
-            android:id="@+id/coverImage"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight=".25"
-            android:layout_margin="5dp"
-            android:layout_gravity="center"
-            android:src="@drawable/ic_phone_android_black_24dp" />
+    <ImageView
+        android:id="@+id/coverImage"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_margin="5dp"
+        android:layout_weight=".25"
+        android:src="@drawable/ic_phone_android_black_24dp" />
 
     <GridLayout
         android:layout_width="0dp"
@@ -52,7 +51,6 @@
                 android:layout_height="match_parent"
                 android:layout_weight=".5"
                 android:ellipsize="end"
-                android:gravity="center"
                 android:maxLines="1"
                 android:text="Author name"
                 android:textColor="@color/colorTextLight" />
@@ -63,7 +61,6 @@
                 android:layout_height="match_parent"
                 android:layout_weight=".5"
                 android:ellipsize="end"
-                android:gravity="center"
                 android:maxLines="1"
                 android:text="Date"
                 android:textColor="@color/colorTextLight" />
@@ -88,11 +85,12 @@
 
             <com.beardedhen.androidbootstrap.BootstrapLabel
                 android:id="@+id/storyListCategoryLabel"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                android:layout_marginEnd="50dp"
-                android:layout_marginStart="50dp"
+                android:layout_gravity="start"
                 android:layout_weight=".3"
+                android:paddingEnd="20dp"
+                android:paddingStart="20dp"
                 android:text="Category"
                 app:bootstrapBrand="warning"
                 app:roundedCorners="true" />

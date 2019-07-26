@@ -38,11 +38,12 @@
             android:id="@+id/storyList"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginEnd="25dp"
-            android:layout_marginStart="25dp"
             android:layout_weight=".8"
             android:background="@drawable/category_panel_round_edge"
-            />
+            android:dividerHeight="10dp"
+            android:paddingEnd="10dp"
+            android:paddingStart="10dp"
+            android:paddingTop="10dp" />
     </LinearLayout>
 
 </LinearLayout>

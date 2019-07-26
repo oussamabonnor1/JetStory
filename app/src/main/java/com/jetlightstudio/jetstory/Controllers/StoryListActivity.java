@@ -194,12 +194,7 @@ public class StoryListActivity extends AppCompatActivity
 
         @Override
         public View getView(int i, View view, ViewGroup viewGroup) {
-            Display display = getWindowManager().getDefaultDisplay();
-            Point size = new Point();
-            display.getSize(size);
-            int height = size.y;
             view = getLayoutInflater().inflate(R.layout.custom_story_list_view, null);
-            //view.setLayoutParams(new GridView.LayoutParams(GridView.AUTO_FIT, height / 3));
 
             ImageView cover = view.findViewById(R.id.coverImage);
             TextView title = view.findViewById(R.id.titleText);
