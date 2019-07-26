@@ -2,7 +2,6 @@ package com.jetlightstudio.jetstory.Controllers;
 
 import android.app.SearchManager;
 import android.content.Intent;
-import android.graphics.Point;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -13,14 +12,12 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
-import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -29,6 +26,7 @@ import android.widget.Toast;
 import com.beardedhen.androidbootstrap.BootstrapLabel;
 import com.jetlightstudio.jetstory.Models.Story;
 import com.jetlightstudio.jetstory.R;
+import com.jetlightstudio.jetstory.ToolBox.App;
 import com.jetlightstudio.jetstory.ToolBox.StoryDataBase;
 
 import java.util.ArrayList;
@@ -199,13 +197,17 @@ public class StoryListActivity extends AppCompatActivity
             ImageView cover = view.findViewById(R.id.coverImage);
             TextView title = view.findViewById(R.id.titleText);
             TextView author = view.findViewById(R.id.authorText);
-            TextView year = view.findViewById(R.id.yearText);
+            TextView publishingDate = view.findViewById(R.id.yearText);
+            TextView content = view.findViewById(R.id.contentText);
             BootstrapLabel categoryLabel = view.findViewById(R.id.storyListCategoryLabel);
 
             //cover.setBackgroundResource(stories.get(i).getAlbumId());
             title.setText(stories.get(i).getTitle());
-            author.setText(stories.get(i).getAuthor());
-            year.setText(stories.get(i).getDate());
+            String authorName = App.getContext().getString(R.string.icon_plus) + " by " + stories.get(i).getAuthor();
+            author.setText(authorName);
+            String date = App.getContext().getString(R.string.icon_publish_date) + " on " + stories.get(i).getDate();
+            publishingDate.setText(date);
+            content.setText(stories.get(i).getContent());
             categoryLabel.setText(stories.get(i).getCategory().name());
             return view;
         }

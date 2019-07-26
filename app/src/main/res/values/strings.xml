@@ -32,4 +32,6 @@
     <string name="icon_plus">&#xf067;</string>
     <string name="icon_checked">&#xf00c;</string>
     <string name="icon_time">&#xf253;</string>
+    <string name="icon_author">&#xf4ff;</string>
+    <string name="icon_publish_date">&#xf271;</string>
 </resources>
