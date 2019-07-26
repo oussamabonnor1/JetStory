@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="25dp"
+    android:background="@drawable/image_custom_edges"
+    android:elevation="5dp"
+    android:foreground="@drawable/ripple_effect"
+    android:orientation="horizontal"
+    android:weightSum="1">
+
+        <ImageView
+            android:id="@+id/coverImage"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".25"
+            android:layout_margin="5dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_phone_android_black_24dp" />
+
+    <GridLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight=".75"
+        android:columnCount="1"
+        android:rowCount="3">
+
+        <TextView
+            android:id="@+id/titleText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start|center"
+            android:layout_rowWeight=".5"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="Story Title"
+            android:textColor="@color/colorTextDark"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_rowWeight=".5"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <TextView
+                android:id="@+id/authorText"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".5"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="Author name"
+                android:textColor="@color/colorTextLight" />
+
+            <TextView
+                android:id="@+id/yearText"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".5"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="Date"
+                android:textColor="@color/colorTextLight" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_rowWeight="2"
+            android:orientation="vertical"
+            android:weightSum="1">
+
+            <TextView
+                android:id="@+id/contentText"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight=".6"
+                android:ellipsize="end"
+                android:maxLines="3"
+                android:text="Some Context"
+                android:textColor="@color/colorTextLight" />
+
+            <com.beardedhen.androidbootstrap.BootstrapLabel
+                android:id="@+id/storyListCategoryLabel"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginEnd="50dp"
+                android:layout_marginStart="50dp"
+                android:layout_weight=".3"
+                android:text="Category"
+                app:bootstrapBrand="warning"
+                app:roundedCorners="true" />
+        </LinearLayout>
+
+    </GridLayout>
+
+
+</LinearLayout>

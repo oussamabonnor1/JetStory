@@ -22,9 +22,11 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.beardedhen.androidbootstrap.BootstrapLabel;
 import com.jetlightstudio.jetstory.Models.Story;
 import com.jetlightstudio.jetstory.R;
 import com.jetlightstudio.jetstory.ToolBox.StoryDataBase;
@@ -33,7 +35,7 @@ import java.util.ArrayList;
 
 public class StoryListActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
-    GridView grid;
+    ListView storyList;
     ArrayList<Story> stories; //used to hold the current stories shown (with or without refined search)
     ArrayList<Story> storiesHolder; //used so that the original story list is always saved
 
@@ -59,9 +61,9 @@ public class StoryListActivity extends AppCompatActivity
     }
 
     protected void settingStoryList() {
-        grid = findViewById(R.id.grid);
-        grid.setAdapter(new CustomStoryAdapter());
-        grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        storyList = findViewById(R.id.storyList);
+        storyList.setAdapter(new CustomStoryAdapter());
+        storyList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(StoryListActivity.this, ReadingActivity.class);
@@ -196,18 +198,20 @@ public class StoryListActivity extends AppCompatActivity
             Point size = new Point();
             display.getSize(size);
             int height = size.y;
-            view = getLayoutInflater().inflate(R.layout.custom_story_adapter, null);
-            view.setLayoutParams(new GridView.LayoutParams(GridView.AUTO_FIT, height / 3));
+            view = getLayoutInflater().inflate(R.layout.custom_story_list_view, null);
+            //view.setLayoutParams(new GridView.LayoutParams(GridView.AUTO_FIT, height / 3));
 
             ImageView cover = view.findViewById(R.id.coverImage);
             TextView title = view.findViewById(R.id.titleText);
             TextView author = view.findViewById(R.id.authorText);
             TextView year = view.findViewById(R.id.yearText);
+            BootstrapLabel categoryLabel = view.findViewById(R.id.storyListCategoryLabel);
 
-            cover.setBackgroundResource(stories.get(i).getAlbumId());
+            //cover.setBackgroundResource(stories.get(i).getAlbumId());
             title.setText(stories.get(i).getTitle());
             author.setText(stories.get(i).getAuthor());
             year.setText(stories.get(i).getDate());
+            categoryLabel.setText(stories.get(i).getCategory().name());
             return view;
         }
 

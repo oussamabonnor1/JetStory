@@ -103,7 +103,7 @@ public class FragementActionStoryList extends Fragment {
             Point size = new Point();
             display.getSize(size);
             int height = size.y;
-            view = getLayoutInflater(null).inflate(R.layout.custom_story_adapter, null);
+            view = getLayoutInflater(null).inflate(R.layout.custom_story_list_view, null);
             view.setLayoutParams(new GridView.LayoutParams(GridView.AUTO_FIT, height / 3));
 
             ImageView cover = view.findViewById(R.id.coverImage);
