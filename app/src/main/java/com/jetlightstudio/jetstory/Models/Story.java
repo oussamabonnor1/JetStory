@@ -74,6 +74,7 @@ public class Story implements Serializable {
     }
 
     Category categoryFromString(String category) {
+        category = category.toLowerCase();
         if (category.matches("action"))
             return Story.Category.action;
         else if (category.matches("comedy"))
