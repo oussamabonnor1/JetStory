@@ -23,6 +23,8 @@ import android.widget.TextView;
 
 import com.jetlightstudio.jetstory.Models.Story;
 import com.jetlightstudio.jetstory.R;
+import com.jetlightstudio.jetstory.ToolBox.App;
+import com.jetlightstudio.jetstory.ToolBox.FontAwesome;
 import com.jetlightstudio.jetstory.ToolBox.StoryDataBase;
 
 public class ReadingActivity extends AppCompatActivity
@@ -31,6 +33,9 @@ public class ReadingActivity extends AppCompatActivity
     Story story;
     TextView title;
     TextView content;
+    FontAwesome authorName;
+    FontAwesome publishingDate;
+    FontAwesome timeToRead;
     Menu menu;
 
     @Override
@@ -43,17 +48,24 @@ public class ReadingActivity extends AppCompatActivity
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
+        drawer.addDrawerListener(toggle);
         toggle.syncState();
 
         story = (Story) getIntent().getExtras().getSerializable("story");
         title = findViewById(R.id.titleText);
         content = findViewById(R.id.contentText);
+        authorName = findViewById(R.id.authorText);
+        timeToRead = findViewById(R.id.timeText);
+        publishingDate = findViewById(R.id.dateText);
+
         title.setText(story.getTitle());
-        content.setText("This story is: " + story.getTitle() + " written by " + story.getAuthor()
-                + " in the date " + story.getDate() + " the story's ID is " + story.getId() + " and it s reading_activity_menu time is " + story.getTime()
-                + " the category of this story is: " + story.getCategory() + " content: "
-                + story.getContent());
+        content.setText(story.getContent());
+        String author = App.getContext().getString(R.string.icon_author) + " by " + story.getAuthor();
+        authorName.setText(author);
+        String date = App.getContext().getString(R.string.icon_publish_date) + " on " + story.getDate();
+        publishingDate.setText(date);
+        String time = App.getContext().getString(R.string.icon_time) + " " + story.getTime() + " mn";
+        timeToRead.setText(time);
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);

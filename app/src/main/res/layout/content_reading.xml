@@ -6,6 +6,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/colorAccentDark"
         android:orientation="vertical"
         android:weightSum="1">
 
@@ -14,25 +15,75 @@
             android:layout_height="0dp"
             android:layout_weight=".4"
             android:background="@color/colorPrimary"
-            android:orientation="vertical"
-            android:weightSum="1">
+            android:gravity="center"
+            android:orientation="vertical">
 
-            <Space
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight=".4" />
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginStart="40dp"
+                android:layout_marginEnd="40dp"
+                android:weightSum="1">
 
-            <TextView
-                android:id="@+id/titleText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="cursive"
-                android:text="Story Title"
-                android:textAlignment="center"
-                android:textColor="@color/colorAccent"
-                android:textSize="45sp"
-                android:textStyle="bold" />
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".3"
+                    android:src="@drawable/book_green"/>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight=".7"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/titleText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="cursive"
+                        android:text="Story Title"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="45sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:gravity="center|bottom"
+                        android:orientation="horizontal">
+
+                        <com.jetlightstudio.jetstory.ToolBox.FontAwesome
+                            android:id="@+id/authorText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/icon_author"
+                            android:textColor="@color/colorAccent" />
+
+                        <com.jetlightstudio.jetstory.ToolBox.FontAwesome
+                            android:id="@+id/timeText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginStart="10dp"
+                            android:text="@string/icon_time"
+                            android:textColor="@color/colorAccent" />
+
+                        <com.jetlightstudio.jetstory.ToolBox.FontAwesome
+                            android:id="@+id/dateText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/icon_publish_date"
+                            android:textColor="@color/colorAccent" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
         </LinearLayout>
+
     </LinearLayout>
 
     <LinearLayout
@@ -41,18 +92,19 @@
         android:orientation="vertical"
         android:weightSum="1">
 
-        <LinearLayout
+        <Space
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight=".25" />
+            android:layout_weight=".3" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
-            android:layout_weight=".75"
-            android:background="@drawable/custom_panel_circular_edge">
+            android:layout_weight=".7"
+            android:background="@drawable/custom_panel_circular_edge"
+            android:elevation="5dp">
 
             <ScrollView
                 android:layout_width="match_parent"
@@ -68,9 +120,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="25dp"
-                        android:textSize="20sp"
                         android:text="@string/lorem"
-                        android:textAlignment="center" />
+                        android:textAlignment="center"
+                        android:textSize="20sp" />
                 </LinearLayout>
             </ScrollView>
         </LinearLayout>

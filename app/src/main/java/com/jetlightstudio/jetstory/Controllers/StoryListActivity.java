@@ -62,7 +62,7 @@ public class StoryListActivity extends AppCompatActivity {
             category.setTextColor(Color.parseColor("#FFFFFF"));
             category.setPadding(50, 25, 50, 25);
             category.setText(categories.get(i));
-            category.setTextSize(22);
+            category.setTextSize(18);
             category.setLayoutParams(params);
             category.setElevation(15);
             category.setOnClickListener(new View.OnClickListener() {
