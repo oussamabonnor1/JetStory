@@ -21,8 +21,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.jetlightstudio.jetstory.R;
 import com.jetlightstudio.jetstory.Models.Story;
+import com.jetlightstudio.jetstory.R;
 import com.jetlightstudio.jetstory.ToolBox.StoryDataBase;
 
 public class ReadingActivity extends AppCompatActivity
@@ -47,19 +47,19 @@ public class ReadingActivity extends AppCompatActivity
         toggle.syncState();
 
         story = (Story) getIntent().getExtras().getSerializable("story");
-        title = (TextView) findViewById(R.id.titleText);
-        content = (TextView) findViewById(R.id.contentText);
+        title = findViewById(R.id.titleText);
+        content = findViewById(R.id.contentText);
         title.setText(story.getTitle());
         content.setText("This story is: " + story.getTitle() + " written by " + story.getAuthor()
-                + " in the date " + story.getDate() + " the story's ID is " + story.getId() + " and it s readin time is " + story.getTime()
+                + " in the date " + story.getDate() + " the story's ID is " + story.getId() + " and it s reading_activity_menu time is " + story.getTime()
                 + " the category of this story is: " + story.getCategory() + " content: "
                 + story.getContent());
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         View header = navigationView.getHeaderView(0);
         ImageView navStoryAlbum = header.findViewById(R.id.nav_story_album);
-        navStoryAlbum.setImageResource(story.getAlbumId());
+        navStoryAlbum.setImageResource(R.drawable.book_green);
         TextView navStoryTitle = header.findViewById(R.id.nav_story_title);
         navStoryTitle.setText(story.getTitle());
         TextView navAuthorName = header.findViewById(R.id.nav_author_name);
@@ -68,7 +68,7 @@ public class ReadingActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -79,7 +79,7 @@ public class ReadingActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.reading, menu);
+        getMenuInflater().inflate(R.menu.reading_activity_menu, menu);
         MenuItem menuItem = menu.findItem(R.id.search);
         if (menuItem != null) {
             final SearchView searchView = (SearchView) MenuItemCompat.getActionView(menuItem);

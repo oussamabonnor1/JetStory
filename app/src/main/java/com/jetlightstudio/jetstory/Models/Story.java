@@ -13,7 +13,6 @@ public class Story implements Serializable {
     private String title, author, date;
     private String content;
     private int id;
-    private int albumId;
 
     public enum Category {
         action, comedy, romance, moral, sad
@@ -30,7 +29,6 @@ public class Story implements Serializable {
         this.id = id;
         this.category = categoryFromString(category);
         this.time = time;
-        albumId = changeAlbumIcon(this.category);
     }
 
     public String getContent() {
@@ -65,14 +63,6 @@ public class Story implements Serializable {
         return time;
     }
 
-    public int getAlbumId() {
-        return albumId;
-    }
-
-    public void setAlbumId(int albumId) {
-        this.albumId = albumId;
-    }
-
     Category categoryFromString(String category) {
         category = category.toLowerCase();
         if (category.matches("action"))
@@ -86,24 +76,6 @@ public class Story implements Serializable {
         else if (category.matches("sad"))
             return Story.Category.sad;
         else return Category.action;
-    }
-
-    int changeAlbumIcon(Story.Category category) {
-        if (category == Story.Category.action) {
-            return R.drawable.book_red_action;
-
-        } else if (category == Story.Category.comedy) {
-            return R.drawable.book_red_comedy;
-
-        } else if (category == Story.Category.romance) {
-            return R.drawable.book_red_romance;
-
-        } else if (category == Story.Category.sad) {
-            return R.drawable.book_red_sad;
-
-        } else if (category == Story.Category.moral) {
-            return R.drawable.book_red_moral;
-        } else return R.drawable.book_red;
     }
 
 }

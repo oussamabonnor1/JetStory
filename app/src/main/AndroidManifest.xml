@@ -27,10 +27,6 @@
             android:name=".Controllers.StoryListActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".Controllers.MainStoryActivity"
-            android:label="@string/title_activity_main_story"
-            android:theme="@style/AppTheme.NoActionBar" />
 
     </application>
 

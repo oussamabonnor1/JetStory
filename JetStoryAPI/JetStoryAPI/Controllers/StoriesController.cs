@@ -51,7 +51,6 @@ namespace JetStoryApi.Controllers
             if (stories == null) {
                 return NotFound ("The category: " + category + " does not exist!");
             }
-
             return stories;
         }
 

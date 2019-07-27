@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/searchMenu"
+        android:icon="@drawable/ic_search_white_24dp"
+        android:orderInCategory="1"
+        android:title="Search"
+        app:actionViewClass="android.support.v7.widget.SearchView"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/sortStoriesByName"
+        android:orderInCategory="2"
+        android:title="Sort by name"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/sortStoriesByTime"
+        android:orderInCategory="3"
+        android:title="Sort by time"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/sortStoriesByDate"
+        android:orderInCategory="4"
+        android:title="Sort by publish date"
+        app:showAsAction="never" />
+</menu>
+
