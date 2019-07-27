@@ -8,7 +8,7 @@
         android:allowBackup="true"
         android:icon="@drawable/book_red"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/book_red"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:name=".ToolBox.App">
@@ -30,7 +30,7 @@
         <activity
             android:name=".Controllers.MainStoryActivity"
             android:label="@string/title_activity_main_story"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
 
     </application>
 

@@ -29,43 +29,23 @@ import java.util.concurrent.ExecutionException;
 
 public class ChoosingActivity extends AppCompatActivity {
 
-    //Spinner spinnerCategory;
-    //Spinner spinnerLength;
     ArrayList<Story> stories = new ArrayList<>();
-    ArrayList<Story> comedyStories;
-    ArrayList<Story> actionStories;
-    ArrayList<Story> romanceStories;
-    ArrayList<Story> sadStories;
-    ArrayList<Story> moralStories;
     ProgressBar progressBar;
     RecyclerView categoriesView;
     GridView timeGridView;
     int timeIndex = -1;
-    int categoryIndex = -1;
     LinearLayout layoutToSelect;
     TextView textToSelect;
     CustomCategoryAdapter customCategoriesAdapter;
 
-    //LinearLayout choicePanel;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choosing);
-        /*spinnerCategory = (Spinner) findViewById(R.id.spinnerCategory);
-        ArrayAdapter<CharSequence> arr = ArrayAdapter.createFromResource(this, R.array.category, android.R.layout.simple_spinner_item);
-        arr.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerCategory.setAdapter(arr);
 
-        spinnerLength = (Spinner) findViewById(R.id.spinnerLength);
-        ArrayAdapter<CharSequence> arr2 = ArrayAdapter.createFromResource(this, R.array.length, android.R.layout.simple_spinner_item);
-        arr2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerLength.setAdapter(arr2);*/
-
-        progressBar = (ProgressBar) findViewById(R.id.progressBar);
-        //choicePanel = (LinearLayout) findViewById(R.id.choicePanel);
-        //choicePanel.setVisibility(View.GONE);
+        progressBar = findViewById(R.id.progressBar);
         progressBar.setVisibility(View.VISIBLE);
 
         categoriesView = findViewById(R.id.categoriesView);
@@ -132,7 +112,6 @@ public class ChoosingActivity extends AppCompatActivity {
                 if (HelpFullFunctions.isStoryCategorySelected(stories.get(i).getCategory()
                         , filteredCategories)) {
                     filteredStories.add(stories.get(i));
-                    System.out.println(stories.get(i));
                 }
             }
         }

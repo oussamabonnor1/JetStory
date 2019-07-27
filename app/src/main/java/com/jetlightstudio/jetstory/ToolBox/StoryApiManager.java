@@ -51,6 +51,7 @@ public class StoryApiManager extends AsyncTask<Void, Void, ArrayList<Story>> {
                     stories.add(new Story(json.getString("name"), json.getString("writer"),
                             json.getString("publishedDate"), json.getString("content"),
                             json.getInt("id"), json.getInt("time"), json.getString("category")));
+                    System.out.println(json.getString("category"));
                 }
             } catch (JSONException e) {
                 e.printStackTrace();

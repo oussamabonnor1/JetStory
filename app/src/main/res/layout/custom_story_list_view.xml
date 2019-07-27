@@ -59,12 +59,14 @@
                 android:ellipsize="end"
                 android:textAlignment="textEnd"
                 android:maxLines="1"
+
                 android:text="Date"
                 android:textColor="@color/colorTextLight" />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_gravity="fill"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:layout_rowWeight="2"
             android:orientation="horizontal"
@@ -73,23 +75,24 @@
             <TextView
                 android:id="@+id/contentText"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight=".75"
                 android:ellipsize="end"
                 android:maxLines="3"
-                android:text="Some Context"
+                android:text="Some ContextSome ContextSome ContextSome ContextSome ContextSome ContextSome Context"
                 android:textColor="@color/colorTextLight" />
 
             <com.jetlightstudio.jetstory.ToolBox.FontAwesome
                 android:id="@+id/storyListCategoryLabel"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight=".25"
                 android:background="@drawable/custom_panel_circular_edge"
                 android:backgroundTint="@color/colorPrimary"
                 android:paddingBottom="5dp"
                 android:paddingTop="5dp"
                 android:text="Action"
+                android:layout_gravity="center"
                 android:textAlignment="center"
                 android:textColor="@color/colorAccent"
                 android:textStyle="bold" />
