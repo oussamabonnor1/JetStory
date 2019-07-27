@@ -14,7 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight=".05"
-            android:text="Select categories"
+            android:text="What do you want to read?"
             android:textAlignment="center"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -36,7 +36,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight=".075"
-            android:text="Story Length (Mn)"
+            android:text="How long are you waiting? (Mn)"
             android:textAlignment="center"
             android:textSize="20sp"
             android:textStyle="bold" />

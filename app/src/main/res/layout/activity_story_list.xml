@@ -18,8 +18,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimary"
+            app:navigationIcon="@drawable/back_arrow"
             app:popupTheme="@style/AppTheme.PopupOverlay"
-            app:title="Stories list" />
+            app:title="Stories list"
+
+            />
 
     </android.support.design.widget.AppBarLayout>
 
@@ -30,19 +33,18 @@
         android:weightSum="1">
 
         <HorizontalScrollView
-            android:background="@color/colorAccent"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight=".1"
+            android:background="@color/colorAccent"
             android:orientation="horizontal">
 
             <LinearLayout
-                android:layout_marginTop="10dp"
                 android:id="@+id/categoriesView"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:orientation="horizontal">
-            </LinearLayout>
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"></LinearLayout>
         </HorizontalScrollView>
 
         <ListView
