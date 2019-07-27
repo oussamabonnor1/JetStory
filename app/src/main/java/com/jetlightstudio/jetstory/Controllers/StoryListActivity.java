@@ -23,10 +23,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.beardedhen.androidbootstrap.BootstrapLabel;
 import com.jetlightstudio.jetstory.Models.Story;
 import com.jetlightstudio.jetstory.R;
 import com.jetlightstudio.jetstory.ToolBox.App;
+import com.jetlightstudio.jetstory.ToolBox.FontAwesome;
 import com.jetlightstudio.jetstory.ToolBox.StoryDataBase;
 
 import java.util.ArrayList;
@@ -196,14 +196,14 @@ public class StoryListActivity extends AppCompatActivity
 
             ImageView cover = view.findViewById(R.id.coverImage);
             TextView title = view.findViewById(R.id.titleText);
-            TextView author = view.findViewById(R.id.authorText);
-            TextView publishingDate = view.findViewById(R.id.yearText);
+            FontAwesome author = view.findViewById(R.id.authorText);
+            FontAwesome publishingDate = view.findViewById(R.id.yearText);
             TextView content = view.findViewById(R.id.contentText);
-            BootstrapLabel categoryLabel = view.findViewById(R.id.storyListCategoryLabel);
+            FontAwesome categoryLabel = view.findViewById(R.id.storyListCategoryLabel);
 
             //cover.setBackgroundResource(stories.get(i).getAlbumId());
             title.setText(stories.get(i).getTitle());
-            String authorName = App.getContext().getString(R.string.icon_plus) + " by " + stories.get(i).getAuthor();
+            String authorName = App.getContext().getString(R.string.icon_author) + " by " + stories.get(i).getAuthor();
             author.setText(authorName);
             String date = App.getContext().getString(R.string.icon_publish_date) + " on " + stories.get(i).getDate();
             publishingDate.setText(date);

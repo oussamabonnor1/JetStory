@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/custom_panel_circular_edge"
@@ -14,9 +13,9 @@
         android:id="@+id/coverImage"
         android:layout_width="0dp"
         android:layout_height="match_parent"
+        android:layout_gravity="center"
         android:layout_margin="5dp"
         android:layout_weight=".25"
-        android:layout_gravity="center"
         android:src="@drawable/book_green" />
 
     <GridLayout
@@ -28,10 +27,6 @@
 
         <TextView
             android:id="@+id/titleText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start|center"
-            android:layout_rowWeight=".5"
             android:ellipsize="end"
             android:maxLines="1"
             android:text="Story Title"
@@ -40,60 +35,64 @@
             android:textStyle="bold" />
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_rowWeight=".5"
+            android:layout_gravity="fill"
+            android:layout_rowSpan="1"
             android:orientation="horizontal"
+            android:layout_margin="5dp"
             android:weightSum="1">
 
-            <TextView
+            <com.jetlightstudio.jetstory.ToolBox.FontAwesome
                 android:id="@+id/authorText"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight=".5"
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:text="Author name"
-                android:textColor="@color/colorTextLight" />
+                android:textColor="@color/colorTextLight"/>
 
-            <TextView
+            <com.jetlightstudio.jetstory.ToolBox.FontAwesome
                 android:id="@+id/yearText"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight=".5"
+                android:layout_weight="1"
+                android:layout_gravity="end"
                 android:ellipsize="end"
+                android:textAlignment="textEnd"
                 android:maxLines="1"
                 android:text="Date"
                 android:textColor="@color/colorTextLight" />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:layout_gravity="fill"
+            android:layout_margin="5dp"
+            android:layout_rowWeight="2"
+            android:orientation="horizontal"
             android:weightSum="1">
 
             <TextView
                 android:id="@+id/contentText"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight=".5"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".75"
                 android:ellipsize="end"
                 android:maxLines="3"
                 android:text="Some Context"
                 android:textColor="@color/colorTextLight" />
 
-            <com.beardedhen.androidbootstrap.BootstrapLabel
+            <com.jetlightstudio.jetstory.ToolBox.FontAwesome
                 android:id="@+id/storyListCategoryLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_gravity="end"
-                android:layout_weight=".5"
-                android:paddingEnd="20dp"
-                android:paddingStart="20dp"
-                android:text="Category"
-                app:bootstrapBrand="warning"
-                app:roundedCorners="true" />
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".25"
+                android:background="@drawable/custom_panel_circular_edge"
+                android:backgroundTint="@color/colorPrimary"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:text="Action"
+                android:textAlignment="center"
+                android:textColor="@color/colorAccent"
+                android:textStyle="bold" />
         </LinearLayout>
 
     </GridLayout>
