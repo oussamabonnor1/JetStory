@@ -15,7 +15,6 @@
                 android:title="Made by Jetlight studio" />
             <item
                 android:id="@+id/appVersion"
-                android:icon="@drawable/ic_phone_android_black_24dp"
                 android:title="Version 1.0.0" />
         </menu>
     </item>

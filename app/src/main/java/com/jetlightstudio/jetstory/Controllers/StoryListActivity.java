@@ -55,7 +55,7 @@ public class StoryListActivity extends AppCompatActivity {
                 LinearLayout.LayoutParams.WRAP_CONTENT
         );
         params.setMargins(10, 0, 10, 0);
-        for (int i = 0; i < categories.size(); i++) {
+        for (int i = categories.size() - 1; i >= 0; i--) {
             final FontAwesome category = new FontAwesome(getApplicationContext());
             category.setBackground(getDrawable(R.drawable.category_panel_round_edge));
             HelpFullFunctions.setViewColor(category, "#FE9025");
@@ -103,6 +103,16 @@ public class StoryListActivity extends AppCompatActivity {
                 stories.add(storiesHolder.get(i));
             }
             adapter.notifyDataSetChanged();
+        }
+    }
+
+    public void sortStoryList(String sortingType) {
+        if (sortingType.matches("Name")) {
+            //Todo: sort stories by Name -.-
+        } else if (sortingType.matches("Time")) {
+            //Todo: sort stories by Time -.-
+        } else {
+            //Todo: sort stories by Date -.-
         }
     }
 

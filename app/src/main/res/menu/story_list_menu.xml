@@ -16,7 +16,7 @@
     <item
         android:id="@+id/sortStoriesByTime"
         android:orderInCategory="3"
-        android:title="Sort by time"
+        android:title="Sort by reading time"
         app:showAsAction="never" />
     <item
         android:id="@+id/sortStoriesByDate"
