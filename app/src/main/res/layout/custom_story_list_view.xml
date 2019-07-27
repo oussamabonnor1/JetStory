@@ -36,9 +36,9 @@
 
         <LinearLayout
             android:layout_gravity="fill"
+            android:layout_margin="5dp"
             android:layout_rowSpan="1"
             android:orientation="horizontal"
-            android:layout_margin="5dp"
             android:weightSum="1">
 
             <com.jetlightstudio.jetstory.ToolBox.FontAwesome
@@ -48,19 +48,19 @@
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:text="Author name"
-                android:textColor="@color/colorTextLight"/>
+                android:textColor="@color/colorTextLight" />
 
             <com.jetlightstudio.jetstory.ToolBox.FontAwesome
                 android:id="@+id/yearText"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
                 android:layout_gravity="end"
+                android:layout_weight="1"
                 android:ellipsize="end"
-                android:textAlignment="textEnd"
                 android:maxLines="1"
-
                 android:text="Date"
+
+                android:textAlignment="textEnd"
                 android:textColor="@color/colorTextLight" />
         </LinearLayout>
 
@@ -75,27 +75,48 @@
             <TextView
                 android:id="@+id/contentText"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight=".75"
+                android:layout_height="match_parent"
+                android:layout_weight=".7"
                 android:ellipsize="end"
-                android:maxLines="3"
-                android:text="Some ContextSome ContextSome ContextSome ContextSome ContextSome ContextSome Context"
-                android:textColor="@color/colorTextLight" />
+                android:gravity="center_vertical"
+                android:maxLines="2"
+                android:text="Some Context"
+                android:textColor="@color/colorTextDark" />
 
-            <com.jetlightstudio.jetstory.ToolBox.FontAwesome
-                android:id="@+id/storyListCategoryLabel"
+            <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight=".25"
-                android:background="@drawable/custom_panel_circular_edge"
-                android:backgroundTint="@color/colorPrimary"
-                android:paddingBottom="5dp"
-                android:paddingTop="5dp"
-                android:text="Action"
-                android:layout_gravity="center"
-                android:textAlignment="center"
-                android:textColor="@color/colorAccent"
-                android:textStyle="bold" />
+                android:layout_height="match_parent"
+                android:layout_marginStart="5dp"
+                android:layout_weight=".3"
+                android:orientation="vertical"
+                android:weightSum="1">
+
+                <com.jetlightstudio.jetstory.ToolBox.FontAwesome
+                    android:id="@+id/storyListTimeLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight=".5"
+                    android:padding="5dp"
+                    android:text="@string/icon_time"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorTextLight"
+                    android:textSize="16sp" />
+
+                <com.jetlightstudio.jetstory.ToolBox.FontAwesome
+                    android:id="@+id/storyListCategoryLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight=".5"
+                    android:background="@drawable/custom_panel_circular_edge"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:padding="5dp"
+                    android:text="Action"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
         </LinearLayout>
 
     </GridLayout>

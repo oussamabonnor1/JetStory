@@ -123,7 +123,7 @@ public class FragementActionStoryList extends Fragment {
     {/*public class StoryListActivity extends AppCompatActivity
             implements NavigationView.OnNavigationItemSelectedListener {
 
-        CustomStoryAdapter c;
+        CustomStoryListAdapter c;
 
 
         @Override

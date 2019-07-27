@@ -21,7 +21,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.jetlightstudio.jetstory.Adapters.CustomStoryAdapter;
+import com.jetlightstudio.jetstory.Adapters.CustomStoryListAdapter;
 import com.jetlightstudio.jetstory.Models.Story;
 import com.jetlightstudio.jetstory.R;
 import com.jetlightstudio.jetstory.ToolBox.FontAwesome;
@@ -84,7 +84,7 @@ public class StoryListActivity extends AppCompatActivity
 
     protected void settingStoryList() {
         storyList = findViewById(R.id.storyList);
-        storyList.setAdapter(new CustomStoryAdapter(stories));
+        storyList.setAdapter(new CustomStoryListAdapter(stories));
         storyList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {

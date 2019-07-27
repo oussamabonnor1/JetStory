@@ -15,10 +15,10 @@ import com.jetlightstudio.jetstory.ToolBox.FontAwesome;
 
 import java.util.ArrayList;
 
-public class CustomStoryAdapter extends BaseAdapter {
+public class CustomStoryListAdapter extends BaseAdapter {
     ArrayList<Story> stories;
 
-    public CustomStoryAdapter(ArrayList<Story> stories) {
+    public CustomStoryListAdapter(ArrayList<Story> stories) {
         this.stories = stories;
     }
 
@@ -47,6 +47,7 @@ public class CustomStoryAdapter extends BaseAdapter {
         FontAwesome author = view.findViewById(R.id.authorText);
         FontAwesome publishingDate = view.findViewById(R.id.yearText);
         TextView content = view.findViewById(R.id.contentText);
+        FontAwesome timeLabel = view.findViewById(R.id.storyListTimeLabel);
         FontAwesome categoryLabel = view.findViewById(R.id.storyListCategoryLabel);
 
         //cover.setBackgroundResource(stories.get(i).getAlbumId());
@@ -57,6 +58,8 @@ public class CustomStoryAdapter extends BaseAdapter {
         publishingDate.setText(date);
         content.setText(stories.get(i).getContent());
         categoryLabel.setText(stories.get(i).getCategory().name());
+        String time = App.getContext().getString(R.string.icon_time) + " " + stories.get(i).getTime() + " mn";
+        timeLabel.setText(time);
         return view;
     }
 
