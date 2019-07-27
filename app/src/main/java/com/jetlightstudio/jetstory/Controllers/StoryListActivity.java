@@ -3,12 +3,8 @@ package com.jetlightstudio.jetstory.Controllers;
 import android.app.SearchManager;
 import android.content.Intent;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
 import android.support.v4.view.MenuItemCompat;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
@@ -29,13 +25,14 @@ import com.jetlightstudio.jetstory.ToolBox.StoryDataBase;
 
 import java.util.ArrayList;
 
-public class StoryListActivity extends AppCompatActivity
-        implements View.OnClickListener {
+public class StoryListActivity extends AppCompatActivity {
     ListView storyList;
     LinearLayout categoriesView;
     ArrayList<String> categories;
     ArrayList<Story> stories; //used to hold the current stories shown (with or without refined search)
     ArrayList<Story> storiesHolder; //used so that the original story list is always saved
+    CustomStoryListAdapter adapter;
+    FontAwesome currentlySelectedCategory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +56,7 @@ public class StoryListActivity extends AppCompatActivity
         );
         params.setMargins(10, 0, 10, 0);
         for (int i = 0; i < categories.size(); i++) {
-            FontAwesome category = new FontAwesome(getApplicationContext());
+            final FontAwesome category = new FontAwesome(getApplicationContext());
             category.setBackground(getDrawable(R.drawable.category_panel_round_edge));
             HelpFullFunctions.setViewColor(category, "#FE9025");
             category.setTextColor(Color.parseColor("#FFFFFF"));
@@ -68,13 +65,27 @@ public class StoryListActivity extends AppCompatActivity
             category.setTextSize(22);
             category.setLayoutParams(params);
             category.setElevation(15);
+            category.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (currentlySelectedCategory != null) {
+                        HelpFullFunctions.setViewColor(currentlySelectedCategory, "#FE9025");
+                        currentlySelectedCategory.setElevation(15);
+                    }
+                    HelpFullFunctions.setViewColor(category, "#9AD945");
+                    category.setElevation(30);
+                    currentlySelectedCategory = category;
+                    filteringStoryList(category.getText().toString());
+                }
+            });
             categoriesView.addView(category, 0);
         }
     }
 
     protected void settingStoryList() {
         storyList = findViewById(R.id.storyList);
-        storyList.setAdapter(new CustomStoryListAdapter(stories));
+        adapter = new CustomStoryListAdapter(stories);
+        storyList.setAdapter(adapter);
         storyList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -85,11 +96,14 @@ public class StoryListActivity extends AppCompatActivity
         });
     }
 
-    @Override
-    public void onClick(View view) {
-        int id = view.getId();
-
-        settingStoryList();
+    public void filteringStoryList(String category) {
+        stories.clear();
+        for (int i = 0; i < storiesHolder.size(); i++) {
+            if (storiesHolder.get(i).getCategory().name().toLowerCase().matches(category.toLowerCase())) {
+                stories.add(storiesHolder.get(i));
+            }
+            adapter.notifyDataSetChanged();
+        }
     }
 
     @Override
@@ -122,7 +136,7 @@ public class StoryListActivity extends AppCompatActivity
                             i++;
                         } else i++;
                     }
-                    settingStoryList();
+                    adapter.notifyDataSetChanged();
                     return false;
                 }
             });
@@ -130,7 +144,7 @@ public class StoryListActivity extends AppCompatActivity
                 @Override
                 public boolean onClose() {
                     stories = (ArrayList<Story>) storiesHolder.clone();
-                    settingStoryList();
+                    adapter.notifyDataSetChanged();
                     return false;
                 }
             });
