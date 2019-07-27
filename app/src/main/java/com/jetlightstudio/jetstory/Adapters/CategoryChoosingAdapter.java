@@ -14,11 +14,11 @@ import com.jetlightstudio.jetstory.ToolBox.HelpFullFunctions;
 
 import java.util.ArrayList;
 
-public class CustomCategoryAdapter extends RecyclerView.Adapter<CustomCategoryAdapter.ViewHolder> {
+public class CategoryChoosingAdapter extends RecyclerView.Adapter<CategoryChoosingAdapter.ViewHolder> {
     ArrayList<String> categories;
     ArrayList<Boolean> selectedCategories;
 
-    public CustomCategoryAdapter() {
+    public CategoryChoosingAdapter() {
         this.categories = new ArrayList<>();
         selectedCategories = new ArrayList<>();
         categories.add("Latest Updates");
@@ -86,8 +86,13 @@ public class CustomCategoryAdapter extends RecyclerView.Adapter<CustomCategoryAd
     public ArrayList<String> getCategories() {
         ArrayList<String> selectedCategoriesNames = new ArrayList<>();
         for (int i = 0; i < categories.size(); i++) {
-            if (selectedCategories.get(i)) selectedCategoriesNames.add(categories.get(i).toLowerCase());
+            if (selectedCategories.get(i))
+                selectedCategoriesNames.add(categories.get(i).toLowerCase());
         }
         return selectedCategoriesNames;
+    }
+
+    public ArrayList<String> getUnfilteredCategories() {
+        return categories;
     }
 }

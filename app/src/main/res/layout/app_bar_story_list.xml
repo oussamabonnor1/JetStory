@@ -29,10 +29,21 @@
         android:orientation="vertical"
         android:weightSum="1">
 
-        <LinearLayout
+        <HorizontalScrollView
+            android:background="@color/colorAccent"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight=".2" />
+            android:layout_weight=".1"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:id="@+id/categoriesView"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+            </LinearLayout>
+        </HorizontalScrollView>
 
         <ListView
             android:id="@+id/storyList"

@@ -2,6 +2,7 @@ package com.jetlightstudio.jetstory.Controllers;
 
 import android.app.SearchManager;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -15,18 +16,16 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.BaseAdapter;
-import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import com.jetlightstudio.jetstory.Adapters.CustomStoryAdapter;
 import com.jetlightstudio.jetstory.Models.Story;
 import com.jetlightstudio.jetstory.R;
-import com.jetlightstudio.jetstory.ToolBox.App;
 import com.jetlightstudio.jetstory.ToolBox.FontAwesome;
+import com.jetlightstudio.jetstory.ToolBox.HelpFullFunctions;
 import com.jetlightstudio.jetstory.ToolBox.StoryDataBase;
 
 import java.util.ArrayList;
@@ -34,6 +33,8 @@ import java.util.ArrayList;
 public class StoryListActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
     ListView storyList;
+    LinearLayout categoriesView;
+    ArrayList<String> categories;
     ArrayList<Story> stories; //used to hold the current stories shown (with or without refined search)
     ArrayList<Story> storiesHolder; //used so that the original story list is always saved
 
@@ -52,15 +53,38 @@ public class StoryListActivity extends AppCompatActivity
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
         stories = (ArrayList<Story>) getIntent().getExtras().getSerializable("stories");
+        categories = (ArrayList<String>) getIntent().getExtras().getSerializable("categories");
         storiesHolder = (ArrayList<Story>) stories.clone();
         settingStoryList();
+        settingCategories();
+    }
 
+    protected void settingCategories() {
+        categoriesView = findViewById(R.id.categoriesView);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+        );
+        params.setMargins(10, 0, 10, 0);
+        for (int i = 0; i < categories.size(); i++) {
+            FontAwesome category = new FontAwesome(getApplicationContext());
+            category.setBackground(getDrawable(R.drawable.category_panel_round_edge));
+            HelpFullFunctions.setViewColor(category, "#FE9025");
+            category.setTextColor(Color.parseColor("#FFFFFF"));
+            category.setPadding(50, 25, 50, 25);
+            category.setText(categories.get(i));
+            category.setTextSize(22);
+            category.setLayoutParams(params);
+            category.setElevation(15);
+            categoriesView.addView(category, 0);
+        }
     }
 
     protected void settingStoryList() {
         storyList = findViewById(R.id.storyList);
-        storyList.setAdapter(new CustomStoryAdapter());
+        storyList.setAdapter(new CustomStoryAdapter(stories));
         storyList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -173,44 +197,4 @@ public class StoryListActivity extends AppCompatActivity
         return true;
     }
 
-    class CustomStoryAdapter extends BaseAdapter {
-
-        @Override
-        public int getCount() {
-            return stories.size();
-        }
-
-        @Override
-        public Object getItem(int i) {
-            return null;
-        }
-
-        @Override
-        public long getItemId(int i) {
-            return i;
-        }
-
-        @Override
-        public View getView(int i, View view, ViewGroup viewGroup) {
-            view = getLayoutInflater().inflate(R.layout.custom_story_list_view, null);
-
-            ImageView cover = view.findViewById(R.id.coverImage);
-            TextView title = view.findViewById(R.id.titleText);
-            FontAwesome author = view.findViewById(R.id.authorText);
-            FontAwesome publishingDate = view.findViewById(R.id.yearText);
-            TextView content = view.findViewById(R.id.contentText);
-            FontAwesome categoryLabel = view.findViewById(R.id.storyListCategoryLabel);
-
-            //cover.setBackgroundResource(stories.get(i).getAlbumId());
-            title.setText(stories.get(i).getTitle());
-            String authorName = App.getContext().getString(R.string.icon_author) + " by " + stories.get(i).getAuthor();
-            author.setText(authorName);
-            String date = App.getContext().getString(R.string.icon_publish_date) + " on " + stories.get(i).getDate();
-            publishingDate.setText(date);
-            content.setText(stories.get(i).getContent());
-            categoryLabel.setText(stories.get(i).getCategory().name());
-            return view;
-        }
-
-    }
 }

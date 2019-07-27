@@ -17,7 +17,7 @@ import android.widget.TextView;
 import com.google.android.flexbox.FlexDirection;
 import com.google.android.flexbox.FlexboxLayoutManager;
 import com.google.android.flexbox.JustifyContent;
-import com.jetlightstudio.jetstory.Adapters.CustomCategoryAdapter;
+import com.jetlightstudio.jetstory.Adapters.CategoryChoosingAdapter;
 import com.jetlightstudio.jetstory.Adapters.TimeGridViewAdapter;
 import com.jetlightstudio.jetstory.Models.Story;
 import com.jetlightstudio.jetstory.R;
@@ -36,8 +36,7 @@ public class ChoosingActivity extends AppCompatActivity {
     int timeIndex = -1;
     LinearLayout layoutToSelect;
     TextView textToSelect;
-    CustomCategoryAdapter customCategoriesAdapter;
-
+    CategoryChoosingAdapter customCategoriesAdapter;
 
 
     @Override
@@ -49,7 +48,7 @@ public class ChoosingActivity extends AppCompatActivity {
         progressBar.setVisibility(View.VISIBLE);
 
         categoriesView = findViewById(R.id.categoriesView);
-        customCategoriesAdapter = new CustomCategoryAdapter();
+        customCategoriesAdapter = new CategoryChoosingAdapter();
         categoriesView.setAdapter(customCategoriesAdapter);
         final FlexboxLayoutManager layoutManager = new FlexboxLayoutManager(getApplicationContext());
         layoutManager.setFlexDirection(FlexDirection.ROW);
@@ -118,6 +117,7 @@ public class ChoosingActivity extends AppCompatActivity {
 
         Intent i = new Intent(this, StoryListActivity.class);
         i.putExtra("stories", filteredStories);
+        i.putExtra("categories", customCategoriesAdapter.getUnfilteredCategories());
 
         startActivity(i);
     }
