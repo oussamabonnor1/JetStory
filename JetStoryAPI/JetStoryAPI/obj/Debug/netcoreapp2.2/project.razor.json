@@ -2880,7 +2880,7 @@
             "IsEnum": false,
             "IndexerNamePrefix": null,
             "IndexerTypeName": null,
-            "Documentation": null,
+            "Documentation": "\n            <summary>\n            Specifies the path to the JavaScript module containing prerendering code.\n            </summary>\n        ",
             "Diagnostics": [],
             "Metadata": {
               "Common.PropertyName": "ModuleName"

@@ -33,7 +33,7 @@ namespace JetStoryApi.Controllers
             return await _context.Stories.ToListAsync();
         }
 
-        [HttpGet("{name}")]
+        [HttpGet("{id:int}")]
         public async Task<ActionResult<Story>> Get(int id)
         {
             var story = await _context.Stories.FindAsync(id);
@@ -42,6 +42,17 @@ namespace JetStoryApi.Controllers
             }
 
             return story;
+        }
+
+        [HttpGet("{category}")]
+        public async Task<ActionResult<IEnumerable<Story>>> Get(string category)
+        {
+            var stories = await _context.Stories.Where(story => story.Category == category).ToListAsync();
+            if (stories == null) {
+                return NotFound ("The category: " + category + " does not exist!");
+            }
+
+            return stories;
         }
 
         [HttpPost]
