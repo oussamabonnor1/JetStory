@@ -36,6 +36,7 @@ public class ReadingActivity extends AppCompatActivity
     FontAwesome authorName;
     FontAwesome publishingDate;
     FontAwesome timeToRead;
+    ImageView coverImage;
     Menu menu;
 
     @Override
@@ -57,6 +58,7 @@ public class ReadingActivity extends AppCompatActivity
         authorName = findViewById(R.id.authorText);
         timeToRead = findViewById(R.id.timeText);
         publishingDate = findViewById(R.id.dateText);
+        coverImage = findViewById(R.id.coverImage);
 
         title.setText(story.getTitle());
         content.setText(story.getContent());
