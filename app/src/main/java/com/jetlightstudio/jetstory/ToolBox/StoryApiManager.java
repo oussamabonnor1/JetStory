@@ -20,7 +20,7 @@ public class StoryApiManager extends AsyncTask<Void, Void, ArrayList<Story>> {
 
     ArrayList<Story> stories = new ArrayList<>();
     String data;
-    String path = "http://3a8a462e.ngrok.io";
+    String path = "http://fd67a4fa.ngrok.io";
 
     @Override
     protected ArrayList<Story> doInBackground(Void... voids) {
