@@ -11,7 +11,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.google.android.flexbox.FlexDirection;
@@ -22,15 +21,12 @@ import com.jetlightstudio.jetstory.Adapters.TimeGridViewAdapter;
 import com.jetlightstudio.jetstory.Models.Story;
 import com.jetlightstudio.jetstory.R;
 import com.jetlightstudio.jetstory.ToolBox.HelpFullFunctions;
-import com.jetlightstudio.jetstory.ToolBox.StoryApiManager;
 
 import java.util.ArrayList;
-import java.util.concurrent.ExecutionException;
 
 public class ChoosingActivity extends AppCompatActivity {
 
     ArrayList<Story> stories = new ArrayList<>();
-    ProgressBar progressBar;
     RecyclerView categoriesView;
     GridView timeGridView;
     int timeIndex = -1;
@@ -43,9 +39,6 @@ public class ChoosingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choosing);
-
-        progressBar = findViewById(R.id.progressBar);
-        progressBar.setVisibility(View.VISIBLE);
 
         categoriesView = findViewById(R.id.categoriesView);
         customCategoriesAdapter = new CategoryChoosingAdapter();
@@ -80,17 +73,7 @@ public class ChoosingActivity extends AppCompatActivity {
             }
         });
 
-
-        StoryApiManager storyData = new StoryApiManager();
-        try {
-            storyData.execute();
-            stories = storyData.get();
-        } catch (InterruptedException | ExecutionException e) {
-            e.printStackTrace();
-        }
-        categoriesView.setVisibility(View.VISIBLE);
-        progressBar.setVisibility(View.GONE);
-
+        stories = (ArrayList<Story>) getIntent().getExtras().getSerializable("stories");
     }
 
     public void searchStory(View view) {
