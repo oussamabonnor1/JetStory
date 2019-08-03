@@ -3,32 +3,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Controllers.SplashScreen"
-    android:weightSum="1"
+    android:gravity="center"
     android:orientation="vertical"
-    android:gravity="center">
+    android:weightSum="1"
+    tools:context=".Controllers.SplashScreen">
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight=".3"
-        android:src="@drawable/book_red"
-        />
+        android:layout_height="150dp"
+        android:layout_marginTop="100dp"
+        android:src="@drawable/book_red" />
+
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight=".1"
-        android:text="JetStory"
+        android:layout_height="50dp"
         android:gravity="center"
-        android:textSize="32sp"
+        android:text="JetStory"
         android:textAlignment="center"
-        android:textStyle="bold"/>
+        android:textColor="@color/colorTextDark"
+        android:textSize="32sp"
+        android:textStyle="bold" />
+
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="100dp"
         android:text="Every second counts"
-        android:textSize="18sp"
         android:textAlignment="center"
-        android:layout_weight=".1"/>
+        android:textColor="@color/colorTextLight"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="bottom|center"
+        android:indeterminateDrawable="@drawable/progress_bar_custom_layout" />
 
 </LinearLayout>
