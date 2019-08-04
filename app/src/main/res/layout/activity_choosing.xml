@@ -16,13 +16,13 @@
             android:layout_weight=".05"
             android:text="What do you want to read?"
             android:textAlignment="center"
-            android:textSize="20sp"
+            android:textSize="24sp"
             android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight=".4"
+            android:layout_weight=".45"
             android:gravity="center">
 
             <android.support.v7.widget.RecyclerView
@@ -38,7 +38,7 @@
             android:layout_weight=".075"
             android:text="How long are you waiting? (Mn)"
             android:textAlignment="center"
-            android:textSize="20sp"
+            android:textSize="24sp"
             android:textStyle="bold" />
 
         <GridView
@@ -51,11 +51,6 @@
             android:numColumns="5"
             android:padding="10dp"
             android:verticalSpacing="10dp" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight=".05" />
 
         <Button
             android:layout_width="match_parent"

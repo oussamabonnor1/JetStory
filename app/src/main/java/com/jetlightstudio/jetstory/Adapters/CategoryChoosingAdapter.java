@@ -13,6 +13,7 @@ import com.jetlightstudio.jetstory.ToolBox.FontAwesome;
 import com.jetlightstudio.jetstory.ToolBox.HelpFullFunctions;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class CategoryChoosingAdapter extends RecyclerView.Adapter<CategoryChoosingAdapter.ViewHolder> {
     ArrayList<String> categories;
@@ -21,15 +22,7 @@ public class CategoryChoosingAdapter extends RecyclerView.Adapter<CategoryChoosi
     public CategoryChoosingAdapter() {
         this.categories = new ArrayList<>();
         selectedCategories = new ArrayList<>();
-        categories.add("Latest Updates");
-        categories.add("Moral");
-        categories.add("Action");
-        categories.add("Romance");
-        categories.add("Comedy");
-        categories.add("Fantasy");
-        categories.add("Sad");
-        categories.add("Kids");
-        categories.add("Thriller");
+        categories.addAll(Arrays.asList("Action", "Romantic", "Adventure", "Classics", "Humor", "Thriller", "Historic", "Science fiction", "Kids"));
         for (int i = 0; i < categories.size(); i++) {
             selectedCategories.add(false);
         }

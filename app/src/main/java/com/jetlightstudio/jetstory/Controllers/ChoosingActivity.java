@@ -105,6 +105,11 @@ public class ChoosingActivity extends AppCompatActivity {
         startActivity(i);
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+
     public void openFacebook(View view) {
         Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/JetLightstudio"));
         startActivity(browserIntent);

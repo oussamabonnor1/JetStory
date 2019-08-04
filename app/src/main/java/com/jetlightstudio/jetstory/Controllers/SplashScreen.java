@@ -33,6 +33,7 @@ public class SplashScreen extends AppCompatActivity {
                 Intent choosingActivityIntent = new Intent(getApplicationContext(), ChoosingActivity.class);
                 choosingActivityIntent.putExtra("stories", stories);
                 startActivity(choosingActivityIntent);
+                finish();
             }
         }, 1500);
     }

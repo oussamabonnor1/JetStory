@@ -16,7 +16,8 @@
             android:name=".Controllers.ReadingActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Controllers.ChoosingActivity"/>
+        <activity android:name=".Controllers.ChoosingActivity"
+            />
 
         <activity
             android:name=".Controllers.StoryListActivity"
