@@ -16,14 +16,6 @@ namespace JetStoryApi.Controllers
         public StoriesController(StoryContext context)
         {
             _context = context;
-            if (_context.Stories.Count() == 0)
-            {
-                _context.Stories.Add(new Story
-                {
-                    Name = "something"
-                });
-                _context.SaveChanges();
-            }
         }
 
 

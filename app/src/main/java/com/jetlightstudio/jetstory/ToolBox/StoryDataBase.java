@@ -114,7 +114,7 @@ public class StoryDataBase extends SQLiteOpenHelper {
         else if (name.equals("comedy")) return Story.Category.comedy;
         else if (name.equals("romance")) return Story.Category.romance;
         else if (name.equals("moral")) return Story.Category.moral;
-        else if (name.equals("sad")) return Story.Category.sad;
+        else if (name.equals("kids")) return Story.Category.kids;
         else return Story.Category.action;
     }
 }

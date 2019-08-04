@@ -45,7 +45,7 @@ public class StoryApiManager extends AsyncTask<Void, Void, ArrayList<Story>> {
             try {
                 data = data.replace("null", "");
                 JSONArray jsonArray = new JSONArray(data);
-                for (int i = 0; i < 4; i++) {
+                for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject json = jsonArray.getJSONObject(i);
 
                     stories.add(new Story(json.getString("name"), json.getString("writer"),

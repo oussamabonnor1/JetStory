@@ -15,7 +15,7 @@ public class Story implements Serializable {
     private int id;
 
     public enum Category {
-        action, comedy, romance, moral, sad
+        action, comedy, romance, moral, kids
     }
 
     private Category category;
@@ -73,8 +73,8 @@ public class Story implements Serializable {
             return Story.Category.romance;
         else if (category.matches("moral"))
             return Story.Category.moral;
-        else if (category.matches("sad"))
-            return Story.Category.sad;
+        else if (category.matches("kids"))
+            return Story.Category.kids;
         else return Category.action;
     }
 
