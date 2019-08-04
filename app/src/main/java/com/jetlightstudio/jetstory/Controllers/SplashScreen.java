@@ -2,6 +2,7 @@ package com.jetlightstudio.jetstory.Controllers;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 
 import com.jetlightstudio.jetstory.Models.Story;
@@ -18,17 +19,24 @@ public class SplashScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
-
-        StoryApiManager storyData = new StoryApiManager();
         try {
+            StoryApiManager storyData = new StoryApiManager();
             storyData.execute();
             stories = storyData.get();
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
 
-        Intent choosingActivityIntent = new Intent(getApplicationContext(), ChoosingActivity.class);
-        choosingActivityIntent.putExtra("stories", stories);
-        startActivity(choosingActivityIntent);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent choosingActivityIntent = new Intent(getApplicationContext(), ChoosingActivity.class);
+                choosingActivityIntent.putExtra("stories", stories);
+                startActivity(choosingActivityIntent);
+            }
+        }, 1500);
     }
+
 }
+
+
