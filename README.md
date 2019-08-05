@@ -1,13 +1,15 @@
 # JetTunes
 
+<img width="250" src="Screenshots/splashScreen.png">
+
 ![GitHub license](https://img.shields.io/github/license/oussamabonnor1/JetStory.svg)
 ![Jetlight studio](https://img.shields.io/badge/Made%20by-Jetlight%20studio-blue.svg?color=082544)
+
 
 ## Description:
 JetStory is an open source android app made to help you spend your waiting time reading stories that have similar length to your available time.
 #### Real world example:
   Someone is waiting at the bus station, the bus will arrive in 5 mn, they use JetStory to read a story that is 5 mn long!
-<img width="250" src="Screenshots/splashScreen.png">
 
 ## How it works:
 * Choose a category and a time to complete the story 
