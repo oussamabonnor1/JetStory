@@ -17,6 +17,14 @@ JetStory is an open source android app made to help you spend your waiting time 
 <img width="250" src="Screenshots/readinGif.gif">
 
 
+* You can search for stories by name or category! 
+
+<img width="250" src="Screenshots/searchBarGif.gif"> <img width="250" src="Screenshots/simpelUxGIF.gif">
+
+* You can search for words in a story!
+<img width="250" src="Screenshots/searchReading.gif">
+
+
 ## TODO:
 - [ ] Add more stories.
 - [ ] Open the API to allow people to integrate stories (writter profile).
