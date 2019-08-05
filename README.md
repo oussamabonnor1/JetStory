@@ -1,8 +1,10 @@
 # JetTunes
 
+<img width="250" src="Screenshots/splashScreen.png">
+
 ![GitHub license](https://img.shields.io/github/license/oussamabonnor1/JetStory.svg)
 ![Jetlight studio](https://img.shields.io/badge/Made%20by-Jetlight%20studio-blue.svg?color=082544)
-<img width="250" src="Screenshots/splashScreen.png">
+
 
 ## Description:
 JetStory is an open source android app made to help you spend your waiting time reading stories that have similar length to your available time.
