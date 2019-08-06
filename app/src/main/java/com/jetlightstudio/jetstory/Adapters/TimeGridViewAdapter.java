@@ -1,6 +1,7 @@
 package com.jetlightstudio.jetstory.Adapters;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Point;
 import android.view.Display;
 import android.view.LayoutInflater;
@@ -53,7 +54,7 @@ public class TimeGridViewAdapter extends BaseAdapter {
 
         TextView timeTextView = view.findViewById(R.id.timeTextView);
         timeTextView.setText(times.get(i));
-
+        timeTextView.setTextColor(Color.parseColor("#757575"));
         return view;
     }
 }

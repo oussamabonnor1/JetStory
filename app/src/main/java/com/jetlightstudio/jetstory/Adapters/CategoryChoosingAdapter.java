@@ -22,7 +22,7 @@ public class CategoryChoosingAdapter extends RecyclerView.Adapter<CategoryChoosi
     public CategoryChoosingAdapter() {
         this.categories = new ArrayList<>();
         selectedCategories = new ArrayList<>();
-        categories.addAll(Arrays.asList("Action", "Romance", "Adventure", "Classics", "Comedy", "Thriller", "Historic", "Science fiction", "Kids"));
+        categories.addAll(Arrays.asList("Action", "Romance", "Adventure", "Classics", "Comedy", "Kids", "Thriller", "Historic", "Science fiction"));
         for (int i = 0; i < categories.size(); i++) {
             selectedCategories.add(false);
         }
