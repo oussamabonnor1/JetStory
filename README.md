@@ -1,4 +1,4 @@
-# JetTunes
+# JetStory
 
 <img width="250" src="Screenshots/splashScreen.png">
 
