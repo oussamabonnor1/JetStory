@@ -12,18 +12,18 @@ JetStory is an open source android app made to help you spend your waiting time 
   Someone is waiting at the bus station, the bus will arrive in 5 mn, they use JetStory to read a story that is 5 mn long!
 
 ## How it works:
-* Choose a category and a time to complete the story 
+* <b>Choose a category and a time to complete the story<b>
 <img width="250" src="Screenshots/choseTimeGIF.gif">
 
-* Choose a story to read! 
+* <b>Choose a story to read!</b>
 <img width="250" src="Screenshots/readinGif.gif">
 
 
-* You can search for stories by name or category! 
+* <b>You can search for stories by name or category!</b>
 
 <img width="250" src="Screenshots/searchBarGif.gif"> <img width="250" src="Screenshots/simpelUxGIF.gif">
 
-* You can search for words in a story!
+* <b>You can search for words in a story!</b>
 <img width="250" src="Screenshots/searchReading.gif">
 
 
